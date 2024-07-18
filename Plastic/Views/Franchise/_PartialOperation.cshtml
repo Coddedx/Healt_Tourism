@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Operation>
+
+    <div>
+        <h2>Operasyonlarımız</h2>
+        @foreach (var item in Model)
+    {
+        <li>@item.Title</li>
+    }
+</div>

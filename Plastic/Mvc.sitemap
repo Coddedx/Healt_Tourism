@@ -1,0 +1,9 @@
+﻿<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xmlns="http://mvcsitemap.codeplax.com/schemas/MvcSiteMap-File-4.0"
+			xsi:schemaLocation="http://mvcsitemap.codeplax.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+	<mvcSiteMapNode title="Clinic" controller="Franchise" action="Index">
+		<mvcSiteMapNode title="İşlemlerimiz" controller="Operation" action="Index" />		
+	</mvcSiteMapNode>
+	
+</mvcSiteMap>

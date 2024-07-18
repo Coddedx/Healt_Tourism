@@ -1,0 +1,102 @@
+﻿<!-- -------- Klinik ------- -->
+@model IEnumerable<Clinic>
+
+<br><br><br><br><br><br>
+<div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 overflow-hidden">
+    <div class="container">
+        <div class="row border-radius-md pb-4 p-3 mx-sm-0 mx-1 position-relative">
+           
+            <div class="col-lg-3 mt-lg-n2 mt-2">              
+                <label class="ms-0">Leave From</label>
+                <div class="input-group input-group-static">
+                    <span class="input-group-text"></span>
+                </div>
+            </div>
+           
+            <div class="col-lg-3 mt-lg-n2 mt-2">
+                <label class="ms-0">To</label>
+                <div class="input-group input-group-static">
+                    <span class="input-group-text"></span>
+                </div>
+            </div>
+
+            <div class="col-lg-3 mt-lg-n2 mt-2">
+                <label class="ms-0">Depart</label>
+                <div class="input-group input-group-static">
+                    <span class="input-group-text"><i class="fas fa-calendar" aria-hidden="true"></i></span>
+                    <input class="form-control datepicker" placeholder="Please select date" type="text">
+                </div>
+            </div>
+            <div class="col-lg-3 mt-lg-n2 mt-2">
+                <label>&nbsp;</label>
+                <button type="button" class="btn bg-gradient-primary w-100 mb-0">Search</button>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="pt-7 pb-0">
+        <div class="container">
+            <div class="row">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card mt-5 mt-md-0">
+                            <div class="card-header p-0 mx-3 mt-n4 position-relative z-index-2">
+                                <a class="d-block blur-shadow-image">
+                                    <img src="~/assets/img/products/product-2-min.jpg" alt="img-blur-shadow" class="img-fluid border-radius-lg" loading="lazy">
+                                </a>
+                                <div class="colored-shadow" style="background-image: url(&quot;.assets/img/products/product-2-min.jpg&quot;);"></div>
+                            </div>
+                            <div class="card-body pt-3">
+                                <p class="text-dark mb-2 text-sm">Entire Apartment • 3 Guests • 2 Beds</p>
+                                <a href="javascript:;">
+                                    <h5>
+                                       @item.Name
+                                    </h5>
+                                </a>
+                                <p>@item.Adress</p>
+@*                                 <button type="button" class="btn btn-outline-primary btn-sm mb-0">Sayfasına Git</button>*@
+                                <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm mb-0" asp-area="" asp-controller="Franchise" asp-action="Index" asp-route-id="@item.Id">Sayfasına Git</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+                <div class="col-sm-7 ms-auto text-end">
+                    <ul class="pagination pagination-primary mt-4">
+                        <li class="page-item ms-auto">
+                            <a class="page-link" href="javascript:;" aria-label="Previous">
+                                <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="javascript:;">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:;">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:;">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:;">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:;">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:;" aria-label="Next">
+                                <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>

@@ -1,0 +1,209 @@
+﻿<!-- -------- Franchise ------- -->
+@model Clinic
+<header>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-absolute bg-transparent shadow-none">
+        <div class="container">
+            <a class="navbar-brand text-white" href="javascript:;">Material Design</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header-2" aria-controls="navbar-header-2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-header-2">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:;">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:;">
+                            About Us
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:;">
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://twitter.com/CreativeTim">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="https://www.facebook.com/CreativeTim">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.instagram.com/CreativeTimOfficial">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header min-vh-75" style="background-image: url(https://images.unsplash.com/photo-1501446529957-6226bd447c46?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2378&q=80)" loading="lazy">
+        <span class="mask bg-gradient-dark opacity-4"></span>
+        <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-white text-center">
+                    <h2 class="text-white"></h2>  @*  @Model.Adress *@
+                    <p class="lead"></p>@*  @Model.Email *@
+                    <p class="lead"></p>@*  @Model.Phone *@
+                    </div>
+                </div>           
+        </div>
+    </div>
+
+
+
+
+
+    @section Scripts {
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#kliniklerButton").click(function () {
+                    $.ajax({
+                        url: '@Url.Action("Operation", "Franchise")',
+                        type: 'GET',
+                        success: function (data) {
+                            $("#kliniklerDiv").html(data);
+                        }
+                    });
+                });
+            });
+        </script>
+    }
+
+
+
+
+    <section class="py-7" style="margin-top:-85px ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 mx-auto">
+                    <div class="nav-wrapper position-relative end-0">
+                        <ul class="nav nav-pills nav-fill p-1" role="tablist">
+                            
+                            <li class="nav-item">
+                                <button id="kliniklerButton">İşlemler</button>
+                             
+
+@*                                 <a class="nav-link mb-0 px-0 py-1 active" role="tab"  />
+                                    İşlemlerimiz
+                                </a>    
+ *@                                @* data-bs-toggle="tab"  aria-controls="profile" aria-selected="true" asp-controller="Operation" asp-action="Index" href="@Html.RenderPartial("Doctor","Index")"   <partial name="~/Views/Operation/Index.cshtml"*@
+                            </li>
+                           
+                            <li class="nav-item">
+                                <a class="nav-link mb-0 px-0 py-1 active" asp-controller="Doctor" asp-action="Index" role="tab">
+                                    Doktorlarımız
+                                </a>    
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mb-0 px-0 py-1 active" asp-controller="OperationUser" asp-action="Index" role="tab">
+                                    Yorumlarımız
+                                </a>    
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mb-0 px-0 py-1 active" asp-controller="Clinic" asp-action="Index" role="tab">
+                                    Kliniklerimiz
+                                </a>   
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="kliniklerDiv"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+@*     <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="~/Views/Franchise/_PartialOperation.cshtml">işlemlerimiz</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab2">Tab 2</a>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-2">
+        <div id="tab1" class="tab-pane fade show active">
+            <!-- Tab 1 content will be loaded here dynamically -->
+        </div>
+        <div id="tab2" class="tab-pane fade">
+            <!-- Tab 2 content will be loaded here dynamically -->
+        </div>
+    </div>
+
+    @section Scripts {
+        <script>
+            $(function () {
+                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                    var target = $(e.target).attr("href"); // activated tab
+                    $.get(target, function (data) {
+                        $(target).html(data);
+                    });
+                });
+            });
+        </script>
+    }
+ *@
+
+
+
+
+
+@*     <asp: SiteMapDataSource id=" "*@   
+@*     <asp: SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+    <asp:SiteMapPath ID="SiteMapPath1" PathSeperator="/" RenderCurrentNodeAsLink="false" runat="server"></asp:SiteMapPath>
+ *@
+
+
+
+
+@*     <div class="container py-6 mt-2" style="margin-top:-5000px">
+        <div class="row">
+            <nav aria-label="breadcrumb">                               
+                <ol class="breadcrumb">
+                    @*                     <li class="breadcrumb-item text-dark active" aria-current="page"><a href="javascript">İşlemlerimiz</a></li>*@
+                 @*   <li class="breadcrumb-item text-dark active" aria-current="page">
+                        <a asp-controller="Operation" asp-action="Index">İşlemlerimiz</a>
+                    </li>
+                    <li class="breadcrumb-item text-dark opacity-5">
+                        <a asp-controller="Doctor" asp-action="Index">Doktorlarımız</a>
+                    </li>
+                    <li class="breadcrumb-item text-dark opacity-5">
+                        @* <a asp-controller="Clinic" asp-action="Index">Kliniklerimiz</a> *@
+          @*         </li>
+                    <li class="breadcrumb-item text-dark opacity-5">
+                        <a asp-controller="OperationUser" asp-action="Index">Yorumlarımız</a>  @* Bu kontrolıra mı gidicek?????????? *@
+         @*          </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+ *@
+
+
+
+
+@*     <div>
+        @Html.MvcSiteMap().SiteMapPath()
+    </div>
+ *@
+
+
+</header>
+<!-- -------- END HEADER 4 w/ search book a ticket form ------- -->

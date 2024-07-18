@@ -1,0 +1,26 @@
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace Plastic.Models
+{
+    public class CommentClinic :BaseEntity
+    {
+        [Required]
+        public int UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual User? User { get; set; }
+
+
+        [Required]
+        public int ClinicId { get; set; }
+        [ForeignKey("ClinicId")]
+        public virtual Clinic? Clinic { get; set; }
+
+        [StringLength(500)]
+        public string? Comment { get; set; }
+
+        [Required]
+        public int Star { get; set; } //int çünkü 1-5 arası star vericek ona göre animasyonu gösterilcek
+
+    }
+}

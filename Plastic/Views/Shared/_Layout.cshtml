@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+
+<head>
+    <partial name="_Head">
+</head>
+
+<body class="index-page bg-gray-200">
+   
+<partial name="_Navbar">
+@* <partial name="_Header"> *@
+    @RenderBody()
+
+            <footer class="footer pt-5 mt-5">
+                    <partial name="_Footer" />  
+            </footer>
+
+<partial name="_Script">
+
+
+            @RenderSection("Scripts", required: false)
+</body>
+
+</html>
