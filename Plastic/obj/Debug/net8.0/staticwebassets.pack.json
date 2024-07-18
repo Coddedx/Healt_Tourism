@@ -1,0 +1,1229 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Plastic.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Plastic.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\css\\material-kit.css",
+      "PackagePath": "staticwebassets\\assets\\css\\material-kit.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\css\\material-kit.css.map",
+      "PackagePath": "staticwebassets\\assets\\css\\material-kit.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\css\\material-kit.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\material-kit.min.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\css\\nucleo-icons.css",
+      "PackagePath": "staticwebassets\\assets\\css\\nucleo-icons.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\css\\nucleo-svg.css",
+      "PackagePath": "staticwebassets\\assets\\css\\nucleo-svg.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\fonts\\nucleo-icons.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\nucleo-icons.eot"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\fonts\\nucleo-icons.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\nucleo-icons.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\fonts\\nucleo-icons.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\nucleo-icons.ttf"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\fonts\\nucleo-icons.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\nucleo-icons.woff"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\fonts\\nucleo-icons.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\nucleo-icons.woff2"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\fonts\\nucleo.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\nucleo.eot"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\fonts\\nucleo.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\nucleo.ttf"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\fonts\\nucleo.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\nucleo.woff"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\fonts\\nucleo.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\nucleo.woff2"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\apple-icon.png",
+      "PackagePath": "staticwebassets\\assets\\img\\apple-icon.png"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\bg0.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\bg0.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\bg10.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\bg10.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\bg2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\bg2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\bg3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\bg3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\bg5.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\bg5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\bg9.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\bg9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\bruce-mars.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\bruce-mars.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\city-profile.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\city-profile.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\down-arrow-dark.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\down-arrow-dark.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\down-arrow-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\down-arrow-white.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\down-arrow.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\down-arrow.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\examples\\blog-9-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\examples\\blog-9-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\examples\\blog2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\examples\\blog2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\examples\\testimonial-6-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\examples\\testimonial-6-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\examples\\testimonial-6-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\examples\\testimonial-6-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\favicon.png",
+      "PackagePath": "staticwebassets\\assets\\img\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\illustrations\\illustration-signin.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\illustrations\\illustration-signin.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\ivana-square.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\ivana-square.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\ivana-squares.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\ivana-squares.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\logo-ct-dark.png",
+      "PackagePath": "staticwebassets\\assets\\img\\logo-ct-dark.png"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\logos\\gray-logos\\logo-apple.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\logos\\gray-logos\\logo-apple.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\logos\\gray-logos\\logo-coinbase.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\logos\\gray-logos\\logo-coinbase.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\logos\\gray-logos\\logo-digitalocean.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\logos\\gray-logos\\logo-digitalocean.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\logos\\gray-logos\\logo-facebook.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\logos\\gray-logos\\logo-facebook.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\logos\\gray-logos\\logo-nasa.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\logos\\gray-logos\\logo-nasa.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\logos\\gray-logos\\logo-netflix.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\logos\\gray-logos\\logo-netflix.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\logos\\gray-logos\\logo-pinterest.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\logos\\gray-logos\\logo-pinterest.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\logos\\gray-logos\\logo-spotify.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\logos\\gray-logos\\logo-spotify.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\logos\\gray-logos\\logo-vodafone.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\logos\\gray-logos\\logo-vodafone.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\macbook.png",
+      "PackagePath": "staticwebassets\\assets\\img\\macbook.png"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\shapes\\waves-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\shapes\\waves-white.svg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\team-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\team-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\team-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\team-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\team-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\team-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\team-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\team-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\img\\team-5.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\team-5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\core\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\core\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\core\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\core\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\core\\popper.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\core\\popper.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\material-kit.js",
+      "PackagePath": "staticwebassets\\assets\\js\\material-kit.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\material-kit.js.map",
+      "PackagePath": "staticwebassets\\assets\\js\\material-kit.js.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\material-kit.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\material-kit.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\plugins\\choices.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\choices.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\plugins\\countup.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\countup.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\plugins\\flatpickr.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\flatpickr.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\plugins\\highlight.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\highlight.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\plugins\\moment.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\moment.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\plugins\\parallax.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\parallax.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\plugins\\perfect-scrollbar.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\perfect-scrollbar.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\plugins\\prism.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\prism.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\plugins\\rellax.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\rellax.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\plugins\\tilt.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\tilt.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\js\\plugins\\typedjs.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\typedjs.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_alert.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_alert.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_avatars.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_avatars.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_badge.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_badge.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_breadcrumbs.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_breadcrumbs.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_buttons.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_buttons.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_cards.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_cards.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_dark-version.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_dark-version.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_dropdown.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_dropdown.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_dropup.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_dropup.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_fixed-plugin.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_fixed-plugin.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_footer.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_footer.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_forms.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_forms.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_gradients.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_gradients.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_header.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_header.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_icons.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_icons.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_info-areas.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_info-areas.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_misc.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_misc.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_nav.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_nav.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_navbar-vertical.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_navbar-vertical.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_navbar.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_navbar.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_pagination.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_pagination.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_popovers.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_popovers.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_progress.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_progress.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_ripple.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_ripple.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_rtl.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_rtl.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_social-buttons.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_social-buttons.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_tables.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_tables.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_tilt.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_tilt.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_timeline.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_timeline.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_tooltips.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_tooltips.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_typography.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_typography.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_utilities-extend.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_utilities-extend.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_utilities.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_utilities.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\_variables.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\_variables.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_accordion.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_accordion.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_alert.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_alert.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_badge.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_badge.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_breadcrumb.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_breadcrumb.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_button-group.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_button-group.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_buttons.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_buttons.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_card.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_card.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_carousel.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_carousel.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_close.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_close.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_containers.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_containers.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_dropdown.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_dropdown.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_forms.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_forms.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_functions.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_functions.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_grid.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_grid.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_helpers.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_helpers.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_images.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_images.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_list-group.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_list-group.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_maps.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_maps.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_mixins.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_mixins.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_modal.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_modal.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_nav.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_nav.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_navbar.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_navbar.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_offcanvas.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_offcanvas.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_pagination.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_pagination.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_placeholders.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_placeholders.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_popover.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_popover.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_progress.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_progress.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_reboot.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_reboot.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_root.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_root.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_spinners.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_spinners.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_tables.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_tables.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_toasts.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_toasts.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_tooltip.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_tooltip.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_transitions.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_transitions.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_type.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_type.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_utilities.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_utilities.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\_variables.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\_variables.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\bootstrap-grid.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\bootstrap-grid.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\bootstrap-reboot.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\bootstrap-reboot.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\bootstrap-utilities.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\bootstrap-utilities.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\bootstrap.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\bootstrap.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\forms\\_floating-labels.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\forms\\_floating-labels.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\forms\\_form-check.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\forms\\_form-check.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\forms\\_form-control.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\forms\\_form-control.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\forms\\_form-range.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\forms\\_form-range.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\forms\\_form-select.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\forms\\_form-select.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\forms\\_form-text.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\forms\\_form-text.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\forms\\_input-group.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\forms\\_input-group.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\forms\\_labels.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\forms\\_labels.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\forms\\_validation.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\forms\\_validation.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\helpers\\_clearfix.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\helpers\\_clearfix.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\helpers\\_color-bg.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\helpers\\_color-bg.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\helpers\\_colored-links.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\helpers\\_colored-links.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\helpers\\_position.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\helpers\\_position.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\helpers\\_ratio.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\helpers\\_ratio.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\helpers\\_stacks.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\helpers\\_stacks.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\helpers\\_stretched-link.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\helpers\\_stretched-link.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\helpers\\_text-truncation.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\helpers\\_text-truncation.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\helpers\\_visually-hidden.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\helpers\\_visually-hidden.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\helpers\\_vr.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\helpers\\_vr.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_alert.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_alert.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_backdrop.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_backdrop.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_banner.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_banner.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_border-radius.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_border-radius.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_box-shadow.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_box-shadow.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_breakpoints.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_breakpoints.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_buttons.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_buttons.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_caret.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_caret.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_clearfix.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_clearfix.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_color-scheme.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_color-scheme.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_container.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_container.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_deprecate.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_deprecate.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_forms.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_forms.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_gradients.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_gradients.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_grid.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_grid.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_image.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_image.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_list-group.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_list-group.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_lists.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_lists.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_pagination.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_pagination.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_reset-text.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_reset-text.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_resize.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_resize.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_table-variants.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_table-variants.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_text-truncate.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_text-truncate.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_transition.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_transition.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_utilities.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_utilities.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\mixins\\_visually-hidden.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\mixins\\_visually-hidden.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\utilities\\_api.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\utilities\\_api.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\bootstrap\\vendor\\_rfs.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\bootstrap\\vendor\\_rfs.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\cards\\card-background.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\cards\\card-background.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\cards\\card-rotate.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\cards\\card-rotate.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\custom\\_styles.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\custom\\_styles.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\custom\\_variables.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\custom\\_variables.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\forms\\_form-check.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\forms\\_form-check.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\forms\\_form-select.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\forms\\_form-select.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\forms\\_form-switch.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\forms\\_form-switch.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\forms\\_forms.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\forms\\_forms.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\forms\\_input-group.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\forms\\_input-group.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\forms\\_inputs.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\forms\\_inputs.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\forms\\_labels.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\forms\\_labels.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\mixins\\_badge.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\mixins\\_badge.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\mixins\\_buttons.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\mixins\\_buttons.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\mixins\\_colored-shadows.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\mixins\\_colored-shadows.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\mixins\\_hover.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\mixins\\_hover.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\mixins\\_social-buttons.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\mixins\\_social-buttons.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\mixins\\_vendor.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\mixins\\_vendor.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\mixins\\mixins.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\mixins\\mixins.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\plugins\\free\\_flatpickr.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\plugins\\free\\_flatpickr.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\plugins\\free\\_nouislider.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\plugins\\free\\_nouislider.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\plugins\\free\\_perfect-scrollbar.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\plugins\\free\\_perfect-scrollbar.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\plugins\\free\\_prism.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\plugins\\free\\_prism.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\plugins\\free\\plugins.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\plugins\\free\\plugins.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\theme.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\theme.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_animations.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_animations.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_avatars.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_avatars.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_badge.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_badge.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_breadcrumb.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_breadcrumb.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_cards-extend.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_cards-extend.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_cards.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_cards.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_choices.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_choices.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_dark-version.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_dark-version.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_dropdowns.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_dropdowns.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_fixed-plugin.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_fixed-plugin.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_form-switch.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_form-switch.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_full-calendar.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_full-calendar.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_header.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_header.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_info-areas.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_info-areas.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_misc-extend.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_misc-extend.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_misc.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_misc.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_navbar-vertical.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_navbar-vertical.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_navbar.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_navbar.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_pagination.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_pagination.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_ripple.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_ripple.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_rtl.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_rtl.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_social-buttons.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_social-buttons.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_table.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_table.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_timeline.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_timeline.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_utilities-extend.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_utilities-extend.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_utilities.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_utilities.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\assets\\scss\\material-kit\\variables\\_virtual-reality.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\material-kit\\variables\\_virtual-reality.scss"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Plastic.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Plastic.props",
+      "PackagePath": "build\\Plastic.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Plastic.props",
+      "PackagePath": "buildMultiTargeting\\Plastic.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Plastic.props",
+      "PackagePath": "buildTransitive\\Plastic.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

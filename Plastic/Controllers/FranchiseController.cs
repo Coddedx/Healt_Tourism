@@ -32,7 +32,7 @@ namespace Plastic.Controllers
         public PartialViewResult Operation()
         {
             var operation = db.Operations.ToList();
-            return PartialView("_PartialOperation",operation);  //_PartialView.cshtml Views/Operation/Index.cshtml
+            return PartialView("_PartialOperation",operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
         }
 
         // GET: FranchiseController/Details/5
