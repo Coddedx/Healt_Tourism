@@ -1,4 +1,4 @@
-﻿<!-- -------- Franchise ------- -->
+﻿<!-- -------- Franchise --------->
 @model Clinic
 <header>
     
@@ -53,36 +53,13 @@
         <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mx-auto text-white text-center">
-                    <h2 class="text-white"></h2>  @*  @Model.Adress *@
-                    <p class="lead"></p>@*  @Model.Email *@
-                    <p class="lead"></p>@*  @Model.Phone *@
+                    <h2 class="text-white">@Model.Adress</h2> 
+                    <p class="lead"> @Model.Email</p> 
+                    <p class="lead">@Model.Phone</p>
                     </div>
                 </div>           
         </div>
     </div>
-
-
-
-
-
-    @section Scripts {
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $("#OperationTab").click(function () {
-                    $.ajax({
-                        url: '@Url.Action("Operation", "Franchise")',
-                        type: 'GET',
-                        success: function (data) {
-                            $("#kliniklerDiv").html(data);
-                        }
-                    });
-                });
-            });
-        </script>
-    }
-
-
 
 
     <section class="py-7" style="margin-top:-85px ">
@@ -90,115 +67,54 @@
             <div class="row">
                 <div class="col-lg-5 mx-auto">
                     <div class="nav-wrapper position-relative end-0">
-                        <ul class="nav nav-pills nav-fill p-1" role="tablist">
-                            
+                        <ul id="nav-tabs" class="nav nav-pills nav-fill p-1" role="tablist">
+                            @* <li class="nav-tab" data-url="@Url.Action("Operation", "Franchise")">Operation Tab</li>      id="OperationTab" class="nav-link mb-0 px-0 py-1 active"*@
                             <li class="nav-item">
-@*                                 <button id="kliniklerButton">İşlemler</button>                            *@                                                        <a id="OperationTab" class="nav-link mb-0 px-0 py-1 active" role="tab"  />
+                                <a href="#" data-url="@Url.Action("Operation", "Franchise")" class="nav-tab" role="tab" />
                                     İşlemlerimiz
-                                </a>    
-                            </li>
-                           
+                                </a>                                 
+                            </li>                          
                             <li class="nav-item">
-                                <a id="OperationTab" class="nav-link mb-0 px-0 py-1 active" role="tab" />
+                                <a href="#" data-url="@Url.Action("Doctor", "Franchise")" class="nav-tab" role="tab" />
                                 Doktorlarımız
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mb-0 px-0 py-1 active" asp-controller="OperationUser" asp-action="Index" role="tab">
-                                    Yorumlarımız
-                                </a>    
+                                <a href="#" data-url="@Url.Action("CommentFranchise", "Franchise")" class="nav-tab" role="tab" />
+                                Yorumlarımız
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mb-0 px-0 py-1 active" asp-controller="Clinic" asp-action="Index" role="tab">
-                                    Kliniklerimiz
-                                </a>   
+                                <a href="#" data-url="@Url.Action("OtherFranchise", "Franchise")" class="nav-tab" role="tab" />
+                                Kliniklerimiz
+                                </a>
                             </li>
                         </ul>
                     </div>
-                    <div id="kliniklerDiv"></div>
+                    <div id="content-area"></div>
                 </div>
             </div>
         </div>
     </section>
-
-
-
-
-
-@*     <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="~/Views/Franchise/_PartialOperation.cshtml">işlemlerimiz</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#tab2">Tab 2</a>
-        </li>
-    </ul>
-
-    <div class="tab-content mt-2">
-        <div id="tab1" class="tab-pane fade show active">
-            <!-- Tab 1 content will be loaded here dynamically -->
-        </div>
-        <div id="tab2" class="tab-pane fade">
-            <!-- Tab 2 content will be loaded here dynamically -->
-        </div>
-    </div>
-
-    @section Scripts {
-        <script>
-            $(function () {
-                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                    var target = $(e.target).attr("href"); // activated tab
-                    $.get(target, function (data) {
-                        $(target).html(data);
+ 
+      @section Scripts {
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".nav-tab").click(function (e) {
+                    e.preventDefault();
+                    var url = $(this).data("url");
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function (data) {
+                            $("#content-area").html(data);
+                        }
                     });
                 });
             });
         </script>
     }
- *@
-
-
-
-
-
-@*     <asp: SiteMapDataSource id=" "*@   
-@*     <asp: SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
-    <asp:SiteMapPath ID="SiteMapPath1" PathSeperator="/" RenderCurrentNodeAsLink="false" runat="server"></asp:SiteMapPath>
- *@
-
-
-
-
-@*     <div class="container py-6 mt-2" style="margin-top:-5000px">
-        <div class="row">
-            <nav aria-label="breadcrumb">                               
-                <ol class="breadcrumb">
-                    @*                     <li class="breadcrumb-item text-dark active" aria-current="page"><a href="javascript">İşlemlerimiz</a></li>*@
-                 @*   <li class="breadcrumb-item text-dark active" aria-current="page">
-                        <a asp-controller="Operation" asp-action="Index">İşlemlerimiz</a>
-                    </li>
-                    <li class="breadcrumb-item text-dark opacity-5">
-                        <a asp-controller="Doctor" asp-action="Index">Doktorlarımız</a>
-                    </li>
-                    <li class="breadcrumb-item text-dark opacity-5">
-                        @* <a asp-controller="Clinic" asp-action="Index">Kliniklerimiz</a> *@
-          @*         </li>
-                    <li class="breadcrumb-item text-dark opacity-5">
-                        <a asp-controller="OperationUser" asp-action="Index">Yorumlarımız</a>  @* Bu kontrolıra mı gidicek?????????? *@
-         @*          </li>
-                </ol>
-            </nav>
-        </div>
-    </div>
- *@
-
-
-
-
-@*     <div>
-        @Html.MvcSiteMap().SiteMapPath()
-    </div>
- *@
 
 
 </header>

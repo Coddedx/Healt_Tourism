@@ -1,9 +1,13 @@
 ﻿@model IEnumerable<Operation>
 
-    <div>
+<section class="pt-7 pb-0">
+    <div class="container">
         <h2>Operasyonlarımız</h2>
-        @foreach (var item in Model)
-    {
-        <li>@item.Title</li>
-    }
-</div>
+         @foreach (var item in Model)
+                {
+        <div class="row">
+                    <li>@item.Title</li>
+        </div>
+        }
+    </div>
+</section>

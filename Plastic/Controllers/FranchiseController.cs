@@ -29,10 +29,17 @@ namespace Plastic.Controllers
                 return View(clinic);
         }
 
-        public PartialViewResult Operation()
+        public PartialViewResult Operation(int id)
         {
-            var operation = db.Operations.ToList();
+            //var operation = db.OperationDoctors.ToList();
+            var operation = _franchiseRepository.GetOperationDoctorAsync(id);
             return PartialView("_PartialOperation",operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+        }
+        public PartialViewResult Doctor() //int id
+        {
+            //var doctor = db.Doctors.FirstOrDefault(c => c.FranchiseId == id);
+            var doctor = db.Doctors.ToList();
+            return PartialView("_PartialDoctor",doctor);  //_PartialView.cshtml Views/Operation/Index.cshtml  
         }
 
         // GET: FranchiseController/Details/5

@@ -77,31 +77,6 @@ namespace Plastic.Repository
 
         public async Task<Franchise?> GetByIdAsync(int id) //FranchiseViewModel
         {
-            //var franchise = await _context.Franchises.FindAsync(id);
-            //var franchiseViewModel = new FranchiseViewModel
-            //{
-            //    Id = franchise.Id,
-            //    HospiatlId = franchise.HospiatlId,
-            //    ClinicId = franchise.ClinicId,
-            //    DistrictId = franchise.DistrictId,
-            //    Title = franchise.Title,
-            //    Description = franchise.Description,
-            //    CertificationNumber = franchise.CertificationNumber,
-            //    Address = franchise.Address,
-            //    ImageUrl = franchise.ImageUrl,
-            //    Email = franchise.Email,
-            //    Phone = franchise.Phone,
-            //    InstagramUrl = franchise.InstagramUrl,
-            //    Status = franchise.Status,
-            //    CreatedDate = franchise.CreatedDate,
-            //    CreatedBy = franchise.CreatedBy,
-            //    UpdatedDate = franchise.UpdatedDate,
-            //    UpdatedBy = franchise.UpdatedBy,
-            //    Deleted = franchise.Deleted
-            //};
-            //return franchiseViewModel;
-
-
            // return await _context.Franchises.FirstOrDefaultAsync(e => e.Id == id);
             //return await _context.Franchises.Where(c => c.Id == id).AsNoTracking().FirstOrDefaultAsync();
             //return await _context.Franchises.Include(i => i.Clinic).FirstOrDefaultAsync(i => i.Id == id);
@@ -113,6 +88,28 @@ namespace Plastic.Repository
         public async Task<Clinic?> GetByIdClinicAsync(int id)
         {
             return await _context.Clinics.FirstOrDefaultAsync(c => c.Id == id);
+        }
+
+        public IQueryable<OperationDoctor> GetOperationDoctorAsync(int id) //gelen clinic id oluyo
+        {
+            var doctor = _context.Doctors.FirstOrDefault();
+            var franchise = _context.Franchises.Where(c => c.ClinicId == id);
+            //var clinic = _context.Clinics.FirstOrDefault();
+           
+            //return await _context.OperationDoctors
+            //     .Include(a => a.Franchises)
+            //     .Include(b => b.Clinics)
+            //     .Where(c => c.DoctorId == doctor.Id && doctor.FranchiseId == franchise.Id && franchise.ClinicId == id);                
+           
+            var operation =  _context.OperationDoctors.Where(c => c.DoctorId == doctor.Id);
+            return  operation;
+
+            //           await _context.OperationDoctors.Include(od => od.Doctor)
+            //                   .ThenInclude(d => d.Franchise)
+            //                        .ThenInclude(f => f.Clinic)
+            //.Where(c => c.DoctorId == doctor.Id && doctor.FranchiseId == franchise.Id && franchise.ClinicId == id);      // _context => _context.DoctorId == id
+
+
         }
 
         public async Task UpdateAsync(FranchiseViewModel franchiseUpdated)

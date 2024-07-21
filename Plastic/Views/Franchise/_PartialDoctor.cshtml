@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Doctor>
+
+<section class="pt-7 pb-0">
+    <h2>Doktorlarımız</h2>
+    <div class="container">
+        <div class="row">
+        @foreach (var item in Model)
+        {
+                <div class="col-lg-4 col-md-6">
+                    <div class="card mt-8 mt-md-5">
+                        <div class="card-header p-0 mx-3 mt-n4 position-relative z-index-2">
+                            <a class="d-block blur-shadow-image">
+                                <img src="~/assets/img/products/product-2-min.jpg" alt="img-blur-shadow" class="img-fluid border-radius-lg" loading="lazy">
+                            </a>
+                            <div class="colored-shadow" style="background-image: url(&quot;.assets/img/products/product-2-min.jpg&quot;);"></div>
+                        </div>
+                        <div class="card-body pt-3">
+                            <p class="text-dark mb-2 text-sm">------</p>
+                            <a href="javascript:;">
+                                <h5>
+                                    @item.FirstName
+                                    @item.LastName
+                                    (@item.Title)
+                                </h5>
+                            </a>
+                            <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm mb-0" asp-area="" asp-controller="Franchise" asp-action="Index" asp-route-id="@item.Id">Sayfasına Git</a>
+                        </div>
+                    </div>
+                </div>
+
+        }
+    </div>
+    </div>
+</section>
+
