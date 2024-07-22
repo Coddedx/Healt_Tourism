@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Operation>
+﻿@model IEnumerable<OperationDoctor>
 
 <section class="pt-7 pb-0">
     <div class="container">
@@ -6,7 +6,9 @@
          @foreach (var item in Model)
                 {
         <div class="row">
-                    <li>@item.Title</li>
+                    <li>@item.Operation.Title</li>
+                    <li>@item.Doctor.Title</li>
+                    <p>işlem</p>
         </div>
         }
     </div>

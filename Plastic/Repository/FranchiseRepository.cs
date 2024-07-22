@@ -90,24 +90,34 @@ namespace Plastic.Repository
             return await _context.Clinics.FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public IQueryable<OperationDoctor> GetOperationDoctorAsync(int id) //gelen clinic id oluyo
+        public IQueryable<OperationDoctor> GetOperationDoctor(int id) //TÜM VERİLERİ GETİYOR DÜZELT!!!!!!!!!!!!!!!1
         {
-            var doctor = _context.Doctors.FirstOrDefault();
-            var franchise = _context.Franchises.Where(c => c.ClinicId == id);
-            //var clinic = _context.Clinics.FirstOrDefault();
-           
+            //var franchise = _context.Franchises
+            //    .Include(a => a.Doctors)
+            //    .Where(c => c.ClinicId == id).ToList();  //where ile sorgulama ıqueryable döndürür!!! ToList diyerek liste olarak döndürürüz, FirstOrDefault diyerek tek bir dönüt bekliyosak kullanab. ınclude dersek ihtiyacımız olan bağlantılı tabloları da dahil edebiliriz.
+            
+            //var doctor = _context.Doctors.Find(id);
+
+            var clinic = _context.Clinics.FirstOrDefault(c => c.Id == id);
+
             //return await _context.OperationDoctors
             //     .Include(a => a.Franchises)
             //     .Include(b => b.Clinics)
             //     .Where(c => c.DoctorId == doctor.Id && doctor.FranchiseId == franchise.Id && franchise.ClinicId == id);                
-           
-            var operation =  _context.OperationDoctors.Where(c => c.DoctorId == doctor.Id);
-            return  operation;
 
-            //           await _context.OperationDoctors.Include(od => od.Doctor)
+
+            //include  yapmazsam view da kullanamıyorum bu verileri!!!
+            var operationDoctor =  _context.OperationDoctors
+                .Include(a => a.Operation)
+                .Include(b => b.Doctor)
+                    .Where(d => clinic.Id == id);
+            return operationDoctor;
+
+            //           await _context.OperationDoctors
+            //           .Include(od => od.Doctor)
             //                   .ThenInclude(d => d.Franchise)
             //                        .ThenInclude(f => f.Clinic)
-            //.Where(c => c.DoctorId == doctor.Id && doctor.FranchiseId == franchise.Id && franchise.ClinicId == id);      // _context => _context.DoctorId == id
+            //.Where(c => c.DoctorId == doctor.Id && doctor.FranchiseId == franchise.Id && franchise.ClinicId == id);      // _context => _context.DoctorId == id 
 
 
         }

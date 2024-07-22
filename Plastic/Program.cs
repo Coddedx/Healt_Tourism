@@ -33,8 +33,11 @@ builder.Services.AddDbContext<PlasticDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddSession(); //http session kullanab. için 
 
 var app = builder.Build();
+
+app.UseSession(); //http session kullanab. için
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -47,10 +50,10 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
+
+
 
 app.MapControllerRoute(
 	name: "default",
