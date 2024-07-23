@@ -1,8 +1,7 @@
-﻿<!---------- Franchise --------->
-<!---------- ARTIK BU KULLANILMIYOR ---------->
+﻿<!-- -------- Clinic Details --------->
 @model Clinic
 <header>
-    
+
     <nav class="navbar navbar-expand-lg navbar-dark navbar-absolute bg-transparent shadow-none">
         <div class="container">
             <a class="navbar-brand text-white" href="javascript:;">Material Design</a>
@@ -52,13 +51,13 @@
     <div class="page-header min-vh-75" style="background-image: url(https://images.unsplash.com/photo-1501446529957-6226bd447c46?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2378&q=80)" loading="lazy">
         <span class="mask bg-gradient-dark opacity-4"></span>
         <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto text-white text-center">
-                    <h2 class="text-white">@Model.Adress</h2> 
-                    <p class="lead"> @Model.Email</p> 
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-white text-center">
+                    <h2 class="text-white">@Model.Adress</h2>
+                    <p class="lead"> @Model.Email</p>
                     <p class="lead">@Model.Phone</p>
-                    </div>
-                </div>           
+                </div>
+            </div>
         </div>
     </div>
 
@@ -71,22 +70,22 @@
                         <ul id="nav-tabs" class="nav nav-pills nav-fill p-1" role="tablist">
                             @* <li class="nav-tab" data-url="@Url.Action("Operation", "Franchise")">Operation Tab</li>      id="OperationTab" class="nav-link mb-0 px-0 py-1 active"*@
                             <li class="nav-item">
-                                <a href="#" data-url="@Url.Action("Operation", "Franchise")" class="nav-tab" role="tab" />
-                                    İşlemlerimiz
-                                </a>                                 
-                            </li>                          
+                                <a href="#" data-url="@Url.Action("Operation", "Clinic")" class="nav-tab" role="tab" />
+                                İşlemlerimiz
+                                </a>
+                            </li>
                             <li class="nav-item">
-                                <a href="#" data-url="@Url.Action("Doctor", "Franchise")" class="nav-tab" role="tab" />
+                                <a href="#" data-url="@Url.Action("Doctor", "Clinic")" class="nav-tab" role="tab" />
                                 Doktorlarımız
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" data-url="@Url.Action("CommentFranchise", "Franchise")" class="nav-tab" role="tab" />
+                                <a href="#" data-url="@Url.Action("CommentFranchise", "Clinic")" class="nav-tab" role="tab" />
                                 Yorumlarımız
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" data-url="@Url.Action("OtherFranchise", "Franchise")" class="nav-tab" role="tab" />
+                                <a href="#" data-url="@Url.Action("OtherFranchise", "Clinic")" class="nav-tab" role="tab" />
                                 Kliniklerimiz
                                 </a>
                             </li>
@@ -97,8 +96,8 @@
             </div>
         </div>
     </section>
- 
-      @section Scripts {
+
+    @section Scripts {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {

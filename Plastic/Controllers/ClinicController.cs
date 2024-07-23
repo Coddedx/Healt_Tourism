@@ -11,12 +11,15 @@ namespace Plastic.Controllers
 	public class ClinicController : Controller
 	{
 		PlasticDbContext db = new PlasticDbContext();
-        private readonly IFranchiseRepository _franchiseRepository;
+        //private readonly IFranchiseRepository _franchiseRepository;
+        private readonly IClinicRepository _clinicRepository;
 
-        public ClinicController(IFranchiseRepository franchiseRepository)
+        public ClinicController(IClinicRepository clinicRepository)
         {
-            _franchiseRepository = franchiseRepository;
+            //_franchiseRepository = franchiseRepository;
+            _clinicRepository = clinicRepository;
         }
+
         //private readonly PlasticDbContext _context;
 
         //    public ClinicController(PlasticDbContext context)
@@ -34,13 +37,31 @@ namespace Plastic.Controllers
         }
 
         // GET: ClinicController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
 		{
-			return View();
-		}
+            var clinic = await _clinicRepository.GetByIdClinicAsync(id); //_franchiseRepository
 
-		// GET: ClinicController/Create
-		public ActionResult Create()
+            if (clinic == null) { return RedirectToAction("Index", "Clinic"); }
+
+            return View(clinic);
+        }
+
+        public PartialViewResult Operation(int id)
+        {
+            //var operation = db.OperationDoctors.ToList();
+            var operation = _clinicRepository.GetOperationDoctor(id); //_franchiseRepository
+            return PartialView("_PartialOperation", operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+        }
+        public PartialViewResult Doctor() //int id
+        {
+            //var doctor = db.Doctors.FirstOrDefault(c => c.FranchiseId == id);
+            var doctor = db.Doctors.ToList();
+            return PartialView("_PartialDoctor", doctor);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+        }
+
+
+        // GET: ClinicController/Create
+        public ActionResult Create()
 		{
 			return View();
 		}

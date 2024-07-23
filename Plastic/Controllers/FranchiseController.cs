@@ -22,25 +22,27 @@ namespace Plastic.Controllers
         {
             //tıklanan sayfanın hastaneye mi cliniğe mi bağlı olduğu ayrıştırılıp id si mi çekilmeli (şimdilik hepsinin clinic old bild için @Model.Clinic.Name ile yazdım) ????????????????????????????????
 
-            var clinic = await _franchiseRepository.GetByIdClinicAsync(id);
+            //CLİNİC CONTROLLER DETAİLS SAYFASINA TAŞINDI!!!!!!!!!!!
+            //var clinic = await _franchiseRepository.GetByIdClinicAsync(id);
 
-            if (clinic == null) { return RedirectToAction("Index", "Clinic"); }
+            //if (clinic == null) { return RedirectToAction("Index", "Clinic"); }
 
-                return View(clinic);
+                return View();  //clinic
         }
 
-        public PartialViewResult Operation(int id)
-        {
-            //var operation = db.OperationDoctors.ToList();
-            var operation = _franchiseRepository.GetOperationDoctorAsync(id);
-            return PartialView("_PartialOperation",operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
-        }
-        public PartialViewResult Doctor() //int id
-        {
-            //var doctor = db.Doctors.FirstOrDefault(c => c.FranchiseId == id);
-            var doctor = db.Doctors.ToList();
-            return PartialView("_PartialDoctor",doctor);  //_PartialView.cshtml Views/Operation/Index.cshtml  
-        }
+        //       CLİNİC CONTROLLER SAYFASINA TAŞINDI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+        //public PartialViewResult Operation(int id)
+        //{
+        //    //var operation = db.OperationDoctors.ToList();
+        //    var operation = _franchiseRepository.GetOperationDoctorAsync(id);
+        //    return PartialView("_PartialOperation",operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+        //}
+        //public PartialViewResult Doctor() //int id
+        //{
+        //    //var doctor = db.Doctors.FirstOrDefault(c => c.FranchiseId == id);
+        //    var doctor = db.Doctors.ToList();
+        //    return PartialView("_PartialDoctor",doctor);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+        //}
 
         // GET: FranchiseController/Details/5
         public ActionResult Details(int id)
