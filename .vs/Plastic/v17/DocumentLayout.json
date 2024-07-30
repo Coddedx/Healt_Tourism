@@ -3,24 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|c:\\users\\black\\documents\\github\\plastic\\plastic\\controllers\\franchisecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|solutionrelative:plastic\\controllers\\franchisecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|c:\\users\\black\\documents\\github\\plastic\\plastic\\controllers\\cliniccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|solutionrelative:plastic\\controllers\\cliniccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|c:\\users\\black\\documents\\github\\plastic\\plastic\\repository\\franchiserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|solutionrelative:plastic\\repository\\franchiserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|c:\\users\\black\\documents\\github\\plastic\\plastic\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|solutionrelative:plastic\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|c:\\users\\black\\documents\\github\\plastic\\plastic\\views\\franchise\\_partialoperation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|solutionrelative:plastic\\views\\franchise\\_partialoperation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|c:\\users\\black\\documents\\github\\plastic\\plastic\\viewmodels\\doctorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|solutionrelative:plastic\\viewmodels\\doctorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|c:\\users\\black\\documents\\github\\plastic\\plastic\\views\\franchise\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|solutionrelative:plastic\\views\\franchise\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|c:\\users\\black\\documents\\github\\plastic\\plastic\\repository\\clinicrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|solutionrelative:plastic\\repository\\clinicrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|c:\\users\\black\\documents\\github\\plastic\\plastic\\models\\operationdoctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|solutionrelative:plastic\\models\\operationdoctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|c:\\users\\black\\documents\\github\\plastic\\plastic\\viewmodels\\clinicmodalviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|solutionrelative:plastic\\viewmodels\\clinicmodalviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|c:\\users\\black\\documents\\github\\plastic\\plastic\\irepository\\iclinicrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|solutionrelative:plastic\\irepository\\iclinicrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|c:\\users\\black\\documents\\github\\plastic\\plastic\\views\\clinic\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{584B1A3B-2D74-447E-8566-A3E4B388BA48}|Plastic\\Plastic.csproj|solutionrelative:plastic\\views\\clinic\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,8 +37,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 244,
-          "SelectedChildIndex": 10,
+          "DockedWidth": 365,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,67 +74,93 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "OperationDoctor.cs",
-              "DocumentMoniker": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Models\\OperationDoctor.cs",
-              "RelativeDocumentMoniker": "Plastic\\Models\\OperationDoctor.cs",
-              "ToolTip": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Models\\OperationDoctor.cs",
-              "RelativeToolTip": "Plastic\\Models\\OperationDoctor.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAAAAAA",
+              "DocumentIndex": 5,
+              "Title": "IClinicRepository.cs",
+              "DocumentMoniker": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\IRepository\\IClinicRepository.cs",
+              "RelativeDocumentMoniker": "Plastic\\IRepository\\IClinicRepository.cs",
+              "ToolTip": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\IRepository\\IClinicRepository.cs",
+              "RelativeToolTip": "Plastic\\IRepository\\IClinicRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-22T17:50:03.087Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_PartialOperation.cshtml",
-              "DocumentMoniker": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Views\\Franchise\\_PartialOperation.cshtml",
-              "RelativeDocumentMoniker": "Plastic\\Views\\Franchise\\_PartialOperation.cshtml",
-              "ToolTip": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Views\\Franchise\\_PartialOperation.cshtml",
-              "RelativeToolTip": "Plastic\\Views\\Franchise\\_PartialOperation.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-22T16:30:38.648Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FranchiseController.cs",
-              "DocumentMoniker": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Controllers\\FranchiseController.cs",
-              "RelativeDocumentMoniker": "Plastic\\Controllers\\FranchiseController.cs",
-              "ToolTip": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Controllers\\FranchiseController.cs",
-              "RelativeToolTip": "Plastic\\Controllers\\FranchiseController.cs",
-              "ViewState": "AQIAAEEAAAAAAAAAAAAswFAAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T17:31:07.573Z",
+              "WhenOpened": "2024-07-30T17:55:51.057Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Views\\Franchise\\Index.cshtml",
-              "RelativeDocumentMoniker": "Plastic\\Views\\Franchise\\Index.cshtml",
-              "ToolTip": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Views\\Franchise\\Index.cshtml",
-              "RelativeToolTip": "Plastic\\Views\\Franchise\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-21T17:46:17.502Z",
+              "Title": "ClinicRepository.cs",
+              "DocumentMoniker": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Repository\\ClinicRepository.cs",
+              "RelativeDocumentMoniker": "Plastic\\Repository\\ClinicRepository.cs",
+              "ToolTip": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Repository\\ClinicRepository.cs",
+              "RelativeToolTip": "Plastic\\Repository\\ClinicRepository.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAkwEgAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-30T17:33:32.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DoctorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\ViewModels\\DoctorViewModel.cs",
+              "RelativeDocumentMoniker": "Plastic\\ViewModels\\DoctorViewModel.cs",
+              "ToolTip": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\ViewModels\\DoctorViewModel.cs",
+              "RelativeToolTip": "Plastic\\ViewModels\\DoctorViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-30T17:10:25.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ClinicModalViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\ViewModels\\ClinicModalViewModel.cs",
+              "RelativeDocumentMoniker": "Plastic\\ViewModels\\ClinicModalViewModel.cs",
+              "ToolTip": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\ViewModels\\ClinicModalViewModel.cs",
+              "RelativeToolTip": "Plastic\\ViewModels\\ClinicModalViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-30T15:37:10.309Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FranchiseRepository.cs",
-              "DocumentMoniker": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Repository\\FranchiseRepository.cs",
-              "RelativeDocumentMoniker": "Plastic\\Repository\\FranchiseRepository.cs",
-              "ToolTip": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Repository\\FranchiseRepository.cs",
-              "RelativeToolTip": "Plastic\\Repository\\FranchiseRepository.cs",
-              "ViewState": "AQIAAFUAAAAAAAAAAAAAAFwAAABzAAAA",
+              "Title": "DoctorController.cs",
+              "DocumentMoniker": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Controllers\\DoctorController.cs",
+              "RelativeDocumentMoniker": "Plastic\\Controllers\\DoctorController.cs",
+              "ToolTip": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Controllers\\DoctorController.cs",
+              "RelativeToolTip": "Plastic\\Controllers\\DoctorController.cs",
+              "ViewState": "AQIAADQAAAAAAAAAAAAowEwAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:11:57.347Z",
+              "WhenOpened": "2024-07-28T16:55:04.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ClinicController.cs",
+              "DocumentMoniker": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Controllers\\ClinicController.cs",
+              "RelativeDocumentMoniker": "Plastic\\Controllers\\ClinicController.cs",
+              "ToolTip": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Controllers\\ClinicController.cs",
+              "RelativeToolTip": "Plastic\\Controllers\\ClinicController.cs",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAowFAAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-24T18:28:10.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Views\\Clinic\\Details.cshtml",
+              "RelativeDocumentMoniker": "Plastic\\Views\\Clinic\\Details.cshtml",
+              "ToolTip": "C:\\Users\\black\\Documents\\GitHub\\Plastic\\Plastic\\Views\\Clinic\\Details.cshtml",
+              "RelativeToolTip": "Plastic\\Views\\Clinic\\Details.cshtml",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAowBEAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-24T19:46:00.529Z",
               "EditorCaption": ""
             }
           ]

@@ -19,6 +19,7 @@ builder.WebHost.ConfigureKestrel(t =>
 
 
 builder.Services.AddTransient<IFranchiseRepository, FranchiseRepository>();
+builder.Services.AddTransient<IClinicRepository, ClinicRepository>();
 //cache eklemeyince repository i kullanamýyorum
 builder.Services.AddMemoryCache(); //Caching makes a copy of data that can be returned much faster than from the source. The in-memory cache can store any object. The distributed cache interface is limited to byte
 //AddSingleton , AddScoped, AddTransient

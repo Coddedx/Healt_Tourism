@@ -1,5 +1,6 @@
-﻿<!-- -------- Franchise --------->
-@model Clinic
+﻿@* <!-- -------- Franchise --------->
+
+ @model Clinic
 <header>
     
     <nav class="navbar navbar-expand-lg navbar-dark navbar-absolute bg-transparent shadow-none">
@@ -68,7 +69,6 @@
                 <div class="col-lg-5 mx-auto">
                     <div class="nav-wrapper position-relative end-0">
                         <ul id="nav-tabs" class="nav nav-pills nav-fill p-1" role="tablist">
-                            @* <li class="nav-tab" data-url="@Url.Action("Operation", "Franchise")">Operation Tab</li>      id="OperationTab" class="nav-link mb-0 px-0 py-1 active"*@
                             <li class="nav-item">
                                 <a href="#" data-url="@Url.Action("Operation", "Franchise")" class="nav-tab" role="tab" />
                                     İşlemlerimiz
@@ -119,3 +119,5 @@
 
 </header>
 <!-- -------- END HEADER 4 w/ search book a ticket form ------- -->
+
+                    *@

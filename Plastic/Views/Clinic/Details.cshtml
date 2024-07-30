@@ -1,0 +1,226 @@
+﻿@using Plastic.ViewModels
+<!-- -------- Clinic Detail --------->
+@* @model Clinic*@ 
+@model ClinicModalViewModel 
+<header>
+
+
+    <div class="page-header min-vh-75" style="background-image: url(https://images.unsplash.com/photo-1501446529957-6226bd447c46?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2378&q=80)" loading="lazy">
+        <span class="mask bg-gradient-dark opacity-4"></span>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-white text-center">
+                    @if (Model.Clinic != null)
+                    {
+                    <h2 class="text-white">@Model.Clinic.Adress</h2>
+                    <p class="lead"> @Model.Clinic.Email</p>
+                    <p class="lead">@Model.Clinic.Phone</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Dropdowns  -->
+    <div class="container py-7">
+@*             <div class="row">*@                
+            <div class="col-lg-4 ms-lg-auto col-md-6 col-sm-3 d-flex justify-content-center">
+                    <div class="dropdown">
+                        <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ekle
+                        </button>
+                        <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item border-radius-md" data-bs-toggle="modal" data-bs-target="#createDoctorModal">Doktor</a></li>
+                            <li><a class="dropdown-item border-radius-md" data-bs-toggle="modal" data-bs-target="#createFranchiseModal">Franchise</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        @* </div> *@
+
+
+                <!--Navigation Tabs-->
+    <section class="py-7" style="margin-top:-85px ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 mx-auto">
+                    <div class="nav-wrapper position-relative end-0">
+                        <ul id="nav-tabs" class="nav nav-pills nav-fill p-1" role="tablist">
+                            @* <li class="nav-tab" data-url="@Url.Action("Operation", "Franchise")">Operation Tab</li>      id="OperationTab" class="nav-link mb-0 px-0 py-1 active"*@
+                            <li class="nav-item">
+                                <a href="#" data-url="@Url.Action("Operation", "Clinic")" class="nav-tab" role="tab" />
+                                İşlemlerimiz
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" data-url="@Url.Action("Doctor", "Clinic")" class="nav-tab" role="tab" />
+                                Doktorlarımız
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" data-url="@Url.Action("CommentFranchise", "Clinic")" class="nav-tab" role="tab" />
+                                Yorumlarımız
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" data-url="@Url.Action("OtherFranchise", "Clinic")" class="nav-tab" role="tab" />
+                                Kliniklerimiz
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="content-area"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+                <!-- MODAL Pop Up-->
+                <div class="container py-7">
+                    <div class="row mt-5">
+                        <div class="col-sm-3 col-6 mx-auto">
+
+                            <!-- Add new Doctor Modal -->
+                            <div class="modal fade" id="createDoctorModal" tabindex="-1" aria-labelledby="createDoctorModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Yeni Doktor Ekle</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <section>
+                                                <div class="container py-4">
+                                                    <div class="row">
+                                                        <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+                                               
+                                                           
+                                                            <form asp-area="" asp-controller="Doctor" asp-action="Create" method="post" id="createDoctorModalForm" role="form" autocomplete="off">
+                                                    <input type="hidden" asp-for="@Model.Clinic.Id" value="@Model.Clinic.Id" />
+                                                                <div class="card-body">
+                                                                    <div class="row">
+
+                                                                            <div class="col-md-6 ps-2">
+                                                                                <div class="input-group input-group-dynamic">
+                                                                                <label asp-for="@Model.Doctor.FirstName" class="form-label">Adı</label>
+                                                                                <input type="text" class="form-control border-start-0" asp-for="@Model.Doctor.FirstName">
+                                                                                <span asp-validation-for="@Model.Doctor.FirstName" class="text-danger"></span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6 ps-2">
+                                                                                <div class="input-group input-group-dynamic">
+                                                                                <label asp-for="@Model.Doctor.LastName" class="form-label">Soyadı</label>
+                                                                                <input type="text" class="form-control border-start-0" asp-for="@Model.Doctor.LastName">
+                                                                                <span asp-validation-for="@Model.Doctor.LastName" class="text-danger"></span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6 ps-2">
+                                                                                <div class="input-group input-group-dynamic">
+                                                                                <label asp-for="@Model.Doctor.Title" class="form-label">Ünvan</label>
+                                                                                <input type="text" class="form-control border-start-0" asp-for="@Model.Doctor.Title">
+                                                                                <span asp-validation-for="@Model.Doctor.Title" class="text-danger"></span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6 ps-2">
+                                                                                <div class="input-group input-group-dynamic">
+                                                                                <label asp-for="@Model.Doctor.Gender" class="form-label">Cinsiyet</label>
+                                                                                <input type="radio" name="option" value="1" class="form-control border-start-0" asp-        for="@Model.Doctor.Gender">
+                                                                                <span asp-validation-for="@Model.Doctor.Gender" class="text-danger">Kadın</span>
+                                                                                <input type="radio" name="option" value="2" class="form-control border-start-0" asp-        for="@Model.Doctor.Gender">
+                                                                                <span asp-validation-for="@Model.Doctor.Gender" class="text-danger">Erkek</span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6 ps-2">
+                                                                                <div class="input-group input-group-dynamic">
+                                                                                <label asp-for="@Model.Doctor.Phone" class="form-label">Telefon</label>
+                                                                                <input type="text" class="form-control border-start-0" asp-for="@Model.Doctor.Phone">
+                                                                                <span asp-validation-for="@Model.Doctor.Phone" class="text-danger"></span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6 ps-2">
+                                                                                <div class="input-group input-group-dynamic">
+                                                                                <label asp-for="@Model.Doctor.Country" class="form-label">Ülke</label>
+                                                                                <input type="text" class="form-control border-start-0" asp-for="@Model.Doctor.Country">
+                                                                                <span asp-validation-for="@Model.Doctor.Country" class="text-danger"></span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6 ps-2">
+                                                                                <div class="input-group input-group-dynamic">
+                                                                                <label asp-for="@Model.Doctor.CertificationNumber" class="form-label">Sertifika No</label>
+                                                                                <input type="text" class="form-control border-start-0" asp-for="@Model.Doctor.CertificationNumber">
+                                                                                <span asp-validation-for="@Model.Doctor.CertificationNumber" class="text-danger"></span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6 ps-2">
+                                                                                <div class="input-group input-group-dynamic">
+                                                                                     <label asp-for="@Model.Doctor.Email" class="form-label">Email</label>
+                                                                                     <input type="text" class="form-control border-start-0" asp-for="@Model.Doctor.Email">
+                                                                                     <span asp-validation-for="@Model.Doctor.Email" class="text- danger"></span>
+                                                                                </div>
+                                                                             </div>
+
+                                                                            <div class="col-md-6 ps-2">
+                                                                                <div class="input-group input-group-dynamic">
+                                                                                <label asp-for="@Model.Doctor.Password" class="form-label">Şifre</label>
+                                                                                <input type="text" class="form-control border-start-0" asp-for="@Model.Doctor.Password">
+                                                                                <span asp-validation-for="@Model.Doctor.Password" class="text-danger"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                            </form>
+                                                       
+                                                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn bg-gradient-dark mb-0" data-bs-dismiss="modal">Kapat</button>
+                                <button type="submit" id="createDoctorModalBtn" class="btn bg-gradient-primary mb-0">Ekle</button>   @* asp-area="" asp-controller="Doctor" asp-action="Create" id="createDoctorModalBtn"*@
+                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+    @section Scripts {
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".nav-tab").click(function (e) {
+                    e.preventDefault();
+                    var url = $(this).data("url");
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function (data) {
+                            $("#content-area").html(data);
+                        }
+                    });
+                });
+            });
+
+            $(document).ready(function () {
+                $("#createDoctorModalBtn").click(function () {
+                    $("#createDoctorModalForm").submit();
+                });
+            });
+        </script>
+    }
+
+
+</header>
+<!-- -------- END HEADER 4 w/ search book a ticket form ------- -->

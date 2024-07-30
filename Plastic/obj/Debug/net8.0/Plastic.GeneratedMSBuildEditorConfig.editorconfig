@@ -18,20 +18,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\black\Documents\GitHub\Plastic\Plastic
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Clinic/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbmljXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Clinic/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbmljXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Clinic/_PartialDoctor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbmljXF9QYXJ0aWFsRG9jdG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Clinic/_PartialOperation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbmljXF9QYXJ0aWFsT3BlcmF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Franchise/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJhbmNoaXNlXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Franchise/_PartialDoctor.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJhbmNoaXNlXF9QYXJ0aWFsRG9jdG9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Franchise/_PartialOperation.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJhbmNoaXNlXF9QYXJ0aWFsT3BlcmF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Home/Index.cshtml]

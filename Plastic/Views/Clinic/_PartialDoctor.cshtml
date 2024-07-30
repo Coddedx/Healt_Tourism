@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<Doctor>
 
+<!--IEnumerable yalnızca veriler üzerinde gezinmek için uygundur, ekleme veya çıkarma işlemlerine izin vermez.o yüzden LİST ya da ICOLLECTİON KULLANMALIYIZ ya da DoctorViewModel oluşturarak da halledebiliriz-->
+
 <section class="pt-7 pb-0">
-    <h2>Doktorlarımız</h2>
+    <h2>Doktorlarımız</h2>  
+
     <div class="container">
         <div class="row">
         @foreach (var item in Model)
@@ -24,6 +27,7 @@
                                 </h5>
                             </a>
                             <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm mb-0" asp-area="" asp-controller="Franchise" asp-action="Index" asp-route-id="@item.Id">Sayfasına Git</a>
+                            <a type="button" class="btn bg-gradient-success w-auto me-2" data-bs-toggle="modal" data-bs-target="#updateDoctorModal">Düzenle</a>
                         </div>
                     </div>
                 </div>
@@ -32,4 +36,4 @@
     </div>
     </div>
 </section>
-
+ 
