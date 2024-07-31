@@ -9,6 +9,5 @@ namespace Plastic.IRepository
         IQueryable<OperationDoctor?> GetOperationDoctor(int id); //yukardakiyle aynıydı normalde async
         bool IsDoctorObjectNull(DoctorViewModel _doctor);
 
-
     }
 }

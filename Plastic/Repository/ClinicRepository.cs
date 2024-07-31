@@ -50,7 +50,9 @@ namespace Plastic.Repository
 
         }
 
-        public bool IsDoctorObjectNull(DoctorViewModel _doctor) //2 den fazla veri doluysa ture gönderiyor
+
+        //   GEREK KALMADI????????????????????????!!!!!!!!!!!!!!!!!!
+        public bool IsDoctorObjectNull(DoctorViewModel _doctor) //2 den fazla veri doluysa ture gönderiyor. REFLECTİON yapıyoruz
         {
             if (_doctor == null)
                 return false;
@@ -58,9 +60,12 @@ namespace Plastic.Repository
             int filledPropertiesCount = 0;
 
             foreach (PropertyInfo property in _doctor.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            //GetType->nesnenin hangi sınıfa ait olduğunu,     GetProperties-> belirtilen türün özelliklerini (properties) alır
+            //BindingFlags.Public bayrağı-> yalnızca genel (public) özelliklerin alınmasını,    BindingFlags.Instance bayrağı-> yalnızca örnek (instance) özelliklerin alınmasını (statik olmayan özelliklerin alınması)
             {
                 var value = property.GetValue(_doctor);
                 if (value != null && !(value is string str && string.IsNullOrEmpty(str)))
+                //value is string str->value değişkeninin bir string olup olmadığını kont.ed. value string ise, bu string str değişkenine atanır.
                 {
                     filledPropertiesCount++;
                     if (filledPropertiesCount >= 2)
@@ -70,6 +75,15 @@ namespace Plastic.Repository
                 }
             }
             return false;
+
+            // CONTROLLER DA KULLANIRKAN BÖYLE KULLANIYORUZ !!!!!!!!!!!!1
+            //bool ısDoctorVMNull =  _clinicRepository.IsDoctorObjectNull(_doctorVM);
+            //if (ısDoctorVMNull == true && (_doctorVM.Doctor.Status != true || _doctorVM.Doctor.Status == null)) //Doctor. eğer doctorvm içi doluysa yani yanlış yazılan doktor formunun verileri geri geldiyse clinicvm in doktorunu dolduralım ki düzeltebilsin baştan yazmasın ve doktorun formdan girilen verileri doğruysa status u true olcağı için girilen verilerin tekrardan yeni açılan formda gözükmemesi için status kontrolü yapıyoruz
+            //{
+            //    clinicVM.Doctor.FirstName = _doctorVM.Doctor.FirstName;//??????????????
+            //}
+
+            //TempData["DoctorViewModel"] = JsonSerializer.Serialize(doctorVM); //JsonConvert kullandığımda cs0103 hatası alıyoruz onun yerine JsonSerializer kullandık
         }
 
     }

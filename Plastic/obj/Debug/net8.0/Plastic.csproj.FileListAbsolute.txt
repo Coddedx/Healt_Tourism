@@ -544,3 +544,5 @@ C:\Users\black\Documents\GitHub\Plastic\Plastic\obj\Debug\net8.0\refint\Plastic.
 C:\Users\black\Documents\GitHub\Plastic\Plastic\obj\Debug\net8.0\Plastic.pdb
 C:\Users\black\Documents\GitHub\Plastic\Plastic\obj\Debug\net8.0\Plastic.genruntimeconfig.cache
 C:\Users\black\Documents\GitHub\Plastic\Plastic\obj\Debug\net8.0\ref\Plastic.dll
+C:\Users\black\Documents\GitHub\Plastic\Plastic\bin\Debug\net8.0\CloudinaryDotNet.dll
+C:\Users\black\Documents\GitHub\Plastic\Plastic\bin\Debug\net8.0\Newtonsoft.Json.dll

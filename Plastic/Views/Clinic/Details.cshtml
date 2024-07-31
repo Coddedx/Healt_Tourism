@@ -199,6 +199,7 @@
     @section Scripts {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript">
+            // nav tab da hangisine basıldıysa doğru partial view ın content-area bölgesine gelmesini sağlar
             $(document).ready(function () {
                 $(".nav-tab").click(function (e) {
                     e.preventDefault();
@@ -213,6 +214,7 @@
                 });
             });
 
+            //modal pop up da doctor create formunun butonunu başka yerde kullanmayı sağlar
             $(document).ready(function () {
                 $("#createDoctorModalBtn").click(function () {
                     $("#createDoctorModalForm").submit();

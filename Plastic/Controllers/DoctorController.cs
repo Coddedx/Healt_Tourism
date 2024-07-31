@@ -1,14 +1,20 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Plastic.IRepository;
 using Plastic.Models;
 using Plastic.ViewModels;
+using System;
 using System.Numerics;
+using System.Reflection;
+using System.Text.Json;
 
 namespace Plastic.Controllers
 {
     public class DoctorController : Controller
     {
         PlasticDbContext db = new PlasticDbContext();
+        private readonly IDoctorRepository _doctorRepository;
+
         // GET: DoctorController
         public ActionResult Index()
         {
@@ -34,7 +40,10 @@ namespace Plastic.Controllers
         {
             try 
             {
-                var doctorVM = new DoctorViewModel();
+                var doctorVM = new DoctorViewModel // bul olmadığında doctor dan obje üretemiyorum???
+                {
+                    Doctor = new Doctor()
+                };
 
                 if (ModelState.IsValid)
                 {
@@ -56,38 +65,24 @@ namespace Plastic.Controllers
                         CreatedDate = DateTime.Now,
                         CreatedBy = 0,
                         Deleted = false,
-                    };
-                    
+                    };                  
                     db.Doctors.Add(doctor);
                     db.SaveChanges();
 
                     doctorVM.ClinicId = doctorMVM.Clinic.Id; //tekrardan clinic id yi gönderelim ki aynı sayfadaki clinicten işlem yapmaya devam edelim.                   
-
                     //clinic den gelen veriler doğruysa buraya yönlendirme yapılcak
                     return RedirectToAction("Details", "Clinic", doctorVM);
                 }
                
-                doctorVM.ClinicId =doctorMVM.Clinic.Id;
-                //formdan gelen veriler yanlış geld için gelen verilerle tekrardan işlem yapab. için clinic e bunları da gönderiyorum 
-                {
-                    //sadece null olmayan verileri tekrar gönderelim ki formu yeniden kaldıkları yerden döndürebilsinler
-                    //foreach (var item in doctorMVM)
-                    //{
+                //Doctor özelliğinin null gidiyor clinic controllera. modelin RedirectToAction yöntemiyle gönderilirken Doctor nesnesinin seri hale getirilip geri yüklenmemesi
+                //RedirectToAction yöntemi, genellikle URL parametreleri aracılığıyla veri gönderir ve karmaşık nesneleri(örneğin Doctor gibi) düzgün bir şekilde seri hale getiremez.
+                //Bu sorunu çözmek için TempData veya Session kullanarak karmaşık veri nesnelerini geçici olarak depolayabiliriz.
+                // DoctorViewModel'i TempData'ya serialize edip sakla                   
+                TempData["ClinicModalViewModel"] = JsonSerializer.Serialize(doctorMVM); 
 
-                    //}
-                doctorVM.Doctor.FirstName = doctorMVM.Doctor.FirstName;
-                doctorVM.Doctor.LastName = doctorMVM.Doctor.LastName;
-                doctorVM.Doctor.Gender = doctorMVM.Doctor.Gender;
-                doctorVM.Doctor.Phone = doctorMVM.Doctor.Phone;
-                doctorVM.Doctor.Title = doctorMVM.Doctor.Title;
-                doctorVM.Doctor.Country = doctorMVM.Doctor.Country;
-                doctorVM.Doctor.CertificationNumber = doctorMVM.Doctor.CertificationNumber;
-                doctorVM.Doctor.Email = doctorMVM.Doctor.Email;
-                doctorVM.Doctor.Password = doctorMVM.Doctor.Password;
-                doctorVM.Doctor.FranchiseId = doctorMVM.Doctor.FranchiseId;
-                }
+                
                 //clinic den gelen veriler yanlışsa buraya yönlendirme yapılcak
-                return RedirectToAction("Details", "Clinic", doctorVM);
+                return RedirectToAction("Details", "Clinic");  //, clinicId
 
             }
             catch

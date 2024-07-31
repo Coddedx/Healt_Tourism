@@ -6,6 +6,7 @@ using Plastic.Models;
 using Plastic.Repository;
 using Plastic.ViewModels;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace Plastic.Controllers
 {
@@ -31,34 +32,25 @@ namespace Plastic.Controllers
         }
 
         // GET: ClinicController/Details/5
-        public async Task<IActionResult> Details(int id,DoctorViewModel _doctorVM) //clinic 
+        public async Task<IActionResult> Details(int id) //clinic  ,DoctorViewModel _doctorVM
         {
 			try
 			{
-                //formlarda işlem yaptıktan sonra id yi tutabilmek için 
-                if (id == 0) { id = _doctorVM.ClinicId; }
-                
-                var clinicVM = new ClinicModalViewModel(); 
+                var clinicVM = new ClinicModalViewModel();
 
-				bool ısDoctorVMNull =  _clinicRepository.IsDoctorObjectNull(_doctorVM);
-				if (ısDoctorVMNull == true && (_doctorVM.Doctor.Status != true || _doctorVM.Doctor.Status == null) ) //eğer doctorvm içi doluysa yani yanlış yazılan doktor formunun verileri geri geldiyse clinicvm in doktorunu dolduralım ki düzeltebilsin baştan yazmasın ve doktorun formdan girilen verileri doğruysa status u true olcağı için girilen verilerin tekrardan yeni açılan formda gözükmemesi için status kontrolü yapıyoruz
-				{
-                    clinicVM.Doctor.FirstName = _doctorVM.Doctor.FirstName;//??????????????
+                var clinicModalViewModelJson = TempData["ClinicModalViewModel"] as string;
+                if (!string.IsNullOrEmpty(clinicModalViewModelJson))
+                {
+                    clinicVM = JsonSerializer.Deserialize<ClinicModalViewModel>(clinicModalViewModelJson);
                 }
+
+                //formlarda işlem yaptıktan sonra id yi tutabilmek için 
+                if (id == 0) { id = clinicVM.Clinic.Id; }
 
                 HttpContext.Session.SetInt32("_ClinicId", id);
 
-    //            var action = fc["action"];
-				//if (action == "createDoctorModal")
-				//{
-				//	return RedirectToAction("Create", "Doctor");
-				//	//return RedirectToAction("Create", "Doctor", new { _id = id });
-				//}
-
-
                 var clinic = await _clinicRepository.GetByIdClinic(id);
                 if (clinic == null) { return RedirectToAction("Index", "Clinic"); }
-
 
                 if (clinic != null)
                 {
@@ -69,7 +61,6 @@ namespace Plastic.Controllers
                 }
 
                 return View(clinicVM);
-
             }
             catch (Exception ex)
 			{
