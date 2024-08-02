@@ -14,6 +14,8 @@ namespace Plastic.ViewModels
         public Clinic? Clinic { get; set; }
 
         public Doctor? Doctor { get; set; }
+        public IFormFile? Image { get; set; } //ıfromfile tipi veri gerektiği için 
+
 
         public Franchise? Franchise { get; set; }
 

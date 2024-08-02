@@ -37,15 +37,17 @@ namespace Plastic.Controllers
 			try
 			{
                 var clinicVM = new ClinicModalViewModel();
+                var doctorVM = new DoctorViewModel(); //// KONTROL ET???????????????????????????
 
                 var clinicModalViewModelJson = TempData["ClinicModalViewModel"] as string;
                 if (!string.IsNullOrEmpty(clinicModalViewModelJson))
                 {
                     clinicVM = JsonSerializer.Deserialize<ClinicModalViewModel>(clinicModalViewModelJson);
                 }
-
+                
                 //formlarda işlem yaptıktan sonra id yi tutabilmek için 
                 if (id == 0) { id = clinicVM.Clinic.Id; }
+                if (id == 0) { id = doctorVM.ClinicId; }  //// KONTROL ET???????????????????????????
 
                 HttpContext.Session.SetInt32("_ClinicId", id);
 

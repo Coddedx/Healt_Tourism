@@ -22,7 +22,7 @@ builder.WebHost.ConfigureKestrel(t =>
 });
 
 
-builder.Services.AddScoped<IPhotoService, PhotoService>(); //Transient kullanmadým???????????????    CLOUDÝNARY!!!!!!
+builder.Services.AddTransient<IPhotoService, PhotoService>(); //Transient kullanmadým???????????????    CLOUDÝNARY!!!!!! AddScoped
 builder.Services.AddTransient<IFranchiseRepository, FranchiseRepository>();
 builder.Services.AddTransient<IClinicRepository, ClinicRepository>();
 builder.Services.AddTransient<IDoctorRepository, DoctorRepository>();

@@ -53,8 +53,11 @@ namespace Plastic.Models
 		, MinLength(8, ErrorMessage = "Min length should be 8 character.")]
 		public string Password { get; set; }
 
+        //[StringLength(128)]
+        public string? ImageUrl { get; set; } //IFormFile doğrudan veritabanına kaydedilemez çünkü bu tip yalnızca HTTP istekleriyle gönderilen dosyaları temsil eder. (cloudinary için ıfromfile gerkliydi) 
 
-		public ICollection<Operation> Operations { get; set; }
+
+        public ICollection<Operation?> Operations { get; set; }
 
 
 	}

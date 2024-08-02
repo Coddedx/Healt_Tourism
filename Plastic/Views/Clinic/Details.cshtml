@@ -95,9 +95,9 @@
                                                 <div class="container py-4">
                                                     <div class="row">
                                                         <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
-                                               
-                                                           
-                                                            <form asp-area="" asp-controller="Doctor" asp-action="Create" method="post" id="createDoctorModalForm" role="form" autocomplete="off">
+
+
+                                                <form asp-area="" asp-controller="Doctor" asp-action="Create" enctype="multipart/form-data" method="post" id="createDoctorModalForm" role="form" autocomplete="off">
                                                     <input type="hidden" asp-for="@Model.Clinic.Id" value="@Model.Clinic.Id" />
                                                                 <div class="card-body">
                                                                     <div class="row">
@@ -129,11 +129,12 @@
                                                                             <div class="col-md-6 ps-2">
                                                                                 <div class="input-group input-group-dynamic">
                                                                                 <label asp-for="@Model.Doctor.Gender" class="form-label">Cinsiyet</label>
-                                                                                <input type="radio" name="option" value="1" class="form-control border-start-0" asp-        for="@Model.Doctor.Gender">
-                                                                                <span asp-validation-for="@Model.Doctor.Gender" class="text-danger">Kadın</span>
-                                                                                <input type="radio" name="option" value="2" class="form-control border-start-0" asp-        for="@Model.Doctor.Gender">
-                                                                                <span asp-validation-for="@Model.Doctor.Gender" class="text-danger">Erkek</span>
-                                                                                </div>
+                                                                    <input type="radio" id="gender_female" asp-for="@Model.Doctor.Gender" value="Female" />
+                                                                    <label for="gender_female">Kadın</label>
+                                                                    
+                                                                    <input type="radio" id="gender_male" asp-for="@Model.Doctor.Gender" value="Male" />
+                                                                    <label for="gender_male">Erkek</label>
+                                                                                 </div>
                                                                             </div>
 
                                                                             <div class="col-md-6 ps-2">
@@ -175,6 +176,15 @@
                                                                                 <span asp-validation-for="@Model.Doctor.Password" class="text-danger"></span>
                                                                                 </div>
                                                                             </div>
+
+                                                                             <div class="col-md-6 ps-2">
+                                                                                <div class="input-group input-group-dynamic">
+                                                                                <label asp-for="@Model.Image" class="form-label">Resim</label>
+                                                                    <input asp-for="@Model.Image" type="file" class="form-control border-start-0">
+                                                                    <span asp-validation-for="@Model.Image" class="text-danger"></span>
+                                                                                </div>
+                                                                             </div>
+
                                                                     </div>
                                                             </form>
                                                        
@@ -186,7 +196,7 @@
                                         </div>
                                         <div class="modal-footer justify-content-between">
                                             <button type="button" class="btn bg-gradient-dark mb-0" data-bs-dismiss="modal">Kapat</button>
-                                <button type="submit" id="createDoctorModalBtn" class="btn bg-gradient-primary mb-0">Ekle</button>   @* asp-area="" asp-controller="Doctor" asp-action="Create" id="createDoctorModalBtn"*@
+                                <button type="submit" id="createDoctorModalBtn" name="action" value="doctorCreateSubmit" class="btn bg-gradient-primary mb-0">Ekle</button>   
                             </div>
                                     </div>
                                 </div>

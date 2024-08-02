@@ -20,6 +20,12 @@ namespace Plastic.Repository
             return await _context.Clinics.FirstOrDefaultAsync(c => c.Id == id);
         }
 
+        public Task<Franchise?> GetFranchiseByClinicId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        //  ???????????????????  YANLIŞ !!!!!!!!!!!!!!!!!!!!!!!!!!1
         public IQueryable<OperationDoctor?> GetOperationDoctor(int id)
         {            
             //var franchise = _context.Franchises
@@ -51,7 +57,7 @@ namespace Plastic.Repository
         }
 
 
-        //   GEREK KALMADI????????????????????????!!!!!!!!!!!!!!!!!!
+        //   !!!!!!!!!!!!!!!!!!!!!!!!!!!GEREK KALMADI!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public bool IsDoctorObjectNull(DoctorViewModel _doctor) //2 den fazla veri doluysa ture gönderiyor. REFLECTİON yapıyoruz
         {
             if (_doctor == null)

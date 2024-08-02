@@ -13,18 +13,8 @@ namespace Plastic.ViewModels
         //}
 
         public Doctor? Doctor { get; set; } //clinic formunda gelen verileri model state doğru değilse geri döndürürken böyle yapamadığım için tek tek yazdım
-        //public int FranchiseId { get; set; }  
-        //public string FirstName { get; set; }
-        //public string LastName { get; set; }
-        //public string Gender { get; set; }
-        //public string Phone { get; set; }
-        //public string Title { get; set; }
-        //public string Country { get; set; }  
-        //public string CertificationNumber { get; set; }
-        //public string Email { get; set; }
-        //public string Password { get; set; }
-        //public bool Status { get; set; }
 
+        public IFormFile? Image { get; set; }
 
         public int ClinicId { get; set; } //bunu aktarmam gerekiyor tekrardan clinic controllerına 
 

@@ -3,9 +3,10 @@
 
 <br><br><br><br><br><br>
 <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 overflow-hidden">
-    <div class="container">
-        <div class="row border-radius-md pb-4 p-3 mx-sm-0 mx-1 position-relative">
-           
+  
+    <!-- ARAMA FİLTRE CONTAİNER I-->
+@*     <div class="container">
+        <div class="row border-radius-md pb-4 p-3 mx-sm-0 mx-1 position-relative">       
             <div class="col-lg-3 mt-lg-n2 mt-2">              
                 <label class="ms-0">Leave From</label>
                 <div class="input-group input-group-static">
@@ -33,7 +34,7 @@
             </div>
         </div>
     </div>
-
+ *@
 
     <section class="pt-7 pb-0">
         <div class="container">
@@ -42,6 +43,7 @@
                 @foreach (var item in Model)
                 {
                     <div class="col-lg-4 col-md-6">
+                        <br><br><br>
                         <div class="card mt-5 mt-md-0">
                             <div class="card-header p-0 mx-3 mt-n4 position-relative z-index-2">
                                 <a class="d-block blur-shadow-image">
@@ -63,39 +65,38 @@
                         </div>
                     </div>
                 }
-
-
-                <div class="col-sm-7 ms-auto text-end">
-                    <ul class="pagination pagination-primary mt-4">
-                        <li class="page-item ms-auto">
-                            <a class="page-link" href="javascript:;" aria-label="Previous">
-                                <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
-                            </a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="javascript:;">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:;">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:;">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:;">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:;">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:;" aria-label="Next">
-                                <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
             </div>
+
+            <div class="col-sm-7 ms-auto text-end">
+                <ul class="pagination pagination-primary mt-4">
+                    <li class="page-item ms-auto">
+                        <a class="page-link" href="javascript:;" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                        </a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="javascript:;">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:;">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:;">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:;">4</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:;">5</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:;" aria-label="Next">
+                            <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
