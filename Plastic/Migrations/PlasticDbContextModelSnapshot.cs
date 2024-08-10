@@ -17,7 +17,7 @@ namespace Plastic.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("ProductVersion", "8.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -97,8 +97,7 @@ namespace Plastic.Migrations
 
                     b.Property<string>("Adress")
                         .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CertificationNumber")
                         .IsRequired()
@@ -112,6 +111,9 @@ namespace Plastic.Migrations
 
                     b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
+
+                    b.Property<int>("DistrictId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -138,6 +140,8 @@ namespace Plastic.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DistrictId");
 
                     b.ToTable("Clinics");
                 });
@@ -262,46 +266,6 @@ namespace Plastic.Migrations
                     b.ToTable("CommentFranchises");
                 });
 
-            modelBuilder.Entity("Plastic.Models.CommentHospital", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HospitalId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Comment")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool?>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Star")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("UserId", "HospitalId");
-
-                    b.HasIndex("HospitalId");
-
-                    b.ToTable("CommentHospitals");
-                });
-
             modelBuilder.Entity("Plastic.Models.Country", b =>
                 {
                     b.Property<int>("Id")
@@ -360,6 +324,9 @@ namespace Plastic.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ClinicId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Country")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -382,7 +349,7 @@ namespace Plastic.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-                    b.Property<int>("FranchiseId")
+                    b.Property<int?>("FranchiseId")
                         .HasColumnType("int");
 
                     b.Property<string>("Gender")
@@ -421,6 +388,8 @@ namespace Plastic.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClinicId");
+
                     b.HasIndex("FranchiseId");
 
                     b.ToTable("Doctors");
@@ -434,18 +403,16 @@ namespace Plastic.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
+                    b.Property<string>("Adress")
                         .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("CertificationNumber")
                         .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ClinicId")
-                        .IsRequired()
+                    b.Property<int>("ClinicId")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -468,10 +435,6 @@ namespace Plastic.Migrations
                         .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
-
-                    b.Property<int?>("HospiatlId")
-                        .IsRequired()
-                        .HasColumnType("int");
 
                     b.Property<string>("ImageUrl")
                         .HasMaxLength(128)
@@ -505,64 +468,7 @@ namespace Plastic.Migrations
 
                     b.HasIndex("DistrictId");
 
-                    b.HasIndex("HospiatlId");
-
                     b.ToTable("Franchises");
-                });
-
-            modelBuilder.Entity("Plastic.Models.Hospital", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Adress")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("CertificationNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool?>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Hospitals");
                 });
 
             modelBuilder.Entity("Plastic.Models.Operation", b =>
@@ -579,9 +485,6 @@ namespace Plastic.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("DoctorId")
-                        .HasColumnType("int");
 
                     b.Property<string>("ImageUrl1")
                         .HasMaxLength(128)
@@ -605,8 +508,6 @@ namespace Plastic.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("DoctorId");
 
                     b.ToTable("Operations");
                 });
@@ -791,6 +692,17 @@ namespace Plastic.Migrations
                     b.Navigation("Country");
                 });
 
+            modelBuilder.Entity("Plastic.Models.Clinic", b =>
+                {
+                    b.HasOne("Plastic.Models.District", "District")
+                        .WithMany("Clinics")
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("District");
+                });
+
             modelBuilder.Entity("Plastic.Models.CommentClinic", b =>
                 {
                     b.HasOne("Plastic.Models.Clinic", "Clinic")
@@ -848,25 +760,6 @@ namespace Plastic.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Plastic.Models.CommentHospital", b =>
-                {
-                    b.HasOne("Plastic.Models.Hospital", "Hospital")
-                        .WithMany()
-                        .HasForeignKey("HospitalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Plastic.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Hospital");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Plastic.Models.District", b =>
                 {
                     b.HasOne("Plastic.Models.City", "City")
@@ -880,11 +773,15 @@ namespace Plastic.Migrations
 
             modelBuilder.Entity("Plastic.Models.Doctor", b =>
                 {
+                    b.HasOne("Plastic.Models.Clinic", "Clinic")
+                        .WithMany("Doctors")
+                        .HasForeignKey("ClinicId");
+
                     b.HasOne("Plastic.Models.Franchise", "Franchise")
                         .WithMany("Doctors")
-                        .HasForeignKey("FranchiseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FranchiseId");
+
+                    b.Navigation("Clinic");
 
                     b.Navigation("Franchise");
                 });
@@ -892,7 +789,7 @@ namespace Plastic.Migrations
             modelBuilder.Entity("Plastic.Models.Franchise", b =>
                 {
                     b.HasOne("Plastic.Models.Clinic", "Clinic")
-                        .WithMany()
+                        .WithMany("Franchises")
                         .HasForeignKey("ClinicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -900,20 +797,12 @@ namespace Plastic.Migrations
                     b.HasOne("Plastic.Models.District", "District")
                         .WithMany("Franchises")
                         .HasForeignKey("DistrictId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Plastic.Models.Hospital", "Hospital")
-                        .WithMany()
-                        .HasForeignKey("HospiatlId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Clinic");
 
                     b.Navigation("District");
-
-                    b.Navigation("Hospital");
                 });
 
             modelBuilder.Entity("Plastic.Models.Operation", b =>
@@ -923,10 +812,6 @@ namespace Plastic.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Plastic.Models.Doctor", null)
-                        .WithMany("Operations")
-                        .HasForeignKey("DoctorId");
 
                     b.Navigation("Category");
                 });
@@ -974,14 +859,18 @@ namespace Plastic.Migrations
                     b.Navigation("Operations");
                 });
 
-            modelBuilder.Entity("Plastic.Models.District", b =>
+            modelBuilder.Entity("Plastic.Models.Clinic", b =>
                 {
+                    b.Navigation("Doctors");
+
                     b.Navigation("Franchises");
                 });
 
-            modelBuilder.Entity("Plastic.Models.Doctor", b =>
+            modelBuilder.Entity("Plastic.Models.District", b =>
                 {
-                    b.Navigation("Operations");
+                    b.Navigation("Clinics");
+
+                    b.Navigation("Franchises");
                 });
 
             modelBuilder.Entity("Plastic.Models.Franchise", b =>

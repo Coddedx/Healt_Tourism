@@ -2,7 +2,7 @@
 
 namespace Plastic.Models
 {
-	public class Hospital : BaseEntity
+	public class Hospital : BaseEntity   //!!!!!!!!!!!!!!!!!!!!!!!!!! KULLANMIYORUM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	{
 		[Key]
 		public int Id { get; set; }

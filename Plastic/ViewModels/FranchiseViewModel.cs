@@ -9,14 +9,16 @@ namespace Plastic.ViewModels
         [Key]
         public int Id { get; set; }
 
+        public Franchise? Franchise { get; set; }
+
         //[Required]
-        public int? HospiatlId { get; set; }
+        public int HospiatlId { get; set; }
         //[ForeignKey("HospiatlId")]
         //public virtual Hospital? Hospital { get; set; }
 
 
         //[Required]
-        public int? ClinicId { get; set; }
+        public int ClinicId { get; set; }
         //[ForeignKey("ClinicId")]
         //public virtual Clinic? Clinic { get; set; }
 
@@ -31,7 +33,7 @@ namespace Plastic.ViewModels
         public string Description { get; set; }  
         public string CertificationNumber { get; set; }
 
-        public string Address { get; set; }
+        public string Adress { get; set; }
 
         public string? ImageUrl { get; set; }
 
@@ -42,9 +44,7 @@ namespace Plastic.ViewModels
 
         //public ICollection<Doctor> Doctors { get; set; }
         public bool Status { get; set; }
-        [Required]
         public DateTime CreatedDate { get; set; }
-        [Required]
         public int CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public int? UpdatedBy { get; set; }

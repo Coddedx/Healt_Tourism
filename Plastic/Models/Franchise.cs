@@ -9,36 +9,39 @@ namespace Plastic.Models
 		[Key]
 		public int Id { get; set; }
 
-		[Required]
-		public int? HospiatlId { get; set; }  // ya hastanenin ya da kliniğin franchise olabilir!!!!!!!!!!!!!!!!!!!!!!!
-		[ForeignKey("HospiatlId")]
-		public virtual Hospital? Hospital { get; set; }
+		//[Required]
+		//[ForeignKey("HospitalId")]
+		//public virtual Hospital? Hospital { get; set; }
+  //      public int HospitalId { get; set; }  // ya hastanenin ya da kliniğin franchise olabilir!!!!!!!!!!!!!!!!!!!!!!!
 
 
-		[Required]
-		public int? ClinicId { get; set; }
-		[ForeignKey("ClinicId")]
-		public virtual Clinic? Clinic { get; set; }
+        //Clinic birden fazla Franchise ile ilişkilendirilebilir. Her Franchise bir Clinic ile ilişkilidir ve bu ilişki ClinicId üzerinden yönetilir.
+        //[Required]
+        //[ForeignKey("ClinicId")]
+        public Clinic Clinic { get; set; }  //virtual
+        public int ClinicId { get; set; }
 
 
-		[Required]
-		public int DistrictId { get; set; }
-		[ForeignKey("DistrictId")]
-		public virtual District District { get; set; }
+
+        //[Required]
+		//[ForeignKey("DistrictId")]
+		public District District { get; set; } //virtual
+        public int DistrictId { get; set; }
 
 
-		[Required, StringLength(64)]
+
+        [Required, StringLength(64)]
 		public string Title { get; set; }   //ayrı tablo?????????????????????????????
         [Required]
 		public string Description { get; set; }  //ayrı tablo?????????????????????????????
 		[StringLength(128)]
+       
+		[Required]
+        public string Adress { get; set; }
 
         [Required]
         public string CertificationNumber { get; set; }
         
-		[Required, StringLength(128)]
-        public string Address { get; set; }
-
 		[StringLength(128)]
 		public string? ImageUrl { get; set; }
 
@@ -49,8 +52,7 @@ namespace Plastic.Models
 
         public string? InstagramUrl { get; set; }
 
-        public ICollection<Doctor> Doctors { get; set; }
-
+        public virtual ICollection<Doctor> Doctors { get; set; }
 
 	}
 }

@@ -1,5 +1,7 @@
-﻿<!-- -------- Klinik --------->
-@model IEnumerable<Clinic>
+﻿@using Plastic.ViewModels
+<!-- -------- Klinik --------->
+@* @model IEnumerable<Clinic>*@
+    @model ClinicViewModel
 
 <br><br><br><br><br><br>
 <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 overflow-hidden">
@@ -36,11 +38,40 @@
     </div>
  *@
 
+    <a type="button" class="btn bg-gradient-primary w-100 mb-0" asp-area="" asp-controller="Franchise" asp-action="Index"></a>
+
     <section class="pt-7 pb-0">
         <div class="container">
             <div class="row">
+                <!--  KLİNİK -->
+                @foreach (var item in Model.Clinics)
+                {
+@*                     <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />*@                    
+                    <div class="col-lg-4 col-md-6">
+                        <br><br><br>
+                        <div class="card mt-5 mt-md-0">
+                            <div class="card-header p-0 mx-3 mt-n4 position-relative z-index-2">
+                                <a class="d-block blur-shadow-image">
+                                    <img src="~/assets/img/products/product-2-min.jpg" alt="img-blur-shadow" class="img-fluid border-radius-lg" loading="lazy">
+                                </a>
+                                <div class="colored-shadow" style="background-image: url(&quot;.assets/img/products/product-2-min.jpg&quot;);"></div>
+                            </div>
+                            <div class="card-body pt-3">
+                                <p class="text-dark mb-2 text-sm">Entire Apartment • 3 Guests • 2 Beds</p>
+                                <a href="javascript:;">
+                                    <h5>
+                                       @item.Name (@item.District.Name)
+                                    </h5>
+                                </a>
+                                <p>@item.Adress</p>
+                                <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm mb-0" asp-area="" asp-controller="Clinic" asp-action="Details" asp-route-id="@item.Id">Sayfasına Git</a>
+                            </div>
+                        </div>
+                    </div>
+                }
 
-                @foreach (var item in Model)
+                <!--  FRANCHİSE -->
+                @foreach (var item in Model.Franchises)
                 {
                     <div class="col-lg-4 col-md-6">
                         <br><br><br>
@@ -55,16 +86,17 @@
                                 <p class="text-dark mb-2 text-sm">Entire Apartment • 3 Guests • 2 Beds</p>
                                 <a href="javascript:;">
                                     <h5>
-                                       @item.Name
+                                        @item.Title  (@item.District.Name)
                                     </h5>
                                 </a>
                                 <p>@item.Adress</p>
-@*                                 <button type="button" class="btn btn-outline-primary btn-sm mb-0">Sayfasına Git</button>*@
-                                <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm mb-0" asp-area="" asp-controller="Clinic" asp-action="Details" asp-route-id="@item.Id">Sayfasına Git</a>
+                                <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm mb-0" asp-area="" asp-controller="Franchise" asp-action="Details" asp-route-id="@item.Id">Sayfasına Git</a>
                             </div>
                         </div>
                     </div>
                 }
+
+
             </div>
 
             <div class="col-sm-7 ms-auto text-end">

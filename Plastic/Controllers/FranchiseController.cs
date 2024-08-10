@@ -3,41 +3,97 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Plastic.IRepository;
 using Plastic.Models;
+using Plastic.Repository;
 using Plastic.ViewModels;
 using System.Diagnostics;
 using System.Security.Cryptography;
+using System.Text.Json;
+
 
 namespace Plastic.Controllers
 {
     public class FranchiseController : Controller
     {
-        PlasticDbContext db = new PlasticDbContext();
+        private readonly PlasticDbContext _context;
         private readonly IFranchiseRepository _franchiseRepository;
 
         //private int _clinicId;
 
-        public FranchiseController(IFranchiseRepository franchiseRepository)
+        public FranchiseController(IFranchiseRepository franchiseRepository, PlasticDbContext context)
         {
-            _franchiseRepository = franchiseRepository; 
+            _franchiseRepository = franchiseRepository;
+            _context = context;
         }
 
         // GET: FranchiseController
-        public async Task<IActionResult> Index(int id) //bu gelen ıd clinic ıd!!!!!!!1
+        public async Task<IActionResult> Index() //int id
         {
             //tıklanan sayfanın hastaneye mi cliniğe mi bağlı olduğu ayrıştırılıp id si mi çekilmeli (şimdilik hepsinin clinic old bild için @Model.Clinic.Name ile yazdım) ????????????????????????????????
 
             //HttpContext.Session.SetInt32("_ClinicId", id);  
-          
+
             //var clinic = await _franchiseRepository.GetByIdClinicAsync(id);
             //if (clinic == null) { return RedirectToAction("Index", "Clinic"); }
 
-                return View(); //clinic
+            //var franchise = _context.Franchises
+            //        //.AsNoTracking()
+            //        .Include(c => c.Clinic)
+            //        .Where(d => d.ClinicId == 1).ToList();
+
+            //if (franchise == null || !franchise.Any())
+            //{
+            //    // Veri bulunamadı, loglama veya hata yönetimi.
+            //}
+
+            //var franchise = _context.Franchises.Where(_context => _context.Id == 2).FirstOrDefault(); 
+
+            //var doctor = _context.Doctors.Where(a => a.FranchiseId == 2).ToList();
+
+            return View(); 
         }
 
-        // GET: FranchiseController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+
+            try
+            {
+                var clinicVM = new ClinicModalViewModel();
+                var doctorVM = new DoctorViewModel(); //// KONTROL ET???????????????????????????
+
+                var clinicModalViewModelJson = TempData["ClinicModalViewModel"] as string;
+                if (!string.IsNullOrEmpty(clinicModalViewModelJson))
+                {
+                    clinicVM = JsonSerializer.Deserialize<ClinicModalViewModel>(clinicModalViewModelJson);
+                }
+
+                //formlarda işlem yaptıktan sonra id yi tutabilmek için 
+                if (id == 0) { id = clinicVM.Clinic.Id; }
+                if (id == 0) { id = doctorVM.ClinicId; }  //// KONTROL ET???????????????????????????
+
+                HttpContext.Session.SetInt32("_ClinicId", id);
+
+                var clinic = await _franchiseRepository.GetByIdFranchiseAsync(id);
+                if (clinic == null) { return RedirectToAction("Index", "Clinic"); }
+
+
+
+                if (clinic != null)
+                {
+                    clinicVM.Clinic.Id = id; //id klinik id idi zaten
+                    clinicVM.Clinic.Adress = clinic.Adress;
+                    clinicVM.Clinic.Email = clinic.Email;
+                    clinicVM.Clinic.Phone = clinic.Phone;
+                }
+
+                return View(clinicVM);
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError(ex, "An error occurred.");
+                return StatusCode(500, "Internal server error");
+
+                //return RedirectToAction(nameof(Index));
+            }
         }
 
         // GET: FranchiseController/Create

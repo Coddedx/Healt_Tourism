@@ -5,8 +5,8 @@ namespace Plastic.IRepository
 {
     public interface IFranchiseRepository
     {
-        IQueryable<FranchiseViewModel> GetAllAsync();
-        Task<Franchise> GetByIdAsync(int id); //FranchiseViewModel
+        Task<List<Franchise>> GetAllFranchisesAsync();
+        Task<Franchise?> GetByIdFranchiseAsync(int id); //FranchiseViewModel
         Task AddAsync(FranchiseViewModel franchise);
         Task UpdateAsync(FranchiseViewModel franchise);
         Task DeleteAsync(int Id);

@@ -14,8 +14,11 @@ namespace Plastic.Repository
         {
             _context = context; //new PlasticDbContext();
         }
-
-        public async Task<Clinic?> GetByIdClinic(int id) //Clinic
+        public async Task<List<Clinic>> GetAllClinicsAsync()   //List<
+        {
+            return await _context.Clinics.Include(a => a.District).ToListAsync();
+        }
+        public async Task<Clinic?> GetByIdClinicAsync(int id) //Clinic
         {
             return await _context.Clinics.FirstOrDefaultAsync(c => c.Id == id);
         }
@@ -27,12 +30,12 @@ namespace Plastic.Repository
 
         //  ???????????????????  YANLIŞ !!!!!!!!!!!!!!!!!!!!!!!!!!1
         public IQueryable<OperationDoctor?> GetOperationDoctor(int id)
-        {            
+        {
             //var franchise = _context.Franchises
-                     //    .Include(a => a.Doctors)
-                     //    .Where(c => c.ClinicId == id).ToList();  //where ile sorgulama ıqueryable döndürür!!! ToList diyerek liste olarak döndürürüz, FirstOrDefault diyerek tek bir dönüt bekliyosak kullanab. ınclude dersek ihtiyacımız olan bağlantılı tabloları da dahil edebiliriz.
+            //    .Include(a => a.Doctors)
+            //    .Where(c => c.ClinicId == id).ToList();  //where ile sorgulama ıqueryable döndürür!!! ToList diyerek liste olarak döndürürüz, FirstOrDefault diyerek tek bir dönüt bekliyosak kullanab. ınclude dersek ihtiyacımız olan bağlantılı tabloları da dahil edebiliriz.
 
-            //var doctor = _context.Doctors.Find(id);
+            var doctor = _context.Doctors.Include(c => c.Franchise).ThenInclude(t => t.ClinicId);
 
             var clinic = _context.Clinics.FirstOrDefault(c => c.Id == id);
 
@@ -92,5 +95,9 @@ namespace Plastic.Repository
             //TempData["DoctorViewModel"] = JsonSerializer.Serialize(doctorVM); //JsonConvert kullandığımda cs0103 hatası alıyoruz onun yerine JsonSerializer kullandık
         }
 
+        public Task<Doctor?> GetDoctorByClinicId(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

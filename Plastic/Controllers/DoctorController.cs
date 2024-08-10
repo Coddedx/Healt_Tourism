@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Plastic.IRepository;
 using Plastic.Models;
 using Plastic.Services;
@@ -13,14 +14,17 @@ namespace Plastic.Controllers
 {
     public class DoctorController : Controller
     {
-        PlasticDbContext db = new PlasticDbContext();
+        private readonly PlasticDbContext _context;
         private readonly IDoctorRepository _doctorRepository;
+        private readonly IClinicRepository _clinicRepository;
         private readonly IPhotoService _photoService;
 
-        public DoctorController(IPhotoService photoService) 
+        public DoctorController(IPhotoService photoService, PlasticDbContext context, IClinicRepository clinicRepository, IDoctorRepository doctorRepository) 
         {
             _photoService = photoService;
-
+            _clinicRepository = clinicRepository;
+            _doctorRepository = doctorRepository;
+            _context = context;
         }
         public ActionResult Index()
         {
@@ -44,7 +48,7 @@ namespace Plastic.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( ClinicModalViewModel clinicMVM) 
+        public async Task<IActionResult> Create( ClinicModalViewModel clinicMVM) //FRANCHİSEID DÜZELT!!!!!!!!!!!1
         {
             try 
             {
@@ -58,12 +62,36 @@ namespace Plastic.Controllers
                             .Where(ms => ms.Key.StartsWith("Doctor."))
                             .ToDictionary(ms => ms.Key, ms => ms.Value);
 
+                // TABLOLAR GÜNCELLENDİKTEN SONRA KALMALI MI????????????????!!!!!!!!!!!!!!!
                 ModelState.Remove("Doctor.Operations"); //bunu manuel olarak model state den çıkarıyorum çünkü form için kotnrol etmeme gerek yok
+               
+                var _idClinic = 0;
+                var _idFranchise = 0;
+                //foreign key le bağlı tabloların formdan idlerinin null gelmesi sorunu çözümü  
+                { 
+                //formdan FranchiseId ve ClinicId valid ama null geldiği için. Hangi kontrollerdan form geldiğini bu sayede anlarız (0 olanın contr. dan gelmiyo yani)
+                _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
+                _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+
+                //doctorModelState["Doctor.Clinic"].ValidationState = ModelValidationState.Valid; //Valid yapıyor ama yine de giremedim ondan direk remove diyorum
+                ModelState.Remove("Doctor.Clinic");
+                ModelState.Remove("Doctor.Franchise");
+
+                    //if (clinicMVM.Doctor.FranchiseId.HasValue)
+                    //{
+                    //    ModelState.Remove("Doctor.Clinic");
+                    //    doctor.FranchiseId = _id;
+                    //}
+                    //else if (clinicMVM.Doctor.ClinicId.HasValue)
+                    //{
+                    //    ModelState.Remove("Doctor.Franchise");
+                    //}
+                }
+
                 if (doctorModelState.Values.All(v => v.Errors.Count == 0))
                 {
                     var result = await _photoService.AddPhotoAsync(clinicMVM.Image);
 
-                    //franchiseıd ??????????????????????
                     var doctor = new Doctor()
                     {
                         FirstName = clinicMVM.Doctor.FirstName,
@@ -75,7 +103,6 @@ namespace Plastic.Controllers
                         CertificationNumber = clinicMVM.Doctor.CertificationNumber,
                         Email = clinicMVM.Doctor.Email,
                         Password = clinicMVM.Doctor.Password,
-                        FranchiseId = 2, // clinicMVM.Doctor.FranchiseId, //düzelt!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         ImageUrl = result.Url.ToString(),
 
                         Status = true,
@@ -83,13 +110,27 @@ namespace Plastic.Controllers
                         CreatedBy = 0,
                         Deleted = false,
                     };
-                    db.Doctors.Add(doctor);
-                    db.SaveChanges();
+                    if (_idFranchise == 0)
+                    {
+                        doctor.FranchiseId = null;  //0 a falan eşitleyemem çünkü tabloları oluştururuken ya franchise ya clinic ıd null olmalı diye ayarladım
+                        doctor.ClinicId = _idClinic; // clinicMVM.Doctor.ClinicId;//, // clinicMVM.Doctor.FranchiseId,
+                    }
+                    else if (_idClinic == 0)
+                    {
+                        doctor.ClinicId = null;
+                        doctor.FranchiseId = _idFranchise; // clinicMVM.Doctor.FranchiseId;//, // clinicMVM.Doctor.FranchiseId,
+                    }
 
-                    doctorVM.ClinicId = clinicMVM.Clinic.Id; //tekrardan clinic id yi gönderelim ki aynı sayfadaki clinicten işlem yapmaya devam edelim.                   
-                                                             //clinic den gelen veriler doğruysa buraya yönlendirme yapılcak
+                    _context.Doctors.Add(doctor);
+                    _context.SaveChanges();
+
+                    doctorVM.ClinicId = _idClinic;//clinicMVM.Clinic.Id; //tekrardan clinic id yi gönderelim ki aynı sayfadaki clinicten işlem yapmaya devam edelim.                   
+                                                  //clinic den gelen veriler doğruysa buraya yönlendirme yapılcak
+                    doctorVM.FranchiseId = _idFranchise;
+                    
                     //TempData["ClinicId"] = doctorVM.ClinicId;
-                    int id = doctorVM.ClinicId;
+                    //int id = doctorVM.ClinicId;
+
                     return RedirectToAction("Details", "Clinic", doctorVM);  //, clinicId
                 }
 
@@ -102,7 +143,6 @@ namespace Plastic.Controllers
                 
                 //clinic den gelen veriler yanlışsa buraya yönlendirme yapılcak
                 return RedirectToAction("Details", "Clinic");  
-
             }
             catch
             {
