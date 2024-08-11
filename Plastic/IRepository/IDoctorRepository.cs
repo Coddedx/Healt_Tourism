@@ -5,7 +5,9 @@ namespace Plastic.IRepository
 {
     public interface IDoctorRepository
     {
-        Task<DoctorViewModel?> MapNonNullProperties(ClinicModalViewModel doctorMVM); 
+        Task<DoctorViewModel?> MapNonNullProperties(ClinicModalViewModel doctorMVM);
+        Task<Doctor?> GetDoctorByIdAsync(int id);
+
 
     }
 }

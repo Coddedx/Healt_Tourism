@@ -8,7 +8,7 @@ namespace Plastic.ViewModels
         {
             this.Clinic = new Clinic();
             this.Doctor = new Doctor();
-            this.Franchise = new Franchise();
+           //this.Franchise = new Franchise();
         }
 
         public Clinic? Clinic { get; set; }
@@ -17,7 +17,7 @@ namespace Plastic.ViewModels
         public IFormFile? Image { get; set; } //ıfromfile tipi veri gerektiği için 
 
 
-        public Franchise? Franchise { get; set; }
+       // public Franchise? Franchise { get; set; }
 
     }
 }

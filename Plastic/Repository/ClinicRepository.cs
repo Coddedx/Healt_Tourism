@@ -3,6 +3,7 @@ using Plastic.IRepository;
 using Plastic.Models;
 using Plastic.ViewModels;
 using System.Reflection;
+using System.Security.Cryptography;
 
 namespace Plastic.Repository
 {
@@ -29,15 +30,15 @@ namespace Plastic.Repository
         }
 
         //  ???????????????????  YANLIŞ !!!!!!!!!!!!!!!!!!!!!!!!!!1
-        public IQueryable<OperationDoctor?> GetOperationDoctor(int id)
+        public IEnumerable<OperationDoctor?> GetOperationDoctor(int id)  //IQueryable olduğunda tolist yapamayız çünkü sorgu döndürür
         {
             //var franchise = _context.Franchises
             //    .Include(a => a.Doctors)
             //    .Where(c => c.ClinicId == id).ToList();  //where ile sorgulama ıqueryable döndürür!!! ToList diyerek liste olarak döndürürüz, FirstOrDefault diyerek tek bir dönüt bekliyosak kullanab. ınclude dersek ihtiyacımız olan bağlantılı tabloları da dahil edebiliriz.
 
-            var doctor = _context.Doctors.Include(c => c.Franchise).ThenInclude(t => t.ClinicId);
-
-            var clinic = _context.Clinics.FirstOrDefault(c => c.Id == id);
+            var doctor = _context.Doctors.Include(a => a.Clinic).Where(b => b.ClinicId == id).ToList();
+            var doctorIds = doctor.Select(a => a.Id).ToList();
+            //var clinic = _context.Clinics.FirstOrDefault(c => c.Id == id);
 
             //return await _context.OperationDoctors
             //     .Include(a => a.Franchises)
@@ -49,7 +50,7 @@ namespace Plastic.Repository
             var operationDoctor = _context.OperationDoctors
                 .Include(a => a.Operation)
                 .Include(b => b.Doctor)
-                    .Where(d => clinic.Id == id);
+                    .Where(d => doctorIds.Contains(d.DoctorId) ).ToList();
             return operationDoctor;
             //           await _context.OperationDoctors
             //           .Include(od => od.Doctor)
@@ -57,6 +58,35 @@ namespace Plastic.Repository
             //                        .ThenInclude(f => f.Clinic)
             //.Where(c => c.DoctorId == doctor.Id && doctor.FranchiseId == franchise.Id && franchise.ClinicId == id);      // _context => _context.DoctorId == id 
 
+        }
+        public IEnumerable<Doctor?> GetDoctorByClinicId(int id) //IQueryable
+        {
+            //var clinic = _context.Clinics
+            //    .Where(c => c.Id == _id).ToList();
+
+            //var franchiseAll = _context.Franchises.ToList();
+
+
+            //var franchise = _context.Franchises
+            //        .Include(c => c.Clinic)
+            //        //.Where(_context => _context.ClinicId == _id).ToList();
+            //        .Where(a => a.ClinicId == _id).ToList();
+            //if (franchise == null || !franchise.Any())
+            //{
+            //    // Veri bulunamadı, loglama veya hata yönetimi.
+            //}
+
+            try
+            {
+            var doctor = _context.Doctors
+                         .Where(d => d.ClinicId == id).ToList();
+            return doctor;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
 
@@ -93,11 +123,6 @@ namespace Plastic.Repository
             //}
 
             //TempData["DoctorViewModel"] = JsonSerializer.Serialize(doctorVM); //JsonConvert kullandığımda cs0103 hatası alıyoruz onun yerine JsonSerializer kullandık
-        }
-
-        public Task<Doctor?> GetDoctorByClinicId(int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

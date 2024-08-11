@@ -34,8 +34,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbmljXF9QYXJ0aWFsT3BlcmF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Doctor/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Franchise/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJhbmNoaXNlXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Franchise/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJhbmNoaXNlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Franchise/_PartialDoctor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJhbmNoaXNlXF9QYXJ0aWFsRG9jdG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Franchise/_PartialOperation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJhbmNoaXNlXF9QYXJ0aWFsT3BlcmF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Home/Index.cshtml]

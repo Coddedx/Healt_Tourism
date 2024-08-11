@@ -95,28 +95,53 @@ namespace Plastic.Repository
             //  FindAsync(id)(bunu kullanırken include kullanılamıyor????)  
         }
 
+        public IEnumerable<OperationDoctor?> GetOperationDoctor(int id)  
+        {
+            var doctor = _context.Doctors.Include(a => a.Clinic).Where(b => b.FranchiseId == id).ToList();
+            var doctorIds = doctor.Select(a => a.Id).ToList();
+            var operationDoctor = _context.OperationDoctors
+                .Include(a => a.Operation)
+                .Include(b => b.Doctor)
+                    .Where(d => doctorIds.Contains(d.DoctorId)).ToList();
+            return operationDoctor;
+        }
+        public IEnumerable<Doctor?> GetDoctorByFranchiseId(int id) 
+        {
+            try
+            {
+                var doctor = _context.Doctors
+                             .Where(d => d.FranchiseId == id).ToList();
+                return doctor;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public async Task UpdateAsync(FranchiseViewModel franchiseUpdated)
         {
-            var franchise = await _context.Franchises.FindAsync(franchiseUpdated.Id);
+            var franchise = await _context.Franchises.FindAsync(franchiseUpdated.Id); //düzenle view modelde id olmıcak !!!!!!!!!!!!!!
            
-            franchise.Id = franchiseUpdated.Id;
-            //franchise.HospitalId = franchiseUpdated.HospiatlId;
-            franchise.ClinicId = franchiseUpdated.ClinicId;
-            franchise.DistrictId = franchiseUpdated.DistrictId;
-            franchise.Title = franchiseUpdated.Title;
-            franchise.Description = franchiseUpdated.Description;
-            franchise.CertificationNumber = franchiseUpdated.CertificationNumber;
-            franchise.Adress = franchiseUpdated.Adress;
-            franchise.ImageUrl = franchiseUpdated.ImageUrl;
-            franchise.Email = franchiseUpdated.Email;
-            franchise.Phone = franchiseUpdated.Phone;
-            franchise.InstagramUrl = franchiseUpdated.InstagramUrl;
-            franchise.Status = franchiseUpdated.Status;
-            franchise.CreatedDate = franchiseUpdated.CreatedDate;
-            franchise.CreatedBy = franchiseUpdated.CreatedBy;
-            franchise.UpdatedDate = franchiseUpdated.UpdatedDate;
-            franchise.UpdatedBy = franchiseUpdated.UpdatedBy;
-            franchise.Deleted = franchiseUpdated.Deleted;
+            //franchise.Id = franchiseUpdated.Id;
+            ////franchise.HospitalId = franchiseUpdated.HospiatlId;
+            //franchise.ClinicId = franchiseUpdated.ClinicId;
+            //franchise.DistrictId = franchiseUpdated.DistrictId;
+            //franchise.Title = franchiseUpdated.Title;
+            //franchise.Description = franchiseUpdated.Description;
+            //franchise.CertificationNumber = franchiseUpdated.CertificationNumber;
+            //franchise.Adress = franchiseUpdated.Adress;
+            //franchise.ImageUrl = franchiseUpdated.ImageUrl;
+            //franchise.Email = franchiseUpdated.Email;
+            //franchise.Phone = franchiseUpdated.Phone;
+            //franchise.InstagramUrl = franchiseUpdated.InstagramUrl;
+            //franchise.Status = franchiseUpdated.Status;
+            //franchise.CreatedDate = franchiseUpdated.CreatedDate;
+            //franchise.CreatedBy = franchiseUpdated.CreatedBy;
+            //franchise.UpdatedDate = franchiseUpdated.UpdatedDate;
+            //franchise.UpdatedBy = franchiseUpdated.UpdatedBy;
+            //franchise.Deleted = franchiseUpdated.Deleted;
             
             _context.Franchises.Update(franchise);
             await _context.SaveChangesAsync();

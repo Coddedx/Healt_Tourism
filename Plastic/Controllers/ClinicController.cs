@@ -61,6 +61,7 @@ namespace Plastic.Controllers
                 var clinicVM = new ClinicModalViewModel();
                 var doctorVM = new DoctorViewModel(); //// KONTROL ET???????????????????????????
 
+                //Form yanlış doldurulduktan sonra doldurulan yerlerin aynen gelmesi için verileri taşıyorum.
                 var clinicModalViewModelJson = TempData["ClinicModalViewModel"] as string;
                 if (!string.IsNullOrEmpty(clinicModalViewModelJson))
                 {
@@ -79,57 +80,39 @@ namespace Plastic.Controllers
                 if (clinic != null)
                 {
 					clinicVM.Clinic.Id = id; //id klinik id idi zaten
-                    //clinicVM.Doctor.ClinicId = id;
                     clinicVM.Clinic.Adress = clinic.Adress;
                     clinicVM.Clinic.Email = clinic.Email;
                     clinicVM.Clinic.Phone = clinic.Phone;
                 }
-
                 return View(clinicVM);
             }
             catch (Exception ex)
 			{
                 _logger.LogError(ex, "An error occurred.");
                 return StatusCode(500, "Internal server error");
-
-                //return RedirectToAction(nameof(Index));
             }
         }
 
-        public PartialViewResult Operation() //TÜM VERİLERİ GETİYOR DÜZELT!!!!!!!!!!!!!!!1
+        public PartialViewResult Operation() 
         {
             var _id = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-
-            var operation = _clinicRepository.GetOperationDoctor(_id).ToList();  //Async
-            return PartialView("_PartialOperation", operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+            try
+            {
+                var operation = _clinicRepository.GetOperationDoctor(_id).ToList();  //Async
+                return PartialView("_PartialOperation", operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return PartialView("_PartialDoctor");  //veri döndürmeyince hata verir!!!!!!!!!!!!!!!!!!1
+            }
         }
         public PartialViewResult Doctor() 
         {
-            //var doctor = _context.Doctors.FirstOrDefault(c => c. == id);
             var _id =Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-            //clinics = _context.Clinics.ToList();
-            //var clinks = clinics.Where(a=>a.Franchise.Id== _id).ToList();
-
             try
             {
-                //var clinic = _context.Clinics
-                //    .Where(c => c.Id == _id).ToList();
-
-                //var franchiseAll = _context.Franchises.ToList();
-
-
-                //var franchise = _context.Franchises
-                //        .Include(c => c.Clinic)
-                //        //.Where(_context => _context.ClinicId == _id).ToList();
-                //        .Where(a => a.ClinicId == _id).ToList();
-                //if (franchise == null || !franchise.Any())
-                //{
-                //    // Veri bulunamadı, loglama veya hata yönetimi.
-                //}
-
-
-                var doctor = _context.Doctors
-                    .Where(d => d.ClinicId== _id).ToList();
+                var doctor = _clinicRepository.GetDoctorByClinicId(_id);
                 return PartialView("_PartialDoctor", doctor);  //_PartialView.cshtml Views/Operation/Index.cshtml  
             }
             catch (Exception ex)

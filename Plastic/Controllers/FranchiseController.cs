@@ -57,35 +57,35 @@ namespace Plastic.Controllers
 
             try
             {
-                var clinicVM = new ClinicModalViewModel();
+                var franchiseMVM = new FranchiseModalViewModel();
                 var doctorVM = new DoctorViewModel(); //// KONTROL ET???????????????????????????
 
-                var clinicModalViewModelJson = TempData["ClinicModalViewModel"] as string;
-                if (!string.IsNullOrEmpty(clinicModalViewModelJson))
+                var franchiseModalViewModelJson = TempData["FranchiseModalViewModel"] as string;
+                if (!string.IsNullOrEmpty(franchiseModalViewModelJson))
                 {
-                    clinicVM = JsonSerializer.Deserialize<ClinicModalViewModel>(clinicModalViewModelJson);
+                    franchiseMVM = JsonSerializer.Deserialize<FranchiseModalViewModel>(franchiseModalViewModelJson);
                 }
 
                 //formlarda işlem yaptıktan sonra id yi tutabilmek için 
-                if (id == 0) { id = clinicVM.Clinic.Id; }
-                if (id == 0) { id = doctorVM.ClinicId; }  //// KONTROL ET???????????????????????????
+                if (id == 0) { id = franchiseMVM.Franchise.Id; }
+                if (id == 0) { id = doctorVM.FranchiseId; }  //// KONTROL ET???????????????????????????
 
-                HttpContext.Session.SetInt32("_ClinicId", id);
+                HttpContext.Session.SetInt32("_FranchiseId", id);
 
-                var clinic = await _franchiseRepository.GetByIdFranchiseAsync(id);
-                if (clinic == null) { return RedirectToAction("Index", "Clinic"); }
+                var franchise = await _franchiseRepository.GetByIdFranchiseAsync(id);
+                if (franchise == null) { return RedirectToAction("Index", "Clinic"); }
 
 
 
-                if (clinic != null)
+                if (franchise != null)
                 {
-                    clinicVM.Clinic.Id = id; //id klinik id idi zaten
-                    clinicVM.Clinic.Adress = clinic.Adress;
-                    clinicVM.Clinic.Email = clinic.Email;
-                    clinicVM.Clinic.Phone = clinic.Phone;
+                    franchiseMVM.Franchise.Id = id; //id franchise id idi zaten
+                    franchiseMVM.Franchise.Adress = franchise.Adress;
+                    franchiseMVM.Franchise.Email = franchise.Email;
+                    franchiseMVM.Franchise.Phone = franchise.Phone;
                 }
 
-                return View(clinicVM);
+                return View(franchiseMVM);
             }
             catch (Exception ex)
             {
@@ -95,6 +95,37 @@ namespace Plastic.Controllers
                 //return RedirectToAction(nameof(Index));
             }
         }
+
+        public PartialViewResult Operation()
+        {
+            var _id = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+            try
+            {
+                var operation = _franchiseRepository.GetOperationDoctor(_id).ToList();  
+                return PartialView("_PartialOperation", operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return PartialView("_PartialDoctor");  //veri döndürmeyince hata verir!!!!!!!!!!!!!!!!!!1
+            }
+        }
+        public PartialViewResult Doctor()
+        {
+            var _id = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+            try
+            {
+                var doctor = _franchiseRepository.GetDoctorByFranchiseId(_id);
+                return PartialView("_PartialDoctor", doctor);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return PartialView("_PartialDoctor");  //doctor döndürmeyince hata verir!!!!!!!!!!!!!!!!!!1
+            }
+
+        }
+
 
         // GET: FranchiseController/Create
         public ActionResult Create()

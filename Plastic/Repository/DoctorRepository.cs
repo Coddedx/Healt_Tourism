@@ -1,4 +1,5 @@
-﻿using Plastic.IRepository;
+﻿using Microsoft.EntityFrameworkCore;
+using Plastic.IRepository;
 using Plastic.Models;
 using Plastic.ViewModels;
 using System.Reflection;
@@ -8,6 +9,17 @@ namespace Plastic.Repository
 {
     public class DoctorRepository : IDoctorRepository
     {
+        private readonly PlasticDbContext _context;
+
+        public DoctorRepository(PlasticDbContext context)
+        {
+            _context = context;  
+        }
+        public async Task<Doctor?> GetDoctorByIdAsync(int id)
+        {
+            return  await _context.Doctors.FindAsync(id);     //a => a.Id == 
+        }
+
         //   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!GEREK KALMADI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public async Task<DoctorViewModel?> MapNonNullProperties(ClinicModalViewModel doctorMVM) //Reflection yöntemiyle
         {

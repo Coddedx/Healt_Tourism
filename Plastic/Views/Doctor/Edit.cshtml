@@ -1,47 +1,7 @@
-﻿<!-- Clinic -->
-@model IEnumerable<Doctor>
+﻿@using Plastic.ViewModels
+@model DoctorViewModel
 
-<!--IEnumerable yalnızca veriler üzerinde gezinmek için uygundur, ekleme veya çıkarma işlemlerine izin vermez.o yüzden LİST ya da ICOLLECTİON KULLANMALIYIZ ya da DoctorViewModel oluşturarak da halledebiliriz-->
-
-<section class="pt-7 pb-0">
-
-    <div class="container">
-        <div class="row">
-        @foreach (var item in Model)
-        {
-                <div class="col-lg-10 col-md-12">
-                    <div class="card mt-8 mt-md-5">
-                        <div class="card-header p-0 mx-3 mt-n4 position-relative z-index-2">
-                            <a class="d-block blur-shadow-image">
-                                @if (item.ImageUrl != null)
-                                {
-                                    <img src="@item.ImageUrl" alt="img-blur-shadow" class="img-fluid border-radius-lg" loading="lazy">
-                                }
-                            </a>
-                            <div class="colored-shadow" style="background-image: url(&quot;.assets/img/products/product-2-min.jpg&quot;);"></div>
-                        </div>
-                        <div class="card-body pt-3">
-                            <p class="text-dark mb-2 text-sm">------</p>
-                            <a href="javascript:;">
-                                <h5>
-                                    @item.FirstName
-                                    @item.LastName
-                                    (@item.Title)
-                                </h5>
-                            </a>
-                            <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm mb-0" asp-area="" asp-controller="Doctor" asp-action="Details" asp-route-id="@item.Id">Sayfasına Git</a>
-                            <a asp-area="" asp-controller="Doctor" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Düzenle</a>  @* class="btn btn-sm btn-outline-secondary" data-bs-target=" #updateDoctorModal" *@
-                        </div>
-                    </div>
-                </div>
-        }
-    </div>
-    </div>
-</section>
-
-
-
-<!-- MODAL Pop Up-->
+                <!-- MODAL Pop Up-->
 @* <div class="container py-7">
     <div class="row mt-5">
         <div class="col-sm-3 col-6 mx-auto">
@@ -61,7 +21,7 @@
 
                                             <form asp-area="" asp-controller="Doctor" asp-action="Create" enctype="multipart/form-data" method="post" id="createDoctorModalForm" role="form" autocomplete="off">
                                                 <input type="hidden" asp-for=" Doctor.ClinicId" value=" Doctor.ClinicId" />  @* Clinic.Id *@
-@*           <input type="hidden" asp-for=" Doctor.FranchiseId" value=" Doctor.FranchiseId" />
+                                     @*           <input type="hidden" asp-for=" Doctor.FranchiseId" value=" Doctor.FranchiseId" />
                                                 <div class="card-body">
                                                     <div class="row">
 
@@ -162,4 +122,95 @@
 </div>
  *@
 
+<div class="container py-7">
+    <div class="row mt-5">
+        <div class="col-sm-3 col-6 mx-auto">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Launch demo modal
+            </button>
 
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Your modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Society has put up so many boundaries, so many limitations on what’s right and wrong that it’s almost impossible to get a pure thought out.
+                            <br><br>
+                            It’s like a little kid, a little boy, looking at colors, and no one told him what colors are good, before somebody tells you you shouldn’t like pink because that’s for girls, or you’d instantly become a gay two-year-old.
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn bg-gradient-dark mb-0" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn bg-gradient-primary mb-0">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* <div class="row">
+    <div class="col-12">
+        <div class="card border-top border-0 border-4 border-dark">
+            <div class="card-body p-5">
+                <div class="card-title text-center">
+                    <i class="bx bxs-user-circle text-dark font-50"></i>
+                    <h5 class="mb-5 mt-2 text-dark">Eğitmen Düzenle</h5>
+                </div>
+                <hr>
+                @*asp-controller=The name of the controller,  asp-action=The name of the action method,  asp-area=The name of the area,
+                asp-route-{value}=A single URL route value. For example, asp-route-id="1234"*@
+           @*     <form class="row g-3" method="post">
+                    <input type="hidden" asp-for="Doctor.Id" />
+                    <div class="col-12">
+                        <label asp-for="Doctor.FirstName" class="form-label">Adı Soyadı</label>
+                        <input type="text" class="form-control border-start-0" asp-for="Doctor.FirstName" placeholder="Adı soyadı">
+                        <span class="text-danger" asp-validation-for="Doctor.FirstName"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Doctor.LastName" class="form-label">Email</label>
+                        <input type="text" class="form-control border-start-0" asp-for="Doctor.LastName" placeholder="Email">
+                        <span class="text-danger" asp-validation-for="Doctor.LastName"></span>
+                    </div>
+
+                    <div class="col-12">
+                        <label asp-for="Doctor.Status" class="form-label">Durumu</label>
+                        <select class="form-select mb-3" asp-for="Doctor.Status">
+                            <option value="true">Aktif</option>
+                            <option value="false">Pasif</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-dark btn-lg px-5"><i class="bx bxs-lock-open"></i>Kaydet</button>
+                        </div>
+                    </div>
+                    <hr>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+ *@
+
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        //modal pop up da doctor create formunun butonunu başka yerde kullanmayı sağlar
+        $(document).ready(function () {
+            $("#createDoctorModalBtn").click(function () {
+                $("#createDoctorModalForm").submit();
+            });
+        });
+    </script>
+}
