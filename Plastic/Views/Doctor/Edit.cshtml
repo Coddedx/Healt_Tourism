@@ -1,5 +1,5 @@
 ﻿@using Plastic.ViewModels
-@model DoctorViewModel
+@model ICollection<Doctor>
 
                 <!-- MODAL Pop Up-->
 @* <div class="container py-7">
@@ -154,6 +154,7 @@
     </div>
 </div>
 
+
 @* <div class="row">
     <div class="col-12">
         <div class="card border-top border-0 border-4 border-dark">
@@ -165,7 +166,7 @@
                 <hr>
                 @*asp-controller=The name of the controller,  asp-action=The name of the action method,  asp-area=The name of the area,
                 asp-route-{value}=A single URL route value. For example, asp-route-id="1234"*@
-           @*     <form class="row g-3" method="post">
+     @*      <form class="row g-3" method="post">
                     <input type="hidden" asp-for="Doctor.Id" />
                     <div class="col-12">
                         <label asp-for="Doctor.FirstName" class="form-label">Adı Soyadı</label>

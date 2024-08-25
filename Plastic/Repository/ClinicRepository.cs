@@ -29,7 +29,6 @@ namespace Plastic.Repository
             throw new NotImplementedException();
         }
 
-        //  ???????????????????  YANLIŞ !!!!!!!!!!!!!!!!!!!!!!!!!!1
         public IEnumerable<OperationDoctor?> GetOperationDoctor(int id)  //IQueryable olduğunda tolist yapamayız çünkü sorgu döndürür
         {
             //var franchise = _context.Franchises
@@ -59,7 +58,7 @@ namespace Plastic.Repository
             //.Where(c => c.DoctorId == doctor.Id && doctor.FranchiseId == franchise.Id && franchise.ClinicId == id);      // _context => _context.DoctorId == id 
 
         }
-        public IEnumerable<Doctor?> GetDoctorByClinicId(int id) //IQueryable
+        public List<Doctor?> GetDoctorByClinicId(int id) 
         {
             //var clinic = _context.Clinics
             //    .Where(c => c.Id == _id).ToList();
@@ -80,7 +79,7 @@ namespace Plastic.Repository
             {
             var doctor = _context.Doctors
                          .Where(d => d.ClinicId == id).ToList();
-            return doctor;
+            return doctor; 
 
             }
             catch (Exception ex)
@@ -89,6 +88,24 @@ namespace Plastic.Repository
             }
         }
 
+        public List<Operation?> GetAllOperationByCategoryId(List<int> categoryId) //List<int> 
+        {
+            try
+            {
+                return  _context.Operations
+                    .Where(a => categoryId.Contains(a.CategoryId)) //   == a.Id
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<Category?> GetAllCategories()
+        {
+            return _context.Categories.ToList();
+        }
 
         //   !!!!!!!!!!!!!!!!!!!!!!!!!!!GEREK KALMADI!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public bool IsDoctorObjectNull(DoctorViewModel _doctor) //2 den fazla veri doluysa ture gönderiyor. REFLECTİON yapıyoruz

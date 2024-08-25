@@ -13,6 +13,7 @@ using System.Numerics;
 using System.Security.Principal;
 using System.Text.Json;
 
+
 namespace Plastic.Controllers
 {
 	public class ClinicController : Controller
@@ -55,11 +56,24 @@ namespace Plastic.Controllers
 
         // GET: ClinicController/Details/5
         public async Task<IActionResult> Details(int id) //clinic  ,DoctorViewModel _doctorVM
-        {
+            {
 			try
-			{
+			{               
                 var clinicVM = new ClinicModalViewModel();
                 var doctorVM = new DoctorViewModel(); //// KONTROL ET???????????????????????????
+
+                //Operation Doctor için operasyonlar ve doktorların listelenemesi               
+                {
+                    var doctors = _clinicRepository.GetDoctorByClinicId(id);  //operation doctor da doktor seçmeyi seçeneklendiricem
+                    ViewData["Doctors"] = doctors;
+
+                    var categories = _clinicRepository.GetAllCategories();
+                    ViewData["Categories"] = categories;
+
+                    var categoryIds = _context.Categories.Select(c => c.Id).ToList();
+                    var operations = _clinicRepository.GetAllOperationByCategoryId(categoryIds);
+                    ViewData["Operations"] = operations;
+                }
 
                 //Form yanlış doldurulduktan sonra doldurulan yerlerin aynen gelmesi için verileri taşıyorum.
                 var clinicModalViewModelJson = TempData["ClinicModalViewModel"] as string;
@@ -93,18 +107,28 @@ namespace Plastic.Controllers
             }
         }
 
-        public PartialViewResult Operation() 
+
+        //break point siz çalışmayı çözebilirsen bunu kullan !!!!!!!!!!!!!!!!!!!!!!!!
+        //[HttpGet]
+        //public JsonResult GetOperationsByCategory(int categoryId)  
+        //{
+        //    var operations = _clinicRepository.GetAllOperationByCategoryId(categoryId);  // List<
+        //    return Json(operations);
+        //}
+
+        public PartialViewResult OperationDoctor() 
         {
             var _id = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
             try
             {
+
                 var operation = _clinicRepository.GetOperationDoctor(_id).ToList();  //Async
-                return PartialView("_PartialOperation", operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+                return PartialView("_PartialOperationDoctor", operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return PartialView("_PartialDoctor");  //veri döndürmeyince hata verir!!!!!!!!!!!!!!!!!!1
+                return PartialView("_PartialOperatinDoctor");  //veri döndürmeyince hata verir!!!!!!!!!!!!!!!!!!1
             }
         }
         public PartialViewResult Doctor() 
@@ -112,8 +136,10 @@ namespace Plastic.Controllers
             var _id =Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
             try
             {
-                var doctor = _clinicRepository.GetDoctorByClinicId(_id);
-                return PartialView("_PartialDoctor", doctor);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+                var PartialDoctorVm = new _PartialDoctorViewModel();
+                PartialDoctorVm.Doctors = _clinicRepository.GetDoctorByClinicId(_id);
+                //var doctor = _clinicRepository.GetDoctorByClinicId(_id);
+                return PartialView("_PartialDoctor", PartialDoctorVm);  //doctor  _PartialView.cshtml Views/Operation/Index.cshtml  
             }
             catch (Exception ex)
             {

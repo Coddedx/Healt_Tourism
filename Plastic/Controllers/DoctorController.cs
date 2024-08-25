@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Plastic.IRepository;
 using Plastic.Models;
 using Plastic.Services;
@@ -16,13 +17,11 @@ namespace Plastic.Controllers
     {
         private readonly PlasticDbContext _context;
         private readonly IDoctorRepository _doctorRepository;
-        private readonly IClinicRepository _clinicRepository;
         private readonly IPhotoService _photoService;
 
         public DoctorController(IPhotoService photoService, PlasticDbContext context, IClinicRepository clinicRepository, IDoctorRepository doctorRepository) 
         {
             _photoService = photoService;
-            _clinicRepository = clinicRepository;
             _doctorRepository = doctorRepository;
             _context = context;
         }
@@ -62,7 +61,7 @@ namespace Plastic.Controllers
                 //clinicMVM ya da franchiseMVM içinde doctor,clinic,franchise tabloları da olduğu için sadece doctor için model state kontrolü yapmalıyız !!!!!!
                 var doctorModelState = ModelState
                             .Where(ms => ms.Key.StartsWith("Doctor."))
-                            .ToDictionary(ms => ms.Key, ms => ms.Value);
+                            .ToDictionary(ms => ms.Key, ms => ms.Value); // bir koleksiyonun her bir öğesini bir anahtar-değer çiftine dönüştürmektir,doctorModelState her bir kişinin Key özelliğini anahtar, Value özelliğini ise değer olarak kullanır.
 
                 // TABLOLAR GÜNCELLENDİKTEN SONRA KALMALI MI????????????????!!!!!!!!!!!!!!!
                 ModelState.Remove("Doctor.Operations"); //bunu manuel olarak model state den çıkarıyorum çünkü form için kotnrol etmeme gerek yok
@@ -110,8 +109,11 @@ namespace Plastic.Controllers
                     //verilerin clinic/franchise dan gelmesine göre gerekli işlemler 
                     if (_idFranchise == 0) //form verileri clinicten geldiyse
                     {
-                        var result = await _photoService.AddPhotoAsync(clinicMVM.Image);
                         doctor = clinicMVM.Doctor;
+                        if (clinicMVM.Image1 != null)
+                        {
+                            var result = await _photoService.AddPhotoAsync(clinicMVM.Image1);
+                        }
 
                         doctor.FranchiseId = null;  //0 a falan eşitli kalmamsı lazım çünkü tabloları oluştururuken ya franchise ya clinic ıd null olmalı diye ayarladım
                         doctor.ClinicId = _idClinic;
@@ -120,8 +122,11 @@ namespace Plastic.Controllers
                     }
                     else if (_idClinic == 0) //form verileri franchisedan geldiyse
                     {
-                        var result = await _photoService.AddPhotoAsync(franchiseMVM.Image);
                         doctor = franchiseMVM.Doctor;
+                        if (franchiseMVM.Image != null)
+                        {
+                            var result = await _photoService.AddPhotoAsync(franchiseMVM.Image);
+                        }
 
                         doctor.ClinicId = null;
                         doctor.FranchiseId = _idFranchise;
@@ -160,7 +165,7 @@ namespace Plastic.Controllers
                     return RedirectToAction("Details", "Clinic");
                 }
             }
-            catch
+            catch  //burası çalışmıyor klinikler sayfasına atıyor direk düzelt
             {
                 if (_idFranchise == 0)
                 {
@@ -174,22 +179,62 @@ namespace Plastic.Controllers
             }
         }
 
+        //[HttpGet("Edit/{id}")] //????????
         public async Task<IActionResult> Edit(int id)
         {
-            Doctor? doctor = await _doctorRepository.GetDoctorByIdAsync(id); //burdan clinic ya da franchise ıd sini alabiliriz
+            //Doctor? doctor = await _doctorRepository.GetDoctorByIdAsync(id); //burdan clinic ya da franchise ıd sini alabiliriz
+            //if (doctor == null)
+            //{
+            //    return RedirectToAction(nameof(Index));
+            //}
+
+            //var _idClinic = doctor.ClinicId; //bunlara nolcak?????????????
+            //var _idFranchise = doctor.FranchiseId; 
+            //var doctorVM = new _PartialDoctorViewModel()  //DoctorViewModel()
+            //{
+            //    EditDoctor = doctor  //Doctor
+            //};
+            //return PartialView("~/Views/Clinic/_PartialDoctor.cshtml", doctorVM);
+            var doctor = await _doctorRepository.GetDoctorByIdAsync(id);
             if (doctor == null)
             {
                 return RedirectToAction(nameof(Index));
             }
-            var _idClinic = doctor.ClinicId;
-            var _idFranchise = doctor.FranchiseId; 
+            var doctors = _context.Doctors.ToList();
+           
+            var selectedDoctor = doctors.FirstOrDefault(c=>c.Id==doctor.Id)?.FirstName;
+            ViewBag.FirstName= new SelectList(doctors, "FirstName","LastName",selectedDoctor);
+            var doctorVM = new _PartialDoctorViewModel();
+            {
+                doctorVM.EditDoctor.Id = doctor.Id;
+                doctorVM.EditDoctor.FirstName=doctor.FirstName;
+                doctorVM.EditDoctor.LastName=doctor.LastName;
+                
 
-            var doctorVM = new DoctorViewModel()
-            { 
-                Doctor = doctor
             };
-            return View(doctorVM);
+           return PartialView("~/Views/Clinic/_PartialDoctor.cshtml", doctorVM);
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> GetDoctorDetails(int id)
+        //{
+        //    Doctor? doctor = await _doctorRepository.GetDoctorByIdAsync(id);
+        //    if (doctor == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Json(new
+        //    {
+        //        firstName = doctor.FirstName,
+        //        lastName = doctor.LastName,
+        //        title = doctor.Title,
+        //        phone = doctor.Phone,
+        //        gender = doctor.Gender,
+        //        //clinicId = doctor.ClinicId,
+        //        //franchiseId = doctor.FranchiseId
+        //    });
+        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -202,12 +247,8 @@ namespace Plastic.Controllers
                     Doctor? doctor = await _doctorRepository.GetDoctorByIdAsync(id);
                     if (doctor == null)
                     {
-                        return RedirectToAction(nameof(Index));
-                    }
-
-                    
-                    
-
+                        return PartialView("~/Views/Clinic/_PartialDoctor.cshtml", doctor);
+                    }                   
                 }
                 return RedirectToAction(nameof(Index));
             }

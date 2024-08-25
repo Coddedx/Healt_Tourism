@@ -96,13 +96,13 @@ namespace Plastic.Controllers
             }
         }
 
-        public PartialViewResult Operation()
+        public PartialViewResult OperationDoctor()
         {
             var _id = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
             try
             {
                 var operation = _franchiseRepository.GetOperationDoctor(_id).ToList();  
-                return PartialView("_PartialOperation", operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+                return PartialView("_PartialOperationDoctor", operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
             }
             catch (Exception ex)
             {
@@ -140,7 +140,7 @@ namespace Plastic.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index)); 
             }
             catch
             {

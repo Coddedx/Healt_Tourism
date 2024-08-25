@@ -8,13 +8,20 @@ namespace Plastic.ViewModels
         {
             this.Clinic = new Clinic();
             this.Doctor = new Doctor();
+            //this.Doctors = new List<Doctor>();
+            this.OperationDoctor = new OperationDoctor();
            //this.Franchise = new Franchise();
         }
 
         public Clinic? Clinic { get; set; }
 
         public Doctor? Doctor { get; set; }
-        public IFormFile? Image { get; set; } //ıfromfile tipi veri gerektiği için 
+        //public List<Doctor?> Doctors { get; set; }
+        public OperationDoctor? OperationDoctor { get; set; }
+
+        public IFormFile? Image1 { get; set; } //ıfromfile tipi veri gerektiği için 
+        public IFormFile? Image2 { get; set; } 
+        public IFormFile? Image3 { get; set; } 
 
 
        // public Franchise? Franchise { get; set; }

@@ -26,6 +26,7 @@ builder.Services.AddTransient<IPhotoService, PhotoService>(); //Transient kullan
 builder.Services.AddTransient<IFranchiseRepository, FranchiseRepository>();
 builder.Services.AddTransient<IClinicRepository, ClinicRepository>();
 builder.Services.AddTransient<IDoctorRepository, DoctorRepository>();
+builder.Services.AddTransient<IOperationDoctorRepository, OperationDoctorRepository>();
 //cache eklemeyince repository i kullanamýyorum
 builder.Services.AddMemoryCache(); //Caching makes a copy of data that can be returned much faster than from the source. The in-memory cache can store any object. The distributed cache interface is limited to byte
 //AddSingleton , AddScoped, AddTransient
@@ -70,10 +71,16 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllerRoute(
+//        name: "default",
+//        pattern: "{controller=Home}/{action=Index}/{id?}");
+//});
 
 
 app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

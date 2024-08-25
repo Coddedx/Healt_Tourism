@@ -15,6 +15,7 @@ namespace Plastic.Repository
         {
             _context = context;  
         }
+
         public async Task<Doctor?> GetDoctorByIdAsync(int id)
         {
             return  await _context.Doctors.FindAsync(id);     //a => a.Id == 
@@ -61,5 +62,13 @@ namespace Plastic.Repository
 
             return doctorVM;
         }
+
+        //async Task<List<_PartialDoctorViewModel>> IDoctorRepository.GetAllDoctorsAsync()
+        //{
+        //    var doctors = await _context.Doctors
+        //        .Include(x => x.Franchise, x => x.Clinic)
+        //        .ToList();
+        //    return doctors;
+        //}
     }
 }
