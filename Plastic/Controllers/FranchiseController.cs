@@ -54,7 +54,6 @@ namespace Plastic.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-
             try
             {
                 var franchiseMVM = new FranchiseModalViewModel();
@@ -115,13 +114,14 @@ namespace Plastic.Controllers
             var _id = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
             try
             {
-                var doctor = _franchiseRepository.GetDoctorByFranchiseId(_id);
-                return PartialView("_PartialDoctor", doctor);  //_PartialView.cshtml Views/Operation/Index.cshtml  
+                var PartialDoctorVm = new _PartialDoctorViewModel();
+                PartialDoctorVm.Doctors = _franchiseRepository.GetDoctorByFranchiseId(_id);
+                return PartialView("~/Views/Doctor/_PartialDoctor.cshtml", PartialDoctorVm);    
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return PartialView("_PartialDoctor");  //doctor döndürmeyince hata verir!!!!!!!!!!!!!!!!!!1
+                return PartialView("~/Views/Doctor/_PartialDoctor.cshtml");  
             }
 
         }

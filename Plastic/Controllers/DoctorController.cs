@@ -2,13 +2,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Plastic.IRepository;
 using Plastic.Models;
+using Plastic.Repository;
 using Plastic.Services;
 using Plastic.ViewModels;
 using System;
 using System.Numerics;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace Plastic.Controllers
@@ -17,12 +20,14 @@ namespace Plastic.Controllers
     {
         private readonly PlasticDbContext _context;
         private readonly IDoctorRepository _doctorRepository;
+        private readonly IClinicRepository _clinicRepository;
         private readonly IPhotoService _photoService;
 
         public DoctorController(IPhotoService photoService, PlasticDbContext context, IClinicRepository clinicRepository, IDoctorRepository doctorRepository) 
         {
             _photoService = photoService;
             _doctorRepository = doctorRepository;
+            _clinicRepository = clinicRepository;
             _context = context;
         }
         public ActionResult Index()
@@ -179,62 +184,23 @@ namespace Plastic.Controllers
             }
         }
 
-        //[HttpGet("Edit/{id}")] //????????
         public async Task<IActionResult> Edit(int id)
         {
-            //Doctor? doctor = await _doctorRepository.GetDoctorByIdAsync(id); //burdan clinic ya da franchise ıd sini alabiliriz
-            //if (doctor == null)
-            //{
-            //    return RedirectToAction(nameof(Index));
-            //}
-
-            //var _idClinic = doctor.ClinicId; //bunlara nolcak?????????????
-            //var _idFranchise = doctor.FranchiseId; 
-            //var doctorVM = new _PartialDoctorViewModel()  //DoctorViewModel()
-            //{
-            //    EditDoctor = doctor  //Doctor
-            //};
-            //return PartialView("~/Views/Clinic/_PartialDoctor.cshtml", doctorVM);
             var doctor = await _doctorRepository.GetDoctorByIdAsync(id);
             if (doctor == null)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("~/Views/Clinic/_PartialDoctor.cshtml"); //????????????????????????*
             }
-            var doctors = _context.Doctors.ToList();
-           
-            var selectedDoctor = doctors.FirstOrDefault(c=>c.Id==doctor.Id)?.FirstName;
-            ViewBag.FirstName= new SelectList(doctors, "FirstName","LastName",selectedDoctor);
+
+            var selectedDoctor = _context.Doctors.FirstOrDefault(c=>c.Id==id); 
             var doctorVM = new _PartialDoctorViewModel();
             {
-                doctorVM.EditDoctor.Id = doctor.Id;
-                doctorVM.EditDoctor.FirstName=doctor.FirstName;
-                doctorVM.EditDoctor.LastName=doctor.LastName;
-                
-
-            };
-           return PartialView("~/Views/Clinic/_PartialDoctor.cshtml", doctorVM);
+                doctorVM.EditDoctor = selectedDoctor;
+            };            
+           
+            return PartialView("~/Views/Doctor/_PartialEditDoctor.cshtml", doctorVM);  
+            
         }
-
-        //[HttpGet]
-        //public async Task<IActionResult> GetDoctorDetails(int id)
-        //{
-        //    Doctor? doctor = await _doctorRepository.GetDoctorByIdAsync(id);
-        //    if (doctor == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Json(new
-        //    {
-        //        firstName = doctor.FirstName,
-        //        lastName = doctor.LastName,
-        //        title = doctor.Title,
-        //        phone = doctor.Phone,
-        //        gender = doctor.Gender,
-        //        //clinicId = doctor.ClinicId,
-        //        //franchiseId = doctor.FranchiseId
-        //    });
-        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]

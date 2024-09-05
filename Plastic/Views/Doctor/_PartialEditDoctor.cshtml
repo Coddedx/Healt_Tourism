@@ -1,0 +1,148 @@
+﻿@using Plastic.ViewModels
+@model _PartialDoctorViewModel
+
+<div class="container py-7">
+    <div class="row mt-5">
+        <div class="col-sm-3 col-6 mx-auto">
+            <div class="modal fade" id="editDoctorModal" tabindex="-1" aria-labelledby="editDoctorModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editDoctorModalLabel">Doktor Düzenle</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <section>
+                                <div class="container py-4">
+                                    <div class="row">
+                                        <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+
+                                            <form asp-area="" asp-controller="Doctor" asp-action="Edit" method="post" enctype="multipart/form-data" id="editDoctorModalForm" role="form" autocomplete="off">
+                                                <input type="hidden" asp-for="EditDoctor.Id" />
+                                                <div class="card-body">
+                                                    <div class="row">
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input asp-for="EditDoctor.FirstName" class="form-control" />
+                                                                <span asp-validation-for="EditDoctor.FirstName" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input asp-for="EditDoctor.LastName" class="form-control" />
+                                                                <span asp-validation-for="EditDoctor.LastName" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input asp-for="EditDoctor.Title" class="form-control" />
+                                                                <span asp-validation-for="EditDoctor.Title" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input type="text" placeholder="Telefon" class="form-control border-start-0" asp-for="EditDoctor.Phone">
+                                                                <span asp-validation-for="EditDoctor.Phone" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input type="text" placeholder="Ülke" class="form-control border-start-0" asp-for="EditDoctor.Country">
+                                                                <span asp-validation-for="EditDoctor.Country" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input type="text" placeholder="Sertifika No" class="form-control border-start-0" asp-for="EditDoctor.CertificationNumber">
+                                                                <span asp-validation-for="EditDoctor.CertificationNumber" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input type="text" placeholder="E-Mail" class="form-control border-start-0" asp-for="EditDoctor.Email">
+                                                                <span asp-validation-for="EditDoctor.Email" class="text- danger"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input type="text" placeholder="Şifre" class="form-control border-start-0" asp-for="EditDoctor.Password">
+                                                                <span asp-validation-for="EditDoctor.Password" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <label asp-for="EditDoctor.Gender" class="form-label">Cinsiyet</label>
+                                                            <div class="input-group input-group-dynamic">
+                                                                <label for="gender_female" style="margin-right:5px; margin-bottom:4px">Kadın</label>
+
+                                                                <input type="radio" id="gender_female" asp-for="EditDoctor.Gender" style="margin-right:5px;" value="Female" />
+
+                                                                <label for="gender_male" style="margin-right:5px; margin-bottom:4px">Erkek</label>
+
+                                                                <input type="radio" id="gender_male" asp-for="EditDoctor.Gender" value="Male" />
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input asp-for="Image1" type="file" multiple class="form-control border-start-0">
+                                                                <span asp-validation-for="Image1" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>                            
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>                           
+
+                            </section>
+                        </div>
+
+                        <div class="modal-footer justify-content-between">
+                            @* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                            <button type="submit" form="editDoctorModalForm" class="btn btn-primary">Kaydet</button> *@
+                            <button type="button" class="btn bg-gradient-dark mb-0" data-bs-dismiss="modal">Kapat</button>
+                            <button type="submit" id="editDoctorModalBtn" class="btn bg-gradient-primary mb-0">Kaydet</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+       // modal pop up da doctor  formunun butonunu başka yerde kullanmayı sağlar
+        $(document).ready(function () {
+            $("#editDoctorModalBtn").click(function (e) {
+                e.preventDefault();
+                $("#editDoctorModalForm").submit();
+            });
+        });
+
+        // $(document).ready(function () {
+        //     $("#editDoctorModalBtn").click(function (e) {
+        //         e.preventDefault(); // Varsayılan submit olayını engeller
+        //         $("#editDoctorModalForm").submit(); // Formu manuel olarak gönderir
+        //     });
+        // });
+
+    </script>
+}

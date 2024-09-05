@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
 using Plastic.IRepository;
 using Plastic.Models;
 using Plastic.Repository;
@@ -62,7 +63,18 @@ namespace Plastic.Controllers
                 var clinicVM = new ClinicModalViewModel();
                 var doctorVM = new DoctorViewModel(); //// KONTROL ET???????????????????????????
 
-                //Operation Doctor için operasyonlar ve doktorların listelenemesi               
+                //var PdoctorVM = new _PartialDoctorViewModel();//edit doctor da object set nul.. hatası için
+                ////{
+                ////    //Clinic = clinic,
+                ////    Doctors = _context.Doctors?.ToList() ?? new List<Doctor>() // Eğer null ise boş liste ata
+                ////};
+                //ViewBag._PartialDoctorClinicId = PdoctorVM.ClinicId;
+
+                if (id == 0) { id = clinicVM.Clinic.Id; }
+                if (id == 0) { id = doctorVM.ClinicId; }  //// KONTROL ET???????????????????????????
+               // if (id == 0) { id = PdoctorVM.ClinicId; }  
+
+                //Operation Doctor için operasyonlar ve doktorların listelenemesi   ???????????????      
                 {
                     var doctors = _clinicRepository.GetDoctorByClinicId(id);  //operation doctor da doktor seçmeyi seçeneklendiricem
                     ViewData["Doctors"] = doctors;
@@ -82,9 +94,7 @@ namespace Plastic.Controllers
                     clinicVM = JsonSerializer.Deserialize<ClinicModalViewModel>(clinicModalViewModelJson);
                 }
                 
-                //formlarda işlem yaptıktan sonra id yi tutabilmek için 
-                if (id == 0) { id = clinicVM.Clinic.Id; }
-                if (id == 0) { id = doctorVM.ClinicId; }  //// KONTROL ET???????????????????????????
+                //formlarda işlem yaptıktan sonra id yi tutabilmek için ???????????????
 
                 HttpContext.Session.SetInt32("_ClinicId", id);
 
@@ -139,16 +149,14 @@ namespace Plastic.Controllers
                 var PartialDoctorVm = new _PartialDoctorViewModel();
                 PartialDoctorVm.Doctors = _clinicRepository.GetDoctorByClinicId(_id);
                 //var doctor = _clinicRepository.GetDoctorByClinicId(_id);
-                return PartialView("_PartialDoctor", PartialDoctorVm);  //doctor  _PartialView.cshtml Views/Operation/Index.cshtml  
+                return PartialView("~/Views/Doctor/_PartialDoctor.cshtml", PartialDoctorVm);  //doctor  _PartialView.cshtml Views/Operation/Index.cshtml  
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return PartialView("_PartialDoctor");  //doctor döndürmeyince hata verir!!!!!!!!!!!!!!!!!!1
+                return PartialView("~/Views/Doctor/_PartialDoctor.cshtml");  //doctor döndürmeyince hata verir!!!!!!!!!!!!!!!!!!1
             }
-
         }
-
 
         // GET: ClinicController/Edit/5
         public ActionResult Edit(int id)
