@@ -16,13 +16,43 @@ namespace Plastic.Repository
             _context = context;  
         }
 
+        public IEnumerable<Doctor?> GetAllDoctorByClinicId(int id)
+        {
+            try
+            {
+                var doctor = _context.Doctors
+                             .Where(d => d.ClinicId == id).ToList();
+                return doctor;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<Doctor?> GetAllDoctorByFranchiseId(int id)
+        {
+            try
+            {
+                var doctor = _context.Doctors
+                             .Where(d => d.FranchiseId == id).ToList();
+                return doctor;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public async Task<Doctor?> GetDoctorByIdAsync(int id)
         {
             return  await _context.Doctors.FindAsync(id);     //a => a.Id == 
         }
 
         //   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!GEREK KALMADI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        public async Task<DoctorViewModel?> MapNonNullProperties(ClinicModalViewModel doctorMVM) //Reflection yöntemiyle
+        public async Task<DoctorViewModel?> MapNonNullProperties(ClinicViewModel doctorMVM) //Reflection yöntemiyle
         {
             var doctorVM = new DoctorViewModel // bul olmadığında doctor dan obje üretemiyorum???
             {

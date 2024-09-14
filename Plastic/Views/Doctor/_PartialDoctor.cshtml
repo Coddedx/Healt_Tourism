@@ -1,47 +1,50 @@
 ﻿@using Plastic.ViewModels
 @model _PartialDoctorViewModel
- <!--IEnumerable yalnızca veriler üzerinde gezinmek için uygundur, ekleme veya çıkarma işlemlerine izin vermez.o yüzden LİST ya da ICOLLECTİON KULLANMALIYIZ ya da DoctorViewModel oluşturarak da halledebiliriz-->
+<!--IEnumerable yalnızca veriler üzerinde gezinmek için uygundur, ekleme veya çıkarma işlemlerine izin vermez.o yüzden LİST ya da ICOLLECTİON KULLANMALIYIZ ya da DoctorViewModel oluşturarak da halledebiliriz-->
 
 <section class="pt-7 pb-0">
     <div class="container">
         <div class="row">
-         @foreach (var item in Model.Doctors)  
-        {
-                <div class="col-lg-10 col-md-12">
-                    <div class="card mt-8 mt-md-5">
-                        <div class="card-header p-0 mx-3 mt-n4 position-relative z-index-2">
-                            <a class="d-block blur-shadow-image">
-                                @if (item.ImageUrl != null)
-                                {
-                                    <img src="@item.ImageUrl" alt="img-blur-shadow" class="img-fluid border-radius-lg" loading="lazy">
-                                }
-                            </a>
-                            <div class="colored-shadow" style="background-image: url(&quot;.assets/img/products/product-2-min.jpg&quot;);"></div>
-                        </div>
-                        <div class="card-body pt-3">
-                            <p class="text-dark mb-2 text-sm">------</p>
-                            <a href="javascript:;">
-                                <h5>
-                                    @item.FirstName
-                                    @item.LastName
-                                    (@item.Title)
-                                </h5>
-                            </a>
-                            <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm mb-0" asp-area="" asp-controller="Doctor" asp-action="Details" asp-route-id="@item.Id">Sayfasına Git</a>
-                            @* <a  data-id="@item.Id" class="dropdown-item border-radius-md" data-bs-toggle="modal" data-bs-target="#editDoctorModal">Düzenle</a> *@  @* modalı tetiklemeye çalışıyorsanız, bu durumda href veya asp-action kullanılarak sayfa yönlendirilmesi gerçekleşmeyecektir. Çünkü modal, sayfa yenilemeden açılacağı için, yönlendirme işlemi gerçekleştirilmez.  AJAX veya JavaScript kullanarak ID'yi modal'a aktarılmalı o yüzden data-id eklenmeli !!!!!!!!!!!!!!!!!!!!!!! *@
+            @if (Model != null)
+            {
+                @foreach (var item in Model.Doctors)
+                {
+                    <div class="col-lg-10 col-md-12">
+                        <div class="card mt-8 mt-md-5">
+                            <div class="card-header p-0 mx-3 mt-n4 position-relative z-index-2">
+                                <a class="d-block blur-shadow-image">
+                                    @if (item.ImageUrl != null)
+                                    {
+                                        <img src="@item.ImageUrl" alt="img-blur-shadow" class="img-fluid border-radius-lg" loading="lazy">
+                                    }
+                                </a>
+                                <div class="colored-shadow" style="background-image: url(&quot;.assets/img/products/product-2-min.jpg&quot;);"></div>
+                            </div>
+                            <div class="card-body pt-3">
+                                <p class="text-dark mb-2 text-sm">------</p>
+                                <a href="javascript:;">
+                                    <h5>
+                                        @item.FirstName
+                                        @item.LastName
+                                        (@item.Title)
+                                    </h5>
+                                </a>
+                                <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm mb-0" asp-area="" asp-controller="Doctor" asp-action="Details" asp-route-id="@item.Id">Sayfasına Git</a>
+                                @* <a  data-id="@item.Id" class="dropdown-item border-radius-md" data-bs-toggle="modal" data-bs-target="#editDoctorModal">Düzenle</a> *@  @* modalı tetiklemeye çalışıyorsanız, bu durumda href veya asp-action kullanılarak sayfa yönlendirilmesi gerçekleşmeyecektir. Çünkü modal, sayfa yenilemeden açılacağı için, yönlendirme işlemi gerçekleştirilmez.  AJAX veya JavaScript kullanarak ID'yi modal'a aktarılmalı o yüzden data-id eklenmeli !!!!!!!!!!!!!!!!!!!!!!! *@
 
-                            <a asp-controller="Doctor" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary btn-edit-doctor">Düzenle</a> 
+                                <a asp-controller="Doctor" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary btn-edit-doctor">Düzenle</a>
 
-@*                             <form asp-controller="Doctor" asp-action="Edit" method="get">
-                                <input type="hidden" name="id" value="@item.Id" /> 
-                                <button type="submit" data-bs-target="#editDoctorModal" data-bs-toggle="modal">Düzenle </button>
-                            </form> 
- *@
+                                @*                             <form asp-controller="Doctor" asp-action="Edit" method="get">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <button type="submit" data-bs-target="#editDoctorModal" data-bs-toggle="modal">Düzenle </button>
+                        </form>
+                        *@
+                            </div>
                         </div>
                     </div>
-                </div>
-        }        
-    </div>
+                }
+            }
+        </div>
     </div>
 </section>
 
@@ -60,6 +63,6 @@
     </script>
 }
  *@
- 
+
 
 

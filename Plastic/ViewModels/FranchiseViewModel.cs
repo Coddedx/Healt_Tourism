@@ -9,7 +9,8 @@ namespace Plastic.ViewModels
         //[Key]
         public int Id { get; set; }
 
-        public List<Franchise> Franchises { get; set; }
+        //public List<Franchise> Franchises { get; set; }
+        public Franchise Franchise { get; set; }
 
         //[Required]
         //public int HospiatlId { get; set; }

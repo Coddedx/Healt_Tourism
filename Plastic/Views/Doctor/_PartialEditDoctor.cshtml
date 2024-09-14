@@ -97,12 +97,20 @@
 
                                                         <div class="col-md-6 ps-2">
                                                             <div class="input-group input-group-dynamic">
-                                                                <input asp-for="Image1" type="file" multiple class="form-control border-start-0">
-                                                                <span asp-validation-for="Image1" class="text-danger"></span>
+                                                                <input asp-for="Image" type="file" multiple class="form-control border-start-0">
+                                                                <span asp-validation-for="Image" class="text-danger"></span>
                                                             </div>
                                                         </div>
 
-                                                    </div>                            
+                                                    </div>
+
+                                                    <div class="modal-footer justify-content-between">
+                                                        @* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                                                        <button type="submit" form="editDoctorModalForm" class="btn btn-primary">Kaydet</button> *@
+                                                        <button type="button" class="btn bg-gradient-dark mb-0" data-bs-dismiss="modal">Kapat</button>
+                                                        <button type="submit" id="editDoctorModalBtn" class="btn bg-gradient-primary mb-0">Kaydet</button>
+                                                    </div>
+
                                             </form>
                                         </div>
                                     </div>
@@ -111,12 +119,6 @@
                             </section>
                         </div>
 
-                        <div class="modal-footer justify-content-between">
-                            @* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                            <button type="submit" form="editDoctorModalForm" class="btn btn-primary">Kaydet</button> *@
-                            <button type="button" class="btn bg-gradient-dark mb-0" data-bs-dismiss="modal">Kapat</button>
-                            <button type="submit" id="editDoctorModalBtn" class="btn bg-gradient-primary mb-0">Kaydet</button>
-                        </div>
 
                     </div>
                 </div>

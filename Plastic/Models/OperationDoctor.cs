@@ -6,7 +6,10 @@ namespace Plastic.Models
 	public class OperationDoctor :BaseEntity // BİR OPERASYANU BİRDEN FAZLA DOKTOR YAPABİLİR BİR DOKTOR BİRDEN FAZLA OPERASYON YAPABİLİR
 		//?????????????? Doktor Klinikten ayrılabilir ama o operasyonları başka doktor yapabilir o zaman operasyonları doktora bağlamamak mı gerekiyor??????????????????????  -->>>> franchise a bağlamalıyız?????????  --> ya da işlemi yapan doktoru da değiştirebilmeliyiz????????
 	{
-		[Required]
+		[Key] 
+        public int Id { get; set; }
+
+        [Required]
 		public int DoctorId { get; set; }
 		[ForeignKey("DoctorId")]
 		public virtual Doctor? Doctor { get; set; }

@@ -13,12 +13,13 @@ using System.Diagnostics;
 using System.Numerics;
 using System.Security.Principal;
 using System.Text.Json;
+using System.Xml.Linq;
 
 
 namespace Plastic.Controllers
 {
-	public class ClinicController : Controller
-	{
+    public class ClinicController : Controller
+    {
         private readonly PlasticDbContext _context;
         private readonly IClinicRepository _clinicRepository;
         private readonly IFranchiseRepository _franchiseRepository;
@@ -32,36 +33,87 @@ namespace Plastic.Controllers
             _context = context;
         }
 
-        // GET: ClinicController
-        public async Task<IActionResult> Index()  //	int pageNumber, IFormCollection fc,int id
+        public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 3)  
         {
-            //        var clinics = _context.Clinics
-            //.Where(c => c.Deleted == false)
-            //.ToList();
-
             //Object reference not set to an instance of an object hatası almamak için new List ile başlatırız (ClinicModalViewModel deki gibi de yapılabilir)
             var ClinicFranchiseVM = new ClinicViewModel();
             ClinicFranchiseVM.Clinics = await _clinicRepository.GetAllClinicsAsync() ?? new List<Clinic>();
             ClinicFranchiseVM.Franchises = await _franchiseRepository.GetAllFranchisesAsync() ?? new List<Franchise>();
 
-            //var clinics = await _clinicRepository.GetAllClinicsAsync();
-            //var franchises = await _franchiseRepository.GetAllFranchisesAsync();
-            //var ClinicFranchiseVM = new ClinicViewModel //list old için böyle yapabiliyorum
-            //{
-            //    Clinics = clinics,
-            //    Franchises = franchises
-            //};
+            {
+                var operations = _context.Operations.Include(a => a.Category).ToList();
+                ViewBag.Operations = operations;
+                //operationDoctorVM.Operations = operations;
+                var OperationIds = operations.Select(a => a.Id).ToList();
+                ViewBag.OperationIds = OperationIds;
+            }
 
-            return View(ClinicFranchiseVM); //clinics
+            {
+                var categories = _context.Categories.ToList();
+                ViewBag.Categories = categories;
+                var categoryIds = categories.Select(a => a.Id).ToList();
+                ViewBag.CategoryIds = categoryIds;
+            }
+
+                //OpenWeather api
+                {
+                    string api = "ac8d0bd8b6affb7c9873f4d2fcea43b0";
+            string city = "Antalya";
+            ViewBag.City = city;
+            string connection = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=xml&lang=tr&units=metric&appid=" + api ;
+                try
+                {
+                    XDocument document = XDocument.Load(connection);
+                    ViewBag.v4 = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;//Descendants içine xml deki çekmek istediğimiz alan,Attribute Descendants içindeki hangi değeri alıcaz(xml deki val,min,max...)
+                }
+                catch (HttpRequestException ex)
+                {
+                    ViewBag.Error = "Hava durumu verilerine ulaşılamadı. Lütfen daha sonra tekrar deneyiniz.";
+                    // Log ex for debugging purposes
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Error = "Bilinmeyen bir hata oluştu.";
+                    // Log ex for debugging purposes
+                }
+            }
+
+            //Pagination
+            {
+                // Toplam Clinic ve Franchise sayıları
+                int totalClinics = ClinicFranchiseVM.Clinics.Count();
+                int totalFranchises = ClinicFranchiseVM.Franchises.Count();
+
+                // Kaç kayıt atlanacak
+                int recSkip = (pageNumber - 1) * pageSize;
+
+                // List ile sayfalama işlemi
+                var pagedClinics = ClinicFranchiseVM.Clinics.Skip(recSkip).Take(pageSize).ToList();
+                var pagedFranchises = ClinicFranchiseVM.Franchises.Skip(recSkip).Take(pageSize).ToList();
+
+                // Pager sınıfı ile sayfalama bilgilerini hesapla
+                var pager = new Pager(Math.Max(totalClinics, totalFranchises), pageNumber, pageSize);
+
+                // ViewModel'e sayfalı verileri ve sayfalama bilgisini ekle
+                ClinicFranchiseVM.Clinics = pagedClinics;
+                ClinicFranchiseVM.Franchises = pagedFranchises;
+                ClinicFranchiseVM.Pager = pager;
+            }
+
+            return View(ClinicFranchiseVM); 
         }
 
-        // GET: ClinicController/Details/5
-        public async Task<IActionResult> Details(int id) //clinic  ,DoctorViewModel _doctorVM
+        public async Task<IActionResult> Details(int id) 
+        {
+            try
             {
-			try
-			{               
-                var clinicVM = new ClinicModalViewModel();
-                var doctorVM = new DoctorViewModel(); //// KONTROL ET???????????????????????????
+                var clinicVM = new ClinicViewModel();
+                {
+                    clinicVM.Clinic = new Clinic();
+                    clinicVM.Clinic.District = new District();
+                    clinicVM.Clinic.District.City = new City();
+                };
+                //var doctorVM = new DoctorViewModel(); //// KONTROL ET???????????????????????????
 
                 //var PdoctorVM = new _PartialDoctorViewModel();//edit doctor da object set nul.. hatası için
                 ////{
@@ -71,31 +123,17 @@ namespace Plastic.Controllers
                 //ViewBag._PartialDoctorClinicId = PdoctorVM.ClinicId;
 
                 if (id == 0) { id = clinicVM.Clinic.Id; }
-                if (id == 0) { id = doctorVM.ClinicId; }  //// KONTROL ET???????????????????????????
-               // if (id == 0) { id = PdoctorVM.ClinicId; }  
-
-                //Operation Doctor için operasyonlar ve doktorların listelenemesi   ???????????????      
-                {
-                    var doctors = _clinicRepository.GetDoctorByClinicId(id);  //operation doctor da doktor seçmeyi seçeneklendiricem
-                    ViewData["Doctors"] = doctors;
-
-                    var categories = _clinicRepository.GetAllCategories();
-                    ViewData["Categories"] = categories;
-
-                    var categoryIds = _context.Categories.Select(c => c.Id).ToList();
-                    var operations = _clinicRepository.GetAllOperationByCategoryId(categoryIds);
-                    ViewData["Operations"] = operations;
-                }
+                //if (id == 0) { id = doctorVM.ClinicId; }  //// KONTROL ET???????????????????????????
+                                                          // if (id == 0) { id = PdoctorVM.ClinicId; }  
 
                 //Form yanlış doldurulduktan sonra doldurulan yerlerin aynen gelmesi için verileri taşıyorum.
-                var clinicModalViewModelJson = TempData["ClinicModalViewModel"] as string;
-                if (!string.IsNullOrEmpty(clinicModalViewModelJson))
-                {
-                    clinicVM = JsonSerializer.Deserialize<ClinicModalViewModel>(clinicModalViewModelJson);
-                }
-                
-                //formlarda işlem yaptıktan sonra id yi tutabilmek için ???????????????
+                //var clinicModalViewModelJson = TempData["ClinicModalViewModel"] as string;
+                //if (!string.IsNullOrEmpty(clinicModalViewModelJson))
+                //{
+                //    clinicVM = JsonSerializer.Deserialize<ClinicModalViewModel>(clinicModalViewModelJson);
+                //}
 
+                //formlarda işlem yaptıktan sonra id yi tutabilmek için ???????????????
                 HttpContext.Session.SetInt32("_ClinicId", id);
 
                 var clinic = await _clinicRepository.GetByIdClinicAsync(id);
@@ -103,7 +141,10 @@ namespace Plastic.Controllers
 
                 if (clinic != null)
                 {
-					clinicVM.Clinic.Id = id; //id klinik id idi zaten
+                    clinicVM.Clinic.Id = id; //id klinik id idi zaten
+                    clinicVM.Clinic.Name = clinic.Name;
+                    clinicVM.Clinic.District.Name = clinic.District.Name;
+                    clinicVM.Clinic.District.City.Name = clinic.District.City.Name;
                     clinicVM.Clinic.Adress = clinic.Adress;
                     clinicVM.Clinic.Email = clinic.Email;
                     clinicVM.Clinic.Phone = clinic.Phone;
@@ -111,93 +152,48 @@ namespace Plastic.Controllers
                 return View(clinicVM);
             }
             catch (Exception ex)
-			{
+            {
                 _logger.LogError(ex, "An error occurred.");
                 return StatusCode(500, "Internal server error");
             }
         }
 
-
-        //break point siz çalışmayı çözebilirsen bunu kullan !!!!!!!!!!!!!!!!!!!!!!!!
-        //[HttpGet]
-        //public JsonResult GetOperationsByCategory(int categoryId)  
-        //{
-        //    var operations = _clinicRepository.GetAllOperationByCategoryId(categoryId);  // List<
-        //    return Json(operations);
-        //}
-
-        public PartialViewResult OperationDoctor() 
-        {
-            var _id = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-            try
-            {
-
-                var operation = _clinicRepository.GetOperationDoctor(_id).ToList();  //Async
-                return PartialView("_PartialOperationDoctor", operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return PartialView("_PartialOperatinDoctor");  //veri döndürmeyince hata verir!!!!!!!!!!!!!!!!!!1
-            }
-        }
-        public PartialViewResult Doctor() 
-        {
-            var _id =Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-            try
-            {
-                var PartialDoctorVm = new _PartialDoctorViewModel();
-                PartialDoctorVm.Doctors = _clinicRepository.GetDoctorByClinicId(_id);
-                //var doctor = _clinicRepository.GetDoctorByClinicId(_id);
-                return PartialView("~/Views/Doctor/_PartialDoctor.cshtml", PartialDoctorVm);  //doctor  _PartialView.cshtml Views/Operation/Index.cshtml  
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return PartialView("~/Views/Doctor/_PartialDoctor.cshtml");  //doctor döndürmeyince hata verir!!!!!!!!!!!!!!!!!!1
-            }
-        }
-
-        // GET: ClinicController/Edit/5
         public ActionResult Edit(int id)
-		{
-			return View();
-		}
+        {
+            return View();
+        }
 
-		// POST: ClinicController/Edit/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
-		{
-			try
-			{
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
-		// GET: ClinicController/Delete/5
-		public ActionResult Delete(int id)
-		{
-			return View();
-		}
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
 
-		// POST: ClinicController/Delete/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Delete(int id, IFormCollection collection)
-		{
-			try
-			{
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
-	}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+    }
 }

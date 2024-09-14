@@ -1,0 +1,145 @@
+﻿@using Plastic.ViewModels
+@model OperationDoctorViewModel
+
+
+<!--Create Operation Doctor MODAL Pop Up-->
+<div class="container py-7">
+    <div class="row mt-5">
+        <div class="col-sm-3 col-6 mx-auto">
+
+            <!-- Add new Operation Doctor Modal -->
+            <div class="modal fade" id="createOperationDoctorModal" tabindex="-1" aria-labelledby="createOperationDoctorModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Yeni Doktor Ekle</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <section>
+                                <div class="container py-4">
+                                    <div class="row">
+                                        <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+
+                                            <form asp-area="" asp-controller="OperationDoctor" asp-action="Create" enctype="multipart/form-data" method="post" id="createOperationDoctorModalForm" role="form" autocomplete="off">
+                                                <input type="hidden" asp-for="OperationDoctor.Id" />
+                                                <input type="hidden" asp-for="OperationDoctor.Doctor.ClinicId" />
+                                                <input type="hidden" asp-for="OperationDoctor.Doctor.FranchiseId" />
+                                                <div class="card-body">
+                                                    <div class="row">
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+
+                                                                <select id="doctorSelect" asp-for="DoctorIds" class="form-control">
+                                                                    <option value="">Doktor Seçin</option>
+                                                                    @foreach (var doctor in Model.Doctors)
+                                                                    {
+                                                                        <option value="@doctor.Id">@doctor.FirstName @doctor.LastName</option>
+                                                                    }
+                                                                </select>
+
+                                                                @*<select id="doctorSelect" asp-for="DoctorIds" asp-items="@(new SelectList(Model.Doctors, "Id", "FirstName", Model.DoctorIds))" class="form-control">
+                                                                <option value="">Doktor</option>
+                                                                @foreach (var doctor in Model.Doctors)
+                                                                {
+                                                                <option value="@doctor.Id">@doctor.FirstName @doctor.LastName</option>
+                                                                }
+                                                                </select>
+                                                                *@
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <select id="operationSelect" asp-for="OperationIds" class="form-control">
+                                                                    <option value="">İşlem</option>
+                                                                    @foreach (var operation in Model.Operations)
+                                                                    {
+                                                                        <option value="@operation.Id">@operation.Category.Title @operation.Title</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input type="number" placeholder="Ücret" class="form-control border-start-0" step="0.01" min="0" asp-for="OperationDoctor.DoctorPrice">
+                                                                <span asp-validation-for="OperationDoctor.DoctorPrice" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input asp-for="Image1" type="file" multiple class="form-control border-start-0">
+                                                                <span asp-validation-for="Image1" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input asp-for="Image2" type="file" multiple class="form-control border-start-0">
+                                                                <span asp-validation-for="Image2" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 ps-2">
+                                                            <div class="input-group input-group-dynamic">
+                                                                <input asp-for="Image3" type="file" multiple class="form-control border-start-0">
+                                                                <span asp-validation-for="Image3" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <button type="button" class="btn bg-gradient-dark mb-0" data-bs-dismiss="modal">Kapat</button>
+                                                <button type="submit" id="createOperationDoctorModalBtn" name="action" value="operationdoctorCreateSubmit" class="btn bg-gradient-primary mb-0">Ekle</button>
+
+                                            </form>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            @*                             <button type="button" class="btn bg-gradient-dark mb-0" data-bs-dismiss="modal">Kapat</button>
+                            <button type="submit" id="createOperationDoctorModalBtn" name="action" value="operationdoctorCreateSubmit" class="btn bg-gradient-primary mb-0">Ekle</button>
+                            *@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        //modal pop up da operasyon create formunun butonunu başka yerde kullanmayı sağlar
+        $(document).ready(function () {
+            $("#createOperationDoctorModalBtn").click(function () {
+                $("#createOperationDoctorModalForm").submit();
+            });
+        });
+
+        // // Doktor seçimi değiştiğinde gizli alana atama yap
+        // $('#doctorSelect').on('change', function () {
+        //     var selectedDoctorId = $(this).val(); // Seçilen doktorun ID'sini al
+        //     $('#SelectedDoctorId').val(selectedDoctorId); // Gizli inputa bu ID'yi ata
+        // });
+
+        // // Operasyon seçimi değiştiğinde gizli alana atama yap
+        // $('#operationSelect').on('change', function () {
+        //     var selectedOperationId = $(this).val(); // Seçilen operasyonun ID'sini al
+        //     $('#SelectedOperationId').val(selectedOperationId); // Gizli inputa bu ID'yi ata
+        // });
+    </script>
+}

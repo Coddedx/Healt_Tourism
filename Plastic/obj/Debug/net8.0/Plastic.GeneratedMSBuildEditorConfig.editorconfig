@@ -26,12 +26,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbmljXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Clinic/_PartialOperationDoctor.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbmljXF9QYXJ0aWFsT3BlcmF0aW9uRG9jdG9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Doctor/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Doctor/_PartialCreateDoctor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yXF9QYXJ0aWFsQ3JlYXRlRG9jdG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Doctor/_PartialDoctor.cshtml]
@@ -50,16 +50,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJhbmNoaXNlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Franchise/_PartialOperationDoctor.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnJhbmNoaXNlXF9QYXJ0aWFsT3BlcmF0aW9uRG9jdG9yLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/OperationDoctor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3BlcmF0aW9uRG9jdG9yXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/OperationDoctor/_PartialCreateOperationDoctor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3BlcmF0aW9uRG9jdG9yXF9QYXJ0aWFsQ3JlYXRlT3BlcmF0aW9uRG9jdG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/OperationDoctor/_PartialEditOperationDoctor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3BlcmF0aW9uRG9jdG9yXF9QYXJ0aWFsRWRpdE9wZXJhdGlvbkRvY3Rvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/OperationDoctor/_PartialOperationDoctor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3BlcmF0aW9uRG9jdG9yXF9QYXJ0aWFsT3BlcmF0aW9uRG9jdG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/black/Documents/GitHub/Plastic/Plastic/Views/Shared/Error.cshtml]

@@ -16,16 +16,12 @@ namespace Plastic.Controllers
     {
         private readonly PlasticDbContext _context;
         private readonly IFranchiseRepository _franchiseRepository;
-
-        //private int _clinicId;
-
         public FranchiseController(IFranchiseRepository franchiseRepository, PlasticDbContext context)
         {
             _franchiseRepository = franchiseRepository;
             _context = context;
         }
 
-        // GET: FranchiseController
         public async Task<IActionResult> Index() //int id
         {
             //tıklanan sayfanın hastaneye mi cliniğe mi bağlı olduğu ayrıştırılıp id si mi çekilmeli (şimdilik hepsinin clinic old bild için @Model.Clinic.Name ile yazdım) ????????????????????????????????
@@ -56,35 +52,40 @@ namespace Plastic.Controllers
         {
             try
             {
-                var franchiseMVM = new FranchiseModalViewModel();
-                var doctorVM = new DoctorViewModel(); //// KONTROL ET???????????????????????????
-
-                var franchiseModalViewModelJson = TempData["FranchiseModalViewModel"] as string;
-                if (!string.IsNullOrEmpty(franchiseModalViewModelJson))
+                var franchiseVM = new FranchiseViewModel();
                 {
-                    franchiseMVM = JsonSerializer.Deserialize<FranchiseModalViewModel>(franchiseModalViewModelJson);
+                    franchiseVM.Franchise = new Franchise();
+                    franchiseVM.Franchise.Clinic = new Clinic();
+                    franchiseVM.Franchise.District = new District();
+                    franchiseVM.Franchise.District.City = new City();
                 }
+                var doctorVM = new DoctorViewModel(); 
 
-                //formlarda işlem yaptıktan sonra id yi tutabilmek için 
-                if (id == 0) { id = franchiseMVM.Franchise.Id; }
-                if (id == 0) { id = doctorVM.FranchiseId; }  //// KONTROL ET???????????????????????????
+                //var franchiseModalViewModelJson = TempData["FranchiseModalViewModel"] as string;
+                //if (!string.IsNullOrEmpty(franchiseModalViewModelJson))
+                //{
+                //    franchiseMVM = JsonSerializer.Deserialize<FranchiseModalViewModel>(franchiseModalViewModelJson);
+                //}
+
+                if (id == 0) { id = franchiseVM.Franchise.Id; }
+                if (id == 0) { id = doctorVM.FranchiseId; }
 
                 HttpContext.Session.SetInt32("_FranchiseId", id);
 
                 var franchise = await _franchiseRepository.GetByIdFranchiseAsync(id);
                 if (franchise == null) { return RedirectToAction("Index", "Clinic"); }
 
-
-
                 if (franchise != null)
                 {
-                    franchiseMVM.Franchise.Id = id; //id franchise id idi zaten
-                    franchiseMVM.Franchise.Adress = franchise.Adress;
-                    franchiseMVM.Franchise.Email = franchise.Email;
-                    franchiseMVM.Franchise.Phone = franchise.Phone;
+                    franchiseVM.Franchise.Id = id;
+                    franchiseVM.Franchise.Title = franchise.Title;
+                    franchiseVM.Franchise.District.Name = franchise.District.Name;
+                    franchiseVM.Franchise.District.City.Name = franchise.District.City.Name;
+                    franchiseVM.Franchise.Adress = franchise.Adress;
+                    franchiseVM.Franchise.Email = franchise.Email;
+                    franchiseVM.Franchise.Phone = franchise.Phone;
                 }
-
-                return View(franchiseMVM);
+                return View(franchiseVM);
             }
             catch (Exception ex)
             {
@@ -95,45 +96,11 @@ namespace Plastic.Controllers
             }
         }
 
-        public PartialViewResult OperationDoctor()
-        {
-            var _id = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
-            try
-            {
-                var operation = _franchiseRepository.GetOperationDoctor(_id).ToList();  
-                return PartialView("_PartialOperationDoctor", operation);  //_PartialView.cshtml Views/Operation/Index.cshtml  
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return PartialView("_PartialDoctor");  //veri döndürmeyince hata verir!!!!!!!!!!!!!!!!!!1
-            }
-        }
-        public PartialViewResult Doctor()
-        {
-            var _id = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
-            try
-            {
-                var PartialDoctorVm = new _PartialDoctorViewModel();
-                PartialDoctorVm.Doctors = _franchiseRepository.GetDoctorByFranchiseId(_id);
-                return PartialView("~/Views/Doctor/_PartialDoctor.cshtml", PartialDoctorVm);    
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return PartialView("~/Views/Doctor/_PartialDoctor.cshtml");  
-            }
-
-        }
-
-
-        // GET: FranchiseController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: FranchiseController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -148,13 +115,11 @@ namespace Plastic.Controllers
             }
         }
 
-        // GET: FranchiseController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: FranchiseController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -169,13 +134,11 @@ namespace Plastic.Controllers
             }
         }
 
-        // GET: FranchiseController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: FranchiseController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

@@ -21,7 +21,10 @@ namespace Plastic.Repository
         }
         public async Task<Clinic?> GetByIdClinicAsync(int id) //Clinic
         {
-            return await _context.Clinics.FirstOrDefaultAsync(c => c.Id == id);
+            return await _context.Clinics.
+                Include(a => a.District).
+                ThenInclude(i => i.City).
+                FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public Task<Franchise?> GetFranchiseByClinicId(int id)
@@ -58,7 +61,7 @@ namespace Plastic.Repository
             //.Where(c => c.DoctorId == doctor.Id && doctor.FranchiseId == franchise.Id && franchise.ClinicId == id);      // _context => _context.DoctorId == id 
 
         }
-        public List<Doctor?> GetDoctorByClinicId(int id) 
+        public List<Doctor?> GetDoctorByClinicId(int id)
         {
             //var clinic = _context.Clinics
             //    .Where(c => c.Id == _id).ToList();
@@ -77,9 +80,9 @@ namespace Plastic.Repository
 
             try
             {
-            var doctor = _context.Doctors
-                         .Where(d => d.ClinicId == id).ToList();
-            return doctor; 
+                var doctor = _context.Doctors
+                             .Where(d => d.ClinicId == id).ToList();
+                return doctor;
 
             }
             catch (Exception ex)

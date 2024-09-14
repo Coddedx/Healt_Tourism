@@ -49,7 +49,6 @@ namespace Plastic.Repository
             _context.Franchises.Remove(franchise);
             await _context.SaveChangesAsync();
         }
-
     
         public async Task<List<Franchise>> GetAllFranchisesAsync() //public IQueryable<FranchiseViewModel> GetAllAsync()
         {
@@ -88,7 +87,7 @@ namespace Plastic.Repository
             //return await _context.Franchises.Include(i => i.Clinic).FirstOrDefaultAsync(i => i.Id == id);
              return await _context.Franchises
                 //.Include(i => i.Hospital)
-                //.Include(i => i.Clinic)
+                .Include(i => i.Clinic)
                 .Include(i => i.District)
                 .ThenInclude(i => i.City)
                 .FirstOrDefaultAsync(c => c.Id == id);  
