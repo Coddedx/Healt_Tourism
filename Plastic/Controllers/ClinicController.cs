@@ -33,34 +33,53 @@ namespace Plastic.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 3)  
+        public async Task<IActionResult> Index(IFormCollection fc, int pageNumber = 1, int pageSize = 3) 
         {
             //Object reference not set to an instance of an object hatası almamak için new List ile başlatırız (ClinicModalViewModel deki gibi de yapılabilir)
-            var ClinicFranchiseVM = new ClinicViewModel();
-            ClinicFranchiseVM.Clinics = await _clinicRepository.GetAllClinicsAsync() ?? new List<Clinic>();
-            ClinicFranchiseVM.Franchises = await _franchiseRepository.GetAllFranchisesAsync() ?? new List<Franchise>();
-
+            var ClinicFranchiseVM = new ClinicViewModel()
             {
-                var operations = _context.Operations.Include(a => a.Category).ToList();
-                ViewBag.Operations = operations;
-                //operationDoctorVM.Operations = operations;
-                var OperationIds = operations.Select(a => a.Id).ToList();
-                ViewBag.OperationIds = OperationIds;
-            }
+                Clinics = await _clinicRepository.GetAllClinicsAsync() ?? new List<Clinic>(),
+                Franchises = await _franchiseRepository.GetAllFranchisesAsync() ?? new List<Franchise>()
 
+            };
+
+            //Arama butonu için
             {
-                var categories = _context.Categories.ToList();
-                ViewBag.Categories = categories;
-                var categoryIds = categories.Select(a => a.Id).ToList();
-                ViewBag.CategoryIds = categoryIds;
-            }
-
-                //OpenWeather api
+                //ŞEHİR arama butonu için 
                 {
-                    string api = "ac8d0bd8b6affb7c9873f4d2fcea43b0";
-            string city = "Antalya";
-            ViewBag.City = city;
-            string connection = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=xml&lang=tr&units=metric&appid=" + api ;
+                    var cities = _context.Cities.Select(c => new { c.Id, c.Name }).ToList();
+                    ViewBag.Cities = new SelectList(cities, "Id", "Name");
+                }
+                //BÖLGE arama butonu için
+                {
+                    var districts = _context.Districts.Select(d => new { d.Id, d.Name }).ToList();
+                    ViewBag.Districts = new SelectList(districts, "Id", "Name");
+
+                }
+                //İŞLEM arama butonu için 
+                {
+                    var operations = _context.Operations.Include(a => a.Category).ToList();
+                    ViewBag.Operations = operations;
+                    //operationDoctorVM.Operations = operations;
+                    var OperationIds = operations.Select(a => a.Id).ToList();
+                    ViewBag.OperationIds = OperationIds;
+                }
+                //KATEGORİ arama butonu için
+                {
+                    var categories = _context.Categories.ToList();
+                    ViewBag.Categories = categories;
+                    var categoryIds = categories.Select(a => a.Id).ToList();
+                    ViewBag.CategoryIds = categoryIds;
+                }
+
+            }
+
+            //OpenWeather api
+            {
+                string api = "ac8d0bd8b6affb7c9873f4d2fcea43b0";
+                string city = "Antalya";
+                ViewBag.City = city;
+                string connection = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=xml&lang=tr&units=metric&appid=" + api;
                 try
                 {
                     XDocument document = XDocument.Load(connection);
@@ -76,6 +95,20 @@ namespace Plastic.Controllers
                     ViewBag.Error = "Bilinmeyen bir hata oluştu.";
                     // Log ex for debugging purposes
                 }
+            }
+
+            // Search Clinics and Franchises
+            var action = fc["action"];
+            if (action == "search")
+            {
+                // Arama parametrelerini al
+                var cityId = fc["cityS"];
+                var districtId = fc["district"];
+                var doctorName = fc["doctor"];
+                var categoryId = fc["category"];
+                var operationId = fc["operation"];
+
+                ClinicFranchiseVM = await _clinicRepository.SearchClinicsAndFranchises(cityId, districtId, doctorName, categoryId, operationId);
             }
 
             //Pagination
@@ -100,10 +133,10 @@ namespace Plastic.Controllers
                 ClinicFranchiseVM.Pager = pager;
             }
 
-            return View(ClinicFranchiseVM); 
+            return View(ClinicFranchiseVM);
         }
 
-        public async Task<IActionResult> Details(int id) 
+        public async Task<IActionResult> Details(int id)
         {
             try
             {
@@ -124,7 +157,7 @@ namespace Plastic.Controllers
 
                 if (id == 0) { id = clinicVM.Clinic.Id; }
                 //if (id == 0) { id = doctorVM.ClinicId; }  //// KONTROL ET???????????????????????????
-                                                          // if (id == 0) { id = PdoctorVM.ClinicId; }  
+                // if (id == 0) { id = PdoctorVM.ClinicId; }  
 
                 //Form yanlış doldurulduktan sonra doldurulan yerlerin aynen gelmesi için verileri taşıyorum.
                 //var clinicModalViewModelJson = TempData["ClinicModalViewModel"] as string;

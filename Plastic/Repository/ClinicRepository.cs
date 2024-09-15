@@ -10,10 +10,13 @@ namespace Plastic.Repository
     public class ClinicRepository : IClinicRepository
     {
         private readonly PlasticDbContext _context;
+        private readonly IDoctorRepository _doctorRepository;
 
-        public ClinicRepository(PlasticDbContext context) //constructor
+
+        public ClinicRepository(PlasticDbContext context, IDoctorRepository doctorRepository) //constructor
         {
             _context = context; //new PlasticDbContext();
+            _doctorRepository = doctorRepository;
         }
         public async Task<List<Clinic>> GetAllClinicsAsync()   //List<
         {
@@ -111,7 +114,7 @@ namespace Plastic.Repository
         }
 
         //   !!!!!!!!!!!!!!!!!!!!!!!!!!!GEREK KALMADI!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        public bool IsDoctorObjectNull(DoctorViewModel _doctor) //2 den fazla veri doluysa ture gönderiyor. REFLECTİON yapıyoruz
+        public bool IsDoctorObjectNull(DoctorViewModel _doctor) //2 den fazla veri doluysa ture gönderiyor (REFLECTİON)
         {
             if (_doctor == null)
                 return false;
@@ -144,5 +147,75 @@ namespace Plastic.Repository
 
             //TempData["DoctorViewModel"] = JsonSerializer.Serialize(doctorVM); //JsonConvert kullandığımda cs0103 hatası alıyoruz onun yerine JsonSerializer kullandık
         }
+
+        public async Task<ClinicViewModel> SearchClinicsAndFranchises(string cityId, string districtId, string doctorName, string categoryId, string operationId)
+        {
+            //await _clinicRepository.GetAllClinicsAsync() ?? await _franchiseRepository.GetAllFranchisesAsync() ??
+            var ClinicFranchiseVM = new ClinicViewModel()
+            {
+                Clinics =  new List<Clinic>(), 
+                Franchises =  new List<Franchise>()
+            };
+
+            if (!string.IsNullOrEmpty(cityId) && string.IsNullOrEmpty(districtId))
+            {
+                ClinicFranchiseVM.Clinics = _context.Clinics
+                    .Where(c => c.District.City.Id == Convert.ToInt32(cityId)).ToList();
+                ClinicFranchiseVM.Franchises = _context.Franchises
+                    .Where(f => f.District.City.Id == Convert.ToInt32(cityId)).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(districtId))
+            {
+                ClinicFranchiseVM.Clinics = _context.Clinics
+                    .Where(c => c.District.Id.ToString() == districtId).ToList();
+                ClinicFranchiseVM.Franchises = _context.Franchises
+                    .Where(f => f.District.Id.ToString() == districtId).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(doctorName))
+            {
+                var doctors = _doctorRepository.GetDoctorsByNameAsync(doctorName);
+                
+                var clinicIds = doctors
+                    .Where(d => d.ClinicId.HasValue)
+                    .Select(d => d.ClinicId.Value).Distinct().ToList();
+                
+                var franchiseIds = doctors
+                    .Where(d => d.FranchiseId.HasValue)
+                    .Select(d => d.FranchiseId.Value).Distinct().ToList();
+                
+                ClinicFranchiseVM.Clinics = _context.Clinics
+                    .Where(c => clinicIds.Contains(c.Id)).ToList();
+                ClinicFranchiseVM.Franchises = _context.Franchises
+                    .Where(f => franchiseIds.Contains(f.Id)).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(categoryId))
+            {
+                var operationDoctorIds = _context.OperationDoctors
+                                            .Where(a => a.Operation.CategoryId == Convert.ToInt32(categoryId))
+                                             .Select(a => a.DoctorId).ToList();
+                
+                ClinicFranchiseVM.Clinics = _context.Clinics
+                                            .Where(c => c.Doctors.Any(d => operationDoctorIds.Contains(d.Id))).ToList();
+                ClinicFranchiseVM.Franchises = _context.Franchises
+                                            .Where(c => c.Doctors.Any(d => operationDoctorIds.Contains(d.Id))).ToList();
+            }
+            if (!string.IsNullOrEmpty(operationId))
+            {
+                var operationDoctorIds = _context.OperationDoctors
+                        .Where(a => a.Operation.Id == Convert.ToInt32(operationId))
+                         .Select(a => a.DoctorId).ToList();
+               
+                ClinicFranchiseVM.Clinics = _context.Clinics
+                    .Where(c => c.Doctors.Any(d => operationDoctorIds.Contains(d.Id))).ToList();
+                ClinicFranchiseVM.Franchises = _context.Franchises
+                    .Where(f => f.Doctors.Any(d => operationDoctorIds.Contains(d.Id))).ToList();
+            }
+            return ClinicFranchiseVM;
+        }
+
+
     }
 }

@@ -13,7 +13,7 @@ namespace Plastic.Repository
 
         public DoctorRepository(PlasticDbContext context)
         {
-            _context = context;  
+            _context = context;
         }
 
         public IEnumerable<Doctor?> GetAllDoctorByClinicId(int id)
@@ -35,10 +35,9 @@ namespace Plastic.Repository
         {
             try
             {
-                var doctor = _context.Doctors
+                return _context.Doctors
                              .Where(d => d.FranchiseId == id).ToList();
-                return doctor;
-
+                //return doctor;
             }
             catch (Exception ex)
             {
@@ -48,7 +47,20 @@ namespace Plastic.Repository
 
         public async Task<Doctor?> GetDoctorByIdAsync(int id)
         {
-            return  await _context.Doctors.FindAsync(id);     //a => a.Id == 
+            return await _context.Doctors.FindAsync(id);
+        }
+
+        public List<Doctor?> GetDoctorsByNameAsync(string doctorName)
+        {
+            try
+            {
+                return _context.Doctors.Where(a => a.FirstName == doctorName).ToList();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         //   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!GEREK KALMADI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

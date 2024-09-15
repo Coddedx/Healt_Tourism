@@ -19,9 +19,10 @@ namespace Plastic.ViewModels
 
         public List<Clinic> Clinics { get; set; } //= new List<Clinic>(); //IEnumerable<  
         public Clinic? Clinic { get; set; }
+        
         public Franchise? Franchise { get; set; }
-
         public List<Franchise> Franchises { get; set; } //= new List<Franchise>();  //List<   = new List<Franchise>()
+        
         public Pager Pager { get; set; }
     }
 }

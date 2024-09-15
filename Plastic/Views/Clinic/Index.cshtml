@@ -23,71 +23,92 @@
 <!-- ARAMA FİLTRE CONTAİNER -->
 <div class="container border-radius-md blur shadow-blur">
     <div class="row border-radius-md pb-4 p-3 mx-sm-0 mx-1 position-relative">
-        
-        <div class="col-lg-1 mt-lg-n2 mt-2">
-            @* <label class="ms-0">Ülke</label> *@
-            <div class="input-group input-group-static">
+
+        <form class="row g-3 d-flex align-items-end" asp-action="Index" asp-controller="Clinic">
+        @*         <div class="col-lg-1 mt-lg-n2 mt-2">
+        @* <label class="ms-0">Ülke</label> *
+        <div class="input-group input-group-static">
+        <span class="input-group-text"></span>
+        <input class="form-control" placeholder="Ülke" type="text">
+        </div>
+        </div>*@
+
+@*         <div class="col-lg-1 mt-lg-n2 mt-2">
+            *@  <div class="col-lg-2">
+                <div class="input-group input-group-static">
                 <span class="input-group-text"></span>
-                <input class="form-control" placeholder="Ülke" type="text">
+                <select id="cityS" name="cityS" class="form-control text-muted">
+                    <option value="">Şehir</option>
+                    @foreach (var city in ViewBag.Cities)
+                    {
+                        <option value="@city.Value">@city.Text</option>
+                    }
+                </select>
+
             </div>
         </div>
 
-        <div class="col-lg-1 mt-lg-n2 mt-2">
-            <div class="input-group input-group-static">
+@*         <div class="col-lg-1 mt-lg-n2 mt-2">
+            *@<div class="col-lg-2">
+                <div class="input-group input-group-static">
                 <span class="input-group-text"></span>
-                <input class="form-control" placeholder="Şehir" type="text">
+                <select id="district" name="district" disabled class="form-control text-muted">
+                    <option value="">Bölge</option>
+                    @foreach (var district in ViewBag.Districts)
+                    {
+                        <option value="@district.Value">@district.Text</option>
+                    }
+                </select>
+
             </div>
         </div>
 
-        <div class="col-lg-1 mt-lg-n2 mt-2">
-            <div class="input-group input-group-static">
+@*         <div class="col-lg-1 mt-lg-n2 mt-2">
+            *@<div class="col-lg-2">
+                <div class="input-group input-group-static">
                 <span class="input-group-text"></span>
-                <input class="form-control" placeholder="Bölge" type="text">
+                <input name="doctor" class="form-control" placeholder="Doktor" type="text">
             </div>
         </div>
 
-        <div class="col-lg-1 mt-lg-n2 mt-2">
-            <div class="input-group input-group-static">
-                <span class="input-group-text"></span>
-                <input class="form-control" placeholder="Doktor" type="text">
-            </div>
-        </div>
-
-        <div class="col-lg-1 mt-lg-n2 mt-2">
-            <div class="input-group input-group-static">
+@*         <div class="col-lg-1 mt-lg-n2 mt-2">
+            *@<div class="col-lg-2">
+                <div class="input-group input-group-static">
                 @* <label class="ms-0">Kategori</label> *@
                 <span class="input-group-text"></span>
-                <select class="form-control text-muted"  asp-items="@(new SelectList(ViewBag.Categories, "Id", "Title", ViewBag.CategoryIds))" class="form-control">
-                    @* asp-for="@ViewBag.OperationIds" *@
+                <select name="category" class="form-control text-muted" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Title", ViewBag.CategoryIds))">
                     <option value="">Kategori</option>
                 </select>
             </div>
         </div>
 
-        <div class="col-lg-1 mt-lg-n2 mt-2">
-            <div class="input-group input-group-static">
+@*         <div class="col-lg-1 mt-lg-n2 mt-2">
+            *@<div class="col-lg-2">
+                <div class="input-group input-group-static">
                 @* <label class="ms-0">İşlem</label> *@
                 <span class="input-group-text"></span>
-                <select class="form-control text-muted" asp-items="@(new SelectList(ViewBag.Operations, "Id", "Title", ViewBag.OperationIds))" class="form-control">
-                    @* asp-for="@ViewBag.OperationIds" *@
+                <select name="operation" asp-items="@(new SelectList(ViewBag.Operations, "Id", "Title", ViewBag.OperationIds))" class="form-control text-muted">
                     <option value="">işlem</option>
                 </select>
             </div>
         </div>
 
 
-@*         <div class="col-lg-3 mt-lg-n2 mt-2">
-            <label class="ms-0">Depart</label>
-            <div class="input-group input-group-static">
-                <span class="input-group-text"><i class="fas fa-calendar" aria-hidden="true"></i></span>
-                <input class="form-control datepicker" placeholder="Please select date" type="text">
-            </div>
+        @*<div class="col-lg-3 mt-lg-n2 mt-2">
+        <label class="ms-0">Depart</label>
+        <div class="input-group input-group-static">
+        <span class="input-group-text"><i class="fas fa-calendar" aria-hidden="true"></i></span>
+        <input class="form-control datepicker" placeholder="Please select date" type="text">
+        </div>
         </div>*@
 
-        <div class="col-lg-3 mt-lg-n2 mt-2 d-flex align-items-end">
+@*         <div class="col-lg-3 mt-lg-n2 mt-2 d-flex align-items-end">
             <label>&nbsp;</label>
-            <button type="button" class="btn bg-gradient-primary w-100 mb-0 ">Search</button>
+            *@<div class="col-lg-2">
+                <button type="submit" name="action" value="search" class="btn bg-gradient-primary w-100 mb-0">Ara</button> @* type="button" id="searchButton"*@
         </div>
+
+        </form>
     </div>
 </div>
 
@@ -103,9 +124,13 @@
             <!--Clinic/Franchise karışık gösterilmesi-->
             <div class="row">
                 @{
-                    // Klinik ve Franchise'ları birleştirip rastgele sıralıyoruz.
-                    var mixedItems = Model.Clinics.Cast<object>()
-                    .Concat(Model.Franchises.Cast<object>())
+                    // Model.Clinics ve Model.Franchises'in null olup olmadığını kontrol ediyoruz.
+                    var clinics = Model?.Clinics ?? new List<Clinic>();
+                    var franchises = Model?.Franchises ?? new List<Franchise>();
+
+                    // Klinik ve Franchise'ları birleştirip rastgele sıralıyoruz.  Model.Clinics Model.Franchises
+                    var mixedItems = clinics.Cast<object>()
+                    .Concat(franchises.Cast<object>())
                     .OrderBy(x => Guid.NewGuid()).ToList();
                 }
                 @foreach (var item in mixedItems)
@@ -189,36 +214,160 @@
         </div>
     </section>
 
-    <!-- ÇALIŞMIYOR -->
-    <style>
-        .page-link {
-            padding: 8px 12px;
-            margin: 0 5px;
-            text-decoration: none;
-            border: 1px solid #ddd;
-            color: #007bff;
-        }
-
-            .page-link.active {
-                font-weight: bold;
-                background-color: #007bff;
-                color: white;
-                pointer-events: none; /* Aktif sayfa tıklanamaz */
-            }
-
-            .page-link.inactive {
-                color: #007bff; /* Normal sayfa */
-                background-color: white;
-                border-color: #ddd;
-            }
-
-                .page-link.inactive:hover {
-                    background-color: #f0f0f0;
-                    border-color: #bbb;
-                }
-    </style>
 
 </div>
+
+
+<!-- ÇALIŞMIYOR -->
+<style>
+    .page-link {
+        padding: 8px 12px;
+        margin: 0 5px;
+        text-decoration: none;
+        border: 1px solid #ddd;
+        color: #007bff;
+    }
+
+        .page-link.active {
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            pointer-events: none; /* Aktif sayfa tıklanamaz */
+        }
+
+        .page-link.inactive {
+            color: #007bff; /* Normal sayfa */
+            background-color: white;
+            border-color: #ddd;
+        }
+
+            .page-link.inactive:hover {
+                background-color: #f0f0f0;
+                border-color: #bbb;
+            }
+</style>
+
+
+<script>
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     const citySelect = document.getElementById("cityS");
+    //     const districtSelect = document.getElementById("district");
+
+    //     citySelect.addEventListener("change", function () {
+    //         console.log("City selected value: ", citySelect.value);  // Seçilen değeri konsolda kontrol edin
+    //         if (citySelect.value === "") {
+    //             districtSelect.disabled = true;
+    //             districtSelect.value = ""; // Bölge seçimini sıfırla
+    //         } else {
+    //             districtSelect.disabled = false;
+    //         }
+    //     });
+    // });
+    document.addEventListener("DOMContentLoaded", function () {
+        const citySelect = document.getElementById("cityS");
+        const districtSelect = document.getElementById("district");
+
+        // Sayfa yüklendiğinde district'i devre dışı bırak
+        districtSelect.disabled = true;
+
+        // Şehir seçimi değiştiğinde district'i aktif hale getir veya sıfırla
+        citySelect.addEventListener("change", function () {
+            if (citySelect.value === "") {
+                districtSelect.disabled = true;
+                districtSelect.value = ""; // Bölge seçimini sıfırla
+            } else {
+                districtSelect.disabled = false;
+            }
+        });
+    });
+    </script>
+
+
+
+
+@*  <script>
+ document.addEventListener("DOMContentLoaded", function () {
+    const citySelect = document.getElementById("cityS");
+    const districtSelect = document.getElementById("district");
+
+    citySelect.addEventListener("change", function () {
+        console.log("City selected value: ", citySelect.value);  // Seçilen değeri konsolda kontrol edin
+        if (citySelect.value === "") {
+            districtSelect.disabled = true;
+            districtSelect.value = ""; // Bölge seçimini sıfırla
+        } else {
+            districtSelect.disabled = false;
+        }
+    });
+});
+
+document.getElementById('searchButton').addEventListener('click', function (event) {
+    event.preventDefault(); // Formun otomatik olarak gönderilmesini engelleyin
+
+    // Form verilerini al
+    var cityId = document.getElementById('cityS').value;
+    var districtId = document.getElementById('district').value;
+    var doctorName = document.querySelector('input[name="doctor"]').value;
+    var categoryId = document.querySelector('select[name="category"]').value;
+    var operationId = document.querySelector('select[name="operation"]').value;
+
+    // Form verilerini form öğesi olarak oluşturun
+    var form = document.createElement('form');
+    form.method = 'GET'; // GET yöntemi ile gönderim yapın
+    form.action = '/Clinic/Index'; // Burada URL'yi kontrol edin
+
+    // Form verilerini gizli inputlarla ekleyin
+    form.appendChild(createHiddenInput('cityS', cityId));
+    form.appendChild(createHiddenInput('district', districtId));
+    form.appendChild(createHiddenInput('doctor', doctorName));
+    form.appendChild(createHiddenInput('category', categoryId));
+    form.appendChild(createHiddenInput('operation', operationId));
+    form.appendChild(createHiddenInput('action', 'search'));
+
+    // Formu body'ye ekleyin ve gönderin
+    document.body.appendChild(form);
+    form.submit();
+
+    function createHiddenInput(name, value) {
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        return input;
+    }
+});
+
+
+// document.getElementById('searchButton').addEventListener('click', function () {
+//     // Form verilerini al
+//     var cityId = document.getElementById('cityS').value;
+//     var districtId = document.getElementById('district').value;
+//     var doctorName = document.querySelector('input[name="doctor"]').value;
+//     var categoryId = document.querySelector('select[name="category"]').value;
+//     var operationId = document.querySelector('select[name="operation"]').value;
+
+//     // URL ve parametreleri ayarla
+//     var url = '/Clinic/Index?' +
+//         'cityS=' + encodeURIComponent(cityId) +
+//         '&district=' + encodeURIComponent(districtId) +
+//         '&doctor=' + encodeURIComponent(doctorName) +
+//         '&category=' + encodeURIComponent(categoryId) +
+//         '&operation=' + encodeURIComponent(operationId) +
+//         '&action=search'; // action parametresini ekleyin
+
+//     // Sayfayı yeniden yönlendir
+//     window.location.href = url;
+//});
+
+</script>
+ *@
+
+
+
+
+
+
+
 
 @*     <section class="pt-7 pb-0">
         <div class="container">
