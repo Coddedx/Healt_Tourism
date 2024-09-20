@@ -12,8 +12,8 @@ using Plastic.Models;
 namespace Plastic.Migrations
 {
     [DbContext(typeof(PlasticDbContext))]
-    [Migration("20240810141703_AdressFranchiseClinicUpdate")]
-    partial class AdressFranchiseClinicUpdate
+    [Migration("20240920145027_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -517,11 +517,11 @@ namespace Plastic.Migrations
 
             modelBuilder.Entity("Plastic.Models.OperationDoctor", b =>
                 {
-                    b.Property<int>("OperationId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
@@ -531,6 +531,9 @@ namespace Plastic.Migrations
 
                     b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("DoctorPrice")
                         .HasColumnType("decimal(18,2)");
@@ -547,6 +550,12 @@ namespace Plastic.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
+                    b.Property<int?>("OperationDoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OperationId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
@@ -556,20 +565,24 @@ namespace Plastic.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("OperationId", "DoctorId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
+
+                    b.HasIndex("OperationDoctorId");
+
+                    b.HasIndex("OperationId");
 
                     b.ToTable("OperationDoctors");
                 });
 
             modelBuilder.Entity("Plastic.Models.OperationUser", b =>
                 {
-                    b.Property<int>("OperationId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool?>("Attended")
                         .HasColumnType("bit");
@@ -595,6 +608,9 @@ namespace Plastic.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
+                    b.Property<int>("OperationDoctorId")
+                        .HasColumnType("int");
+
                     b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -607,7 +623,12 @@ namespace Plastic.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("OperationId", "UserId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OperationDoctorId");
 
                     b.HasIndex("UserId");
 
@@ -822,15 +843,19 @@ namespace Plastic.Migrations
             modelBuilder.Entity("Plastic.Models.OperationDoctor", b =>
                 {
                     b.HasOne("Plastic.Models.Doctor", "Doctor")
-                        .WithMany()
+                        .WithMany("OperationDoctors")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Plastic.Models.OperationDoctor", null)
+                        .WithMany("OperationDoctors")
+                        .HasForeignKey("OperationDoctorId");
+
                     b.HasOne("Plastic.Models.Operation", "Operation")
-                        .WithMany()
+                        .WithMany("OperationDoctors")
                         .HasForeignKey("OperationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Doctor");
@@ -840,19 +865,19 @@ namespace Plastic.Migrations
 
             modelBuilder.Entity("Plastic.Models.OperationUser", b =>
                 {
-                    b.HasOne("Plastic.Models.Operation", "Operation")
-                        .WithMany()
-                        .HasForeignKey("OperationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("Plastic.Models.OperationDoctor", "OperationDoctor")
+                        .WithMany("OperationUsers")
+                        .HasForeignKey("OperationDoctorId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Plastic.Models.User", "User")
-                        .WithMany()
+                        .WithMany("OperationUsers")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Operation");
+                    b.Navigation("OperationDoctor");
 
                     b.Navigation("User");
                 });
@@ -876,9 +901,31 @@ namespace Plastic.Migrations
                     b.Navigation("Franchises");
                 });
 
+            modelBuilder.Entity("Plastic.Models.Doctor", b =>
+                {
+                    b.Navigation("OperationDoctors");
+                });
+
             modelBuilder.Entity("Plastic.Models.Franchise", b =>
                 {
                     b.Navigation("Doctors");
+                });
+
+            modelBuilder.Entity("Plastic.Models.Operation", b =>
+                {
+                    b.Navigation("OperationDoctors");
+                });
+
+            modelBuilder.Entity("Plastic.Models.OperationDoctor", b =>
+                {
+                    b.Navigation("OperationDoctors");
+
+                    b.Navigation("OperationUsers");
+                });
+
+            modelBuilder.Entity("Plastic.Models.User", b =>
+                {
+                    b.Navigation("OperationUsers");
                 });
 #pragma warning restore 612, 618
         }

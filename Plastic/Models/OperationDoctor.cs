@@ -4,23 +4,29 @@ using System.ComponentModel.DataAnnotations;
 namespace Plastic.Models
 {
 	public class OperationDoctor :BaseEntity // BİR OPERASYANU BİRDEN FAZLA DOKTOR YAPABİLİR BİR DOKTOR BİRDEN FAZLA OPERASYON YAPABİLİR
-		//?????????????? Doktor Klinikten ayrılabilir ama o operasyonları başka doktor yapabilir o zaman operasyonları doktora bağlamamak mı gerekiyor??????????????????????  -->>>> franchise a bağlamalıyız?????????  --> ya da işlemi yapan doktoru da değiştirebilmeliyiz????????
+		// 
 	{
 		[Key] 
         public int Id { get; set; }
 
-        [Required]
+        //[Required]
 		public int DoctorId { get; set; }
-		[ForeignKey("DoctorId")]
+		//[ForeignKey("DoctorId")]
 		public virtual Doctor? Doctor { get; set; }
 
-		[Required]
+	
+		//[Required]
 		public int OperationId { get; set; }
-		[ForeignKey("OperationId")]
+		//[ForeignKey("OperationId")]
 		public virtual Operation? Operation { get; set; }
 
+        
+		//[Required]
+        //public int UserId { get; set; }
+        //public virtual User User { get; set; }
 
-		public decimal? DoctorPrice { get; set; }  //??????????? doktorun bu operasyonu hangi ücretten yaptığı burda????
+
+        public decimal? DoctorPrice { get; set; }  //??????????? doktorun bu operasyonu hangi ücretten yaptığı burda????
 
 
 		[StringLength(128)]
@@ -31,8 +37,8 @@ namespace Plastic.Models
 		public string? ImageUrl3 { get; set; }
 
 
-
         //public virtual ICollection<Franchise> Franchises { get; set; }
         //public virtual ICollection<Clinic> Clinics { get; set; }
+        public virtual ICollection<OperationUser?> OperationUsers { get; set; }
     }
 }

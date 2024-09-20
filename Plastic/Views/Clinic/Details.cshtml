@@ -1,6 +1,5 @@
 ﻿<!-- -------- Clinic Detail --------->
 @using Plastic.ViewModels
-@* @using System.Text.Json *@
 @model ClinicViewModel
 
 <header>
@@ -98,6 +97,7 @@
         <script type="text/javascript">
             // nav tab da hangisine basıldıysa doğru partial view ın content-area bölgesine gelmesini sağlar - edit doctor/operationDoctor partialı getirir
             $(document).ready(function () {
+               
                 $(".nav-tab").click(function (e) {
                     e.preventDefault();
                     var url = $(this).data("url");
@@ -155,13 +155,41 @@
                 //create Doctor modal pop up ı  aynı sayfada kalarak açılır
                 $(document).on('click', '#CreateDoctorLink', function (e) {
                     e.preventDefault();
-                    var url = $(this).data('url');
+                    var url = $(this).attr('href');
                     $.ajax({
                         url: url,
                         type: 'GET',
                         success: function (data) {
                             $("#content-area").html(data);
                             $("#createDoctorModal").modal('show');  // Modal'ı göster
+                        }
+                    });
+                });
+
+                //delete OperationDoctor modal pop up ı  aynı sayfada kalarak açılır
+                $(document).on('click', '.btn-delete-operationDoctor', function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr('href');
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function (data) {
+                            $("#content-area").html(data);
+                            $("#deleteOperationDoctorModal").modal('show');  // Modal'ı göster
+                        }
+                    });
+                });
+
+                //delete Doctor modal pop up ı  aynı sayfada kalarak açılır
+                $(document).on('click', '.btn-delete-Doctor', function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr('href');
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function (data) {
+                            $("#content-area").html(data);
+                            $("#deleteDoctorModal").modal('show');  // Modal'ı göster
                         }
                     });
                 });

@@ -7,7 +7,7 @@
             @foreach (var item in Model)
             {
                 <div class="col-lg-10 col-md-12">
-                    <div class="card mt-8 mt-md-5">
+                    <div class="card mt-8 mt-md-5"> 
                         <div class="card-header p-0 mx-3 mt-n4 position-relative z-index-2">
                             <a class="d-block blur-shadow-image">
                                 @if (item.ImageUrl1 != null)
@@ -25,9 +25,12 @@
                                    
                                 </h5>
                             </a>
-                            <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm mb-0" asp-area="" asp-controller="OperationDoctor" asp-action="Index" asp-route-id="@item.OperationId">Sayfasına Git</a>
+                            <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm " asp-area="" asp-controller="OperationDoctor" asp-action="Index" asp-route-id="@item.Id">Sayfasına Git</a>@* mb-0 *@
 
-                            <a asp-controller="OperationDoctor" asp-action="Edit" asp-route-id="@item.OperationId" class="btn btn-sm btn-outline-secondary btn-edit-operationDoctor">Düzenle</a>
+                            <a asp-controller="OperationDoctor" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary btn-edit-operationDoctor">Düzenle</a>
+                            
+                            <a asp-controller="OperationDoctor" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger btn-delete-operationDoctor" >Sil</a>
+                        
                         </div>
                     </div>
                 </div>

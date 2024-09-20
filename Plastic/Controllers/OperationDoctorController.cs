@@ -16,7 +16,7 @@ namespace Plastic.Controllers
 {
     public class OperationDoctorController : Controller
     {
-        
+
         private readonly PlasticDbContext _context;
         private readonly IOperationDoctorRepository _operationdoctorRepository;
         private readonly IPhotoService _photoService;
@@ -116,63 +116,73 @@ namespace Plastic.Controllers
                 //operationdoctor.DoctorId = SelectedDoctorId; //operationDoctorVM.DoctorIds;
                 //operationdoctor.OperationId = SelectedOperationId;
 
-                ModelState.Remove("OperationDoctor.Doctor");
+                ModelState.Remove("OperationDoctor"); 
+                ModelState.Remove("OperationDoctor.Doctor"); 
                 ModelState.Remove("OperationDoctor.Operation");
 
                 // MODEL SEÇİMİ YÖNETİMİ İLE BU SORUNU ÇÖZ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 // DoctorId ve OperationId hiç seçilmese de her türlü model stateyi geçiyor DÜZELT!!!!!!!!!!!!!!!!!!
-                //if (operationdoctorModelState.Values.All(v => v.Errors.Count == 0)) // ModelState.IsValid
-                //{
-                operationDoctor = operationDoctorVM.OperationDoctor;
-
-                operationDoctor.Doctor = _context.Doctors.Find(selectedDoctorId);
-                operationDoctor.Operation = _context.Operations.Find(selectedOperationId);
-
-                // OperationDoctor ıd sinin db de 0 lma çözümü. MODELİ TEKRARDAN YAP KÖKTEN ÇÖZ!!!!!!!!!!!!!!!!!!!????????????????????????? 
+                if (operationDoctorVM.DoctorIds.Any() && operationDoctorVM.OperationIds.Any())
                 {
-                    var lastOperationDoctor = _context.OperationDoctors.OrderByDescending(o => o.Id).FirstOrDefault();
-                    int lastOperationDoctorId = lastOperationDoctor != null ? lastOperationDoctor.Id : 0;
-                    lastOperationDoctorId += 1;
-                    operationDoctor.Id = lastOperationDoctorId;
-                }
-
-                //  BaseEntity 
-                {
-                    operationDoctor.Status = true;
-                    operationDoctor.Deleted = false;
-                    operationDoctor.CreatedDate = DateTime.Now;
-                    operationDoctor.UpdatedDate = DateTime.Now;
-                    operationDoctor.CreatedBy = 0;
-                    operationDoctor.UpdatedBy = 0;
-                }
-
-                if (operationDoctorVM.Image1 != null || operationDoctorVM.Image2 != null || operationDoctorVM.Image3 != null)
-                {
-                    var result1 = await _photoService.AddPhotoAsync(operationDoctorVM.Image1);
-                    var result2 = await _photoService.AddPhotoAsync(operationDoctorVM.Image2);
-                    var result3 = await _photoService.AddPhotoAsync(operationDoctorVM.Image3);
-
-                    operationDoctor.ImageUrl1 = result1.Url.ToString();
-                    operationDoctor.ImageUrl2 = result2.Url.ToString();
-                    operationDoctor.ImageUrl3 = result3.Url.ToString();
-                }
-
-                operationDoctor.DoctorId = selectedDoctorId;
-                operationDoctor.OperationId = selectedOperationId;
-
-                _context.Add(operationDoctor);
-                _context.SaveChanges();
-
-                if (_idFranchise == 0) //form verileri clinicten geldiyse
-                {
-                    return RedirectToAction("Details", "Clinic", new { id = _idClinic });
-                }
-                else if (_idClinic == 0) //form verileri franchisedan geldiyse
-                {
-                    return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
-                }
-
+                    //ModelState.AddModelError("", "Doktor ve işlem seçmek zorunludur.");
                 //}
+                //else if (ModelState.IsValid) // operationdoctorModelState.Values.All(v => v.Errors.Count == 0)
+                //{
+                    operationDoctor = operationDoctorVM.OperationDoctor;
+
+                    operationDoctor.Doctor = _context.Doctors.Find(selectedDoctorId);
+                    operationDoctor.Operation = _context.Operations.Find(selectedOperationId);
+
+                    // OperationDoctor ıd sinin db de 0 lma çözümü. MODELİ TEKRARDAN YAP KÖKTEN ÇÖZ!!!!!!!!!!!!!!!!!!!????????????????????????? 
+                    //{
+                    //    var lastOperationDoctor = _context.OperationDoctors.OrderByDescending(o => o.Id).FirstOrDefault();
+                    //    int lastOperationDoctorId = lastOperationDoctor != null ? lastOperationDoctor.Id : 0;
+                    //    lastOperationDoctorId += 1;
+                    //    operationDoctor.Id = lastOperationDoctorId;
+                    //}
+
+                    //  BaseEntity 
+                    {
+                        operationDoctor.Status = true;
+                        operationDoctor.Deleted = false;
+                        operationDoctor.CreatedDate = DateTime.Now;
+                        operationDoctor.UpdatedDate = DateTime.Now;
+                        operationDoctor.CreatedBy = 0;
+                        operationDoctor.UpdatedBy = 0;
+                    }
+
+                    if (operationDoctorVM.Image1 != null)
+                    {
+                        var result1 = await _photoService.AddPhotoAsync(operationDoctorVM.Image1);
+                        operationDoctor.ImageUrl1 = result1.Url.ToString();
+                    }
+                    if (operationDoctorVM.Image2 != null)
+                    {
+                        var result2 = await _photoService.AddPhotoAsync(operationDoctorVM.Image2);
+                        operationDoctor.ImageUrl2 = result2.Url.ToString();
+                    }
+                    if (operationDoctorVM.Image3 != null)
+                    {
+                        var result3 = await _photoService.AddPhotoAsync(operationDoctorVM.Image3);
+                        operationDoctor.ImageUrl3 = result3.Url.ToString();
+                    }
+
+                    operationDoctor.DoctorId = selectedDoctorId;
+                    operationDoctor.OperationId = selectedOperationId;
+
+                    _context.Add(operationDoctor);
+                    _context.SaveChanges();
+
+                    if (_idFranchise == 0) //form verileri clinicten geldiyse
+                    {
+                        return RedirectToAction("Details", "Clinic", new { id = _idClinic });
+                    }
+                    else if (_idClinic == 0) //form verileri franchisedan geldiyse
+                    {
+                        return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
+                    }
+
+                }
 
                 //TempData["ClinicModalViewModel"] = JsonSerializer.Serialize(clinicMVM);
                 //TempData["FranchiseModalViewModel"] = JsonSerializer.Serialize(franchiseMVM);
@@ -211,8 +221,8 @@ namespace Plastic.Controllers
             _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
             _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
 
-            var operationDoctor = _operationdoctorRepository.GetOperationDoctorByIdAsync(id);
-            if (operationDoctor == null) { return RedirectToAction("~/Views/OperationDoctor/_PartialOperationDoctor.cshtml"); } //????????????????????????*
+            //var operationDoctor = _operationdoctorRepository.GetOperationDoctorByIdAsync(id);
+            //if (operationDoctor == null) { return RedirectToAction("~/Views/OperationDoctor/_PartialOperationDoctor.cshtml"); } //????????????????????????*
 
             var selectedOperationDoctor = _context.OperationDoctors.FirstOrDefault(a => a.Id == id);
 
@@ -239,7 +249,7 @@ namespace Plastic.Controllers
                 }
             }
 
-            return PartialView("~/Views/OperationDoctor/_PartialEditOperationDoctor.cshtml", operationDoctorVM);  //View olması lazım ama details de @html kısmıçözemediğim içn böyle şimdilik
+            return PartialView("~/Views/OperationDoctor/_PartialEditOperationDoctor.cshtml", operationDoctorVM);
         }
 
         [HttpPost]
@@ -293,16 +303,16 @@ namespace Plastic.Controllers
 
                     if (_idClinic == 0) //from verileri franchise dan gelmiştir
                     {
-                        return RedirectToAction("Details", "Franchise", _idFranchise);
+                        return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
                     }
                     else //from verileri clinic den gelmiştir
                     {
-                        return RedirectToAction("Details", "Clinic", _idClinic);
+                        return RedirectToAction("Details", "Clinic", new { id = _idClinic });
                     }
                 }
                 else
                 {
-                    return PartialView("~/Views/Doctor/_PartialEditOperationDoctor.cshtml", operationDoctorVM);
+                    return PartialView("~/Views/OperationDoctor/_PartialEditOperationDoctor.cshtml", operationDoctorVM);
                 }
 
             }
@@ -310,31 +320,77 @@ namespace Plastic.Controllers
             {
                 if (_idClinic == 0) //from verileri franchise dan gelmiştir
                 {
-                    return RedirectToAction("Details", "Franchise", _idFranchise);
+                    return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
                 }
                 else //from verileri clinic den gelmiştir
                 {
-                    return RedirectToAction("Details", "Clinic", _idClinic);
+                    return RedirectToAction("Details", "Clinic", new { id = _idClinic });
                 }
             }
         }
 
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var operationDoctorVM = new OperationDoctorViewModel()
+            { OperationDoctor = new OperationDoctor() };
+
+            //OperationDoctor? operationDoctor = await _operationdoctorRepository.GetOperationDoctorByIdAsync(id);
+            var operationDoctor = _context.OperationDoctors.Include(a => a.Doctor).Include(a => a.Operation).FirstOrDefault(o => o.Id == id);
+            operationDoctorVM.OperationDoctor = operationDoctor;
+
+            return PartialView("~/Views/OperationDoctor/_PartialDeleteOperationDoctor.cshtml", operationDoctorVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            var _idClinic = 0;
+            var _idFranchise = 0;
             try
             {
-                return RedirectToAction(nameof(Index));
+                _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
+                _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+
+                var operationDoctor = _context.OperationDoctors.FirstOrDefault(a => a.Id == id);
+                if (operationDoctor != null)
+                {
+                    operationDoctor.Status = false;
+                    operationDoctor.Deleted = true;
+                    _context.OperationDoctors.Update(operationDoctor);
+                    _context.SaveChanges();
+
+                    if (_idFranchise == 0)
+                    {
+                        return RedirectToAction("Details", "Clinic", new { id = _idClinic });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
+                    }
+                }
+                else
+                {
+                    if (_idFranchise == 0)
+                    {
+                        return RedirectToAction("Details", "Clinic", new { id = _idClinic });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
+                    }
+                }
             }
             catch
             {
-                return View();
+                if (_idFranchise == 0)
+                {
+                    return RedirectToAction("Details", "Clinic", new { id = _idClinic });
+                }
+                else
+                {
+                    return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
+                }
             }
         }
     }

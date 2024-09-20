@@ -20,7 +20,7 @@ namespace Plastic.Repository
         }
         public async Task<List<Clinic>> GetAllClinicsAsync()   //List<
         {
-            return await _context.Clinics.Include(a => a.District).ToListAsync();
+            return await _context.Clinics.Include(a => a.District).Where(a => a.Status == true && a.Deleted == false).ToListAsync();
         }
         public async Task<Clinic?> GetByIdClinicAsync(int id) //Clinic
         {

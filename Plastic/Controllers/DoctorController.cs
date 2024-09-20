@@ -49,7 +49,7 @@ namespace Plastic.Controllers
                 }
                 else if (_idClinic == 0)
                 {
-                    PartialDoctorVm.Doctors = _doctorRepository.GetAllDoctorByFranchiseId(_idFranchise);
+                    PartialDoctorVm.Doctors = _doctorRepository.GetAllDoctorByFranchiseId(_idFranchise); 
                 }
                 //var doctor = _clinicRepository.GetDoctorByClinicId(_id);
                 return PartialView("~/Views/Doctor/_PartialDoctor.cshtml", PartialDoctorVm);  //doctor  _PartialView.cshtml Views/Operation/Index.cshtml  
@@ -76,7 +76,7 @@ namespace Plastic.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(DoctorViewModel doctorVM) //, ClinicModalViewModel clinicMVM, FranchiseModalViewModel franchiseMVM
+        public async Task<IActionResult> Create(DoctorViewModel doctorVM)
         {
             var _idClinic = 0;
             var _idFranchise = 0;
@@ -328,20 +328,65 @@ namespace Plastic.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View();
+            var DoctorVM = new DoctorViewModel()
+            { Doctor = new Doctor() };
+
+            //OperationDoctor? operationDoctor = await _operationdoctorRepository.GetOperationDoctorByIdAsync(id);
+            var Doctor = _context.Doctors.FirstOrDefault(o => o.Id == id);
+            DoctorVM.Doctor = Doctor;
+
+            return PartialView("~/Views/Doctor/_PartialDeleteDoctor.cshtml", DoctorVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            var _idClinic = 0;
+            var _idFranchise = 0;
             try
             {
-                return RedirectToAction(nameof(Index));
+                _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
+                _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+                var Doctor = _context.Doctors.FirstOrDefault(o => o.Id == id);
+                if (Doctor != null)
+                {
+                    Doctor.Status = false;
+                    Doctor.Deleted = true;
+                    _context.Doctors.Update(Doctor);
+                    _context.SaveChanges();
+
+                    if (_idFranchise == 0)
+                    {
+                        return RedirectToAction("Details", "Clinic", new { id = _idClinic });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
+                    }
+                }
+                else
+                {
+                    if (_idFranchise == 0)
+                    {
+                        return RedirectToAction("Details", "Clinic", new { id = _idClinic });
+                    }
+                    else
+                    {
+                        return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
+                    }
+                }
             }
             catch
             {
-                return View();
+                if (_idFranchise == 0)
+                {
+                    return RedirectToAction("Details", "Clinic", new { id = _idClinic });
+                }
+                else
+                {
+                    return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
+                }
             }
         }
     }

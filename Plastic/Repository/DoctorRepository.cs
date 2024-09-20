@@ -21,7 +21,7 @@ namespace Plastic.Repository
             try
             {
                 var doctor = _context.Doctors
-                             .Where(d => d.ClinicId == id).ToList();
+                             .Where(d => d.ClinicId == id && d.Status == true && d.Deleted == false).ToList();
                 return doctor;
 
             }
@@ -36,7 +36,7 @@ namespace Plastic.Repository
             try
             {
                 return _context.Doctors
-                             .Where(d => d.FranchiseId == id).ToList();
+                             .Where(d => d.FranchiseId == id && d.Status == true && d.Deleted == false).ToList();
                 //return doctor;
             }
             catch (Exception ex)

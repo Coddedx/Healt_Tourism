@@ -18,7 +18,7 @@ namespace Plastic.Repository
             var operationDoctor = _context.OperationDoctors
                 .Include(a => a.Operation)
                 .Include(b => b.Doctor)
-                    .Where(d => doctorIds.Contains(d.DoctorId)).ToList();
+                    .Where(d => doctorIds.Contains(d.DoctorId) && d.Status == true && d.Deleted == false).ToList();
             return operationDoctor;
         }
         public List<OperationDoctor?> GetAllOperationDoctorByFranchiseId(int id)
@@ -28,7 +28,7 @@ namespace Plastic.Repository
             var operationDoctor = _context.OperationDoctors
                 .Include(a => a.Operation)
                 .Include(b => b.Doctor)
-                    .Where(d => doctorIds.Contains(d.DoctorId)).ToList();
+                    .Where(d => doctorIds.Contains(d.DoctorId) && d.Status == true && d.Deleted == false).ToList();
             return operationDoctor;
         }
 

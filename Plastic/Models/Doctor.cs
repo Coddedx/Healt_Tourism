@@ -32,7 +32,10 @@ namespace Plastic.Models
         public int? ClinicId { get; set; }
         public virtual Clinic Clinic { get; set; }
 
-        //FranchiseId ve ClinicId nullable olarak tanımlandığı için bir doktor sadece bir franchise veya bir clinic ile ilişkilendirilebilir. Her ikisi de null olabilir, ancak her ikisi de aynı anda dolu olmamalıdır.
+
+
+       
+		//FranchiseId ve ClinicId nullable olarak tanımlandığı için bir doktor sadece bir franchise veya bir clinic ile ilişkilendirilebilir. Her ikisi de null olabilir, ancak her ikisi de aynı anda dolu olmamalıdır.
         //Bu durumda, Franchise ya da Clinic verisinin yalnızca biri atanmalıdır. ama bir doktor 2 yerde çalışabilir ????? o yüzden gerek yok ???????????
         //public void Validate()
         //{
@@ -61,7 +64,11 @@ namespace Plastic.Models
 
         public string Title { get; set; }
 
-		public string Country { get; set; }  //bunu aslında country tablosundan çekebiliriz?????????????????????????
+
+		public string Country { get; set; }  
+  //      public int CountryId { get; set; }
+  //      public  virtual Country Country{ get; set; }
+
 
 		[Required]
         public string CertificationNumber { get; set; }  
@@ -78,7 +85,7 @@ namespace Plastic.Models
         public string? ImageUrl { get; set; } //IFormFile doğrudan veritabanına kaydedilemez çünkü bu tip yalnızca HTTP istekleriyle gönderilen dosyaları temsil eder. (cloudinary için ıfromfile gerkliydi) 
 
 
-		//public ICollection<OperationDoctor?> OperationDoctors { get; set; }
+		public virtual ICollection<OperationDoctor?> OperationDoctors { get; set; }
 
 
 	}

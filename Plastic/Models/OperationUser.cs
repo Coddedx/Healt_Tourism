@@ -7,15 +7,20 @@ namespace Plastic.Models
 	//migration sonrası
 	public class OperationUser : BaseEntity   //bir kullanıcı birden fazla operasyon olabilir bir operasyonu birden fazla user olabilir
     {
-        [Required]
+		[Key]
+        public int Id { get; set; }
+        
+		
+		//[Required]
 		public int UserId { get; set; }
-		[ForeignKey("UserId")]
+		//[ForeignKey("UserId")]
 		public virtual User? User { get; set; }
 		
-		[Required]
-		public int OperationId { get; set; }
-		[ForeignKey("OperationId")]
-		public virtual Operation? Operation { get; set; }
+		
+		//[Required]
+		public int OperationDoctorId { get; set; }
+		//[ForeignKey("OperationDoctorId")]
+		public virtual OperationDoctor? OperationDoctor { get; set; }
 
 		
 		public bool? Attended { get; set; }  //klinik/hastane ameliyatı yaptıysa bu true olcak ve kullanıcı ona göre yorum yapabilcek?????????  
@@ -30,5 +35,7 @@ namespace Plastic.Models
 		[StringLength(128)]
 		public string? ImageUrl3 { get; set; }
 
-	}
+        //public virtual ICollection<OperationDoctor?> OperationDoctors { get; set; }
+
+    }
 }

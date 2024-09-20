@@ -163,6 +163,34 @@
                     });
                 });
 
+                //delete OperationDoctor modal pop up ı  aynı sayfada kalarak açılır
+                $(document).on('click', '.btn-delete-operationDoctor', function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr('href');
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function (data) {
+                            $("#content-area").html(data);
+                            $("#deleteOperationDoctorModal").modal('show');  // Modal'ı göster
+                        }
+                    });
+                });
+
+                //delete Doctor modal pop up ı  aynı sayfada kalarak açılır
+                $(document).on('click', '.btn-delete-Doctor', function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr('href');
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function (data) {
+                            $("#content-area").html(data);
+                            $("#deleteDoctorModal").modal('show');  // Modal'ı göster
+                        }
+                    });
+                });
+
 
             });
 

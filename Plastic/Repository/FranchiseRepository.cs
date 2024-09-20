@@ -53,7 +53,7 @@ namespace Plastic.Repository
         public async Task<List<Franchise>> GetAllFranchisesAsync() //public IQueryable<FranchiseViewModel> GetAllAsync()
         {
 
-            return await _context.Franchises.Include(a => a.District).ToListAsync();
+            return await _context.Franchises.Include(a => a.District).Where(a => a.Status == true && a.Deleted == false).ToListAsync();
 
             //var franchise = _context.Franchises
             //           .Select(e => new FranchiseViewModel

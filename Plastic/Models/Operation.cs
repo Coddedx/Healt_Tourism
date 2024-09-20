@@ -30,6 +30,7 @@ namespace Plastic.Models
 		[StringLength(128)]
 		public string? ImageUrl3 { get; set; }
 
+        public virtual ICollection<OperationDoctor?> OperationDoctors { get; set; }
 
-	}
+    }
 }

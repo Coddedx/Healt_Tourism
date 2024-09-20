@@ -75,6 +75,31 @@ namespace Plastic.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Operations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    ImageUrl1 = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    ImageUrl2 = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    ImageUrl3 = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Operations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Operations_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cities",
                 columns: table => new
                 {
@@ -123,7 +148,7 @@ namespace Plastic.Migrations
                     DistrictId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CertificationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Adress = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
@@ -186,8 +211,8 @@ namespace Plastic.Migrations
                     DistrictId = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CertificationNumber = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    CertificationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
@@ -254,7 +279,8 @@ namespace Plastic.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FranchiseId = table.Column<int>(type: "int", nullable: false),
+                    FranchiseId = table.Column<int>(type: "int", nullable: true),
+                    ClinicId = table.Column<int>(type: "int", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -276,11 +302,15 @@ namespace Plastic.Migrations
                 {
                     table.PrimaryKey("PK_Doctors", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Doctors_Clinics_ClinicId",
+                        column: x => x.ClinicId,
+                        principalTable: "Clinics",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Doctors_Franchises_FranchiseId",
                         column: x => x.FranchiseId,
                         principalTable: "Franchises",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -316,46 +346,18 @@ namespace Plastic.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Operations",
+                name: "OperationDoctors",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    ImageUrl1 = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
-                    ImageUrl2 = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
-                    ImageUrl3 = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
-                    DoctorId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Operations", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Operations_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Operations_Doctors_DoctorId",
-                        column: x => x.DoctorId,
-                        principalTable: "Doctors",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OperationDoctors",
-                columns: table => new
-                {
                     DoctorId = table.Column<int>(type: "int", nullable: false),
                     OperationId = table.Column<int>(type: "int", nullable: false),
                     DoctorPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     ImageUrl1 = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
                     ImageUrl2 = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
                     ImageUrl3 = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    OperationDoctorId = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
@@ -365,27 +367,34 @@ namespace Plastic.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OperationDoctors", x => new { x.OperationId, x.DoctorId });
+                    table.PrimaryKey("PK_OperationDoctors", x => x.Id);
                     table.ForeignKey(
                         name: "FK_OperationDoctors_Doctors_DoctorId",
                         column: x => x.DoctorId,
                         principalTable: "Doctors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OperationDoctors_OperationDoctors_OperationDoctorId",
+                        column: x => x.OperationDoctorId,
+                        principalTable: "OperationDoctors",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_OperationDoctors_Operations_OperationId",
                         column: x => x.OperationId,
                         principalTable: "Operations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "OperationUsers",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    OperationId = table.Column<int>(type: "int", nullable: false),
+                    OperationDoctorId = table.Column<int>(type: "int", nullable: false),
                     Attended = table.Column<bool>(type: "bit", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     ImageUrl1 = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
@@ -400,19 +409,19 @@ namespace Plastic.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OperationUsers", x => new { x.OperationId, x.UserId });
+                    table.PrimaryKey("PK_OperationUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OperationUsers_Operations_OperationId",
-                        column: x => x.OperationId,
-                        principalTable: "Operations",
+                        name: "FK_OperationUsers_OperationDoctors_OperationDoctorId",
+                        column: x => x.OperationDoctorId,
+                        principalTable: "OperationDoctors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_OperationUsers_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -446,6 +455,11 @@ namespace Plastic.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Doctors_ClinicId",
+                table: "Doctors",
+                column: "ClinicId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Doctors_FranchiseId",
                 table: "Doctors",
                 column: "FranchiseId");
@@ -466,14 +480,24 @@ namespace Plastic.Migrations
                 column: "DoctorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OperationDoctors_OperationDoctorId",
+                table: "OperationDoctors",
+                column: "OperationDoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OperationDoctors_OperationId",
+                table: "OperationDoctors",
+                column: "OperationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Operations_CategoryId",
                 table: "Operations",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Operations_DoctorId",
-                table: "Operations",
-                column: "DoctorId");
+                name: "IX_OperationUsers_OperationDoctorId",
+                table: "OperationUsers",
+                column: "OperationDoctorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OperationUsers_UserId",
@@ -494,25 +518,25 @@ namespace Plastic.Migrations
                 name: "CommentFranchises");
 
             migrationBuilder.DropTable(
-                name: "OperationDoctors");
-
-            migrationBuilder.DropTable(
                 name: "OperationUsers");
 
             migrationBuilder.DropTable(
-                name: "Operations");
+                name: "OperationDoctors");
 
             migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Categories");
-
-            migrationBuilder.DropTable(
                 name: "Doctors");
 
             migrationBuilder.DropTable(
+                name: "Operations");
+
+            migrationBuilder.DropTable(
                 name: "Franchises");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Clinics");

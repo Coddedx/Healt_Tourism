@@ -37,5 +37,7 @@ namespace Plastic.Models
         public string? Image { get; set; }
 
         public bool lawReasons { get; set; }
+
+        public virtual ICollection<OperationUser?> OperationUsers { get; set; }
     }
 }
