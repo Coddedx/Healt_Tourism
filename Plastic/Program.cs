@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Plastic.Helper;
@@ -51,6 +53,19 @@ builder.Services.AddDbContext<PlasticDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+
+//------ Identity Framework Ayarlarý //------
+//appdbcontext in altýnda olmalý identity ayarlarý !!!!!!!!!
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<PlasticDbContext>();
+builder.Services.AddMemoryCache(); //bunu eklemezsek deðiþik bir hata alabiliriz
+builder.Services.AddSession(); //cookie autentication (use it if possible rather than jwt Authorization)
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie();                   //cookie autentication(simplier than jwt Authorization)
+//------ Identity Framework Ayarlarý //------
+//sonrasýnda proje sað týk- open in terminal -dotnet run seeddata yaz  
+
+
 //builder.Services.AddSession(); //http session kullanab. için 
 
 var app = builder.Build();
@@ -81,6 +96,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Clinic}/{action=Index}/{id?}");
 
 app.Run();

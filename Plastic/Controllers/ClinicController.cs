@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -24,16 +25,21 @@ namespace Plastic.Controllers
         private readonly IClinicRepository _clinicRepository;
         private readonly IFranchiseRepository _franchiseRepository;
         private readonly ILogger<ClinicController> _logger;  //hataları yakalayıp loglamak için 
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public ClinicController(IClinicRepository clinicRepository, IFranchiseRepository franchiseRepository, ILogger<ClinicController> logger, PlasticDbContext context)
+
+        public ClinicController(IClinicRepository clinicRepository, IFranchiseRepository franchiseRepository, ILogger<ClinicController> logger, PlasticDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _clinicRepository = clinicRepository;
             _franchiseRepository = franchiseRepository;
             _logger = logger;
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        public async Task<IActionResult> Index(IFormCollection fc, int pageNumber = 1, int pageSize = 3) 
+        public async Task<IActionResult> Index(IFormCollection fc, int pageNumber = 1, int pageSize = 3)
         {
             //Object reference not set to an instance of an object hatası almamak için new List ile başlatırız (ClinicModalViewModel deki gibi de yapılabilir)
             var ClinicFranchiseVM = new ClinicViewModel()
@@ -210,23 +216,126 @@ namespace Plastic.Controllers
             }
         }
 
-        public ActionResult Delete(int id)
+        public IActionResult Login()
         {
-            return View();
+            var result = new LoginViewModel();
+            return View(result);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Login(LoginViewModel loginVM)
         {
-            try
+            if (!ModelState.IsValid) { return View(loginVM); }
+
+            var user = await _userManager.FindByEmailAsync(loginVM.EmailAddress);
+            if (user != null)
             {
-                return RedirectToAction(nameof(Index));
+                await _signInManager.SignOutAsync();
+
+                var passwordCheck = await _userManager.CheckPasswordAsync(user, loginVM.Password);
+                if (passwordCheck)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Clinic");
+                    }
+                }
+                else
+                {
+                    TempData["Error"] = "Wrong credentials. Please try again.";  //uyarılar çalışmıyor!!!!!!!!!!!!!!!
+                    return View(loginVM);
+                }
             }
-            catch
+            else
             {
-                return View();
+                TempData["Error"] = "Wrong credentials. Please try again.";
             }
+            return View(loginVM);
+
         }
+
+        public IActionResult Register()
+        {
+            //Şehir arama butonu için
+            {
+                var cities = _context.Cities.Select(c => new { c.Id, c.Name }).ToList();
+                ViewBag.Cities = new SelectList(cities, "Id", "Name");
+            }
+            //BÖLGE arama butonu için
+            {
+                var districts = _context.Districts.Select(d => new { d.Id, d.Name }).ToList();
+                ViewBag.Districts = new SelectList(districts, "Id", "Name");
+            }
+
+            var result = new RegisterClinicViewModel();
+            return View(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterClinicViewModel registerCVM)
+        {
+
+            ModelState.Remove("Clinic.District");
+            ModelState.Remove("Clinic.Email");
+
+            if (!ModelState.IsValid)
+            {
+                var cities = _context.Cities.Select(c => new { c.Id, c.Name }).ToList();
+                ViewBag.Cities = new SelectList(cities, "Id", "Name");
+
+                var districts = _context.Districts.Select(d => new { d.Id, d.Name }).ToList();
+                ViewBag.Districts = new SelectList(districts, "Id", "Name");
+                return View(registerCVM);
+
+            }
+
+            var user = await _userManager.FindByEmailAsync(registerCVM.EmailAddress);
+            if (user != null)
+            {
+                TempData["Error"] = "This email address is already in use.";
+                return View(registerCVM);
+            }
+
+            var normalizedEmail = _userManager.NormalizeEmail(registerCVM.EmailAddress);
+            var newAppUser = new AppUser()
+            {
+                Email = registerCVM.EmailAddress,
+                UserName = registerCVM.EmailAddress,
+                NormalizedEmail = normalizedEmail,
+                PhoneNumber = registerCVM.Clinic.Phone ?? null,
+
+                Clinic = new Clinic()
+                {
+                    Name = registerCVM.Clinic.Name,
+                    CertificationNumber = registerCVM.Clinic.CertificationNumber,
+                    Adress = registerCVM.Clinic.Adress,
+                    Email = registerCVM.EmailAddress, // CLİNİC/FRANCHİSE ID DÜZELTİNCE BUNU DA DÜZELT!!!!!!!!!!!1
+                    Phone = registerCVM.Clinic.Phone,
+                    DistrictId = registerCVM.DistrictId,
+
+
+                    Status = true,
+                    Deleted = false,
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = DateTime.Now,
+                    CreatedBy = 0,
+                    UpdatedBy = 0
+                },
+            };
+
+            var newUserResponse = await _userManager.CreateAsync(newAppUser, registerCVM.Password);
+            _context.SaveChanges();
+
+            if (newUserResponse.Succeeded)
+            {
+                newAppUser.ClinicId = newAppUser.Id;
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index", "Clinic");
+        }
+
+
     }
 }

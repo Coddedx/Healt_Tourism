@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
 using System.Security.Cryptography;
 
+
 namespace Plastic.Models
 {
-    public class PlasticDbContext : DbContext
+    public class PlasticDbContext : IdentityDbContext<AppUser>// DbContext
     {
         public PlasticDbContext()
         {
@@ -32,7 +34,7 @@ namespace Plastic.Models
         public DbSet<OperationDoctor> OperationDoctors { get; set; }
         public DbSet<OperationUser> OperationUsers { get; set; }
         public DbSet<User> Users { get; set; }
-
+        public DbSet<Message> Messages { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) //override onc yaz tab bas direk çıkıyo
@@ -52,13 +54,13 @@ namespace Plastic.Models
             //  .HasKey(c => new { c.OperationId, c.DoctorId });
 
             modelBuilder.Entity<CommentClinic>()
-                .HasKey(c => new { c.UserId, c.ClinicId });
+                .HasKey(c => new { c.AppUserId, c.ClinicId });
 
             modelBuilder.Entity<CommentDoctor>()
-                .HasKey(c => new { c.UserId, c.DoctorId });
+                .HasKey(c => new { c.AppUserId, c.DoctorId });
 
             modelBuilder.Entity<CommentFranchise>()
-                .HasKey(c => new { c.UserId, c.FranchiseId });
+                .HasKey(c => new { c.AppUserId, c.FranchiseId });
 
             //modelBuilder.Entity<CommentHospital>()
             //	.HasKey(c => new { c.UserId, c.HospitalId });
@@ -103,31 +105,44 @@ namespace Plastic.Models
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<OperationUser>()
-                .HasOne(od => od.User)
+                .HasOne(od => od.AppUser)
                 .WithMany(d => d.OperationUsers)
-                .HasForeignKey(od => od.UserId)
+                .HasForeignKey(od => od.AppUserId)
                 .OnDelete(DeleteBehavior.Restrict);
-            
+
             modelBuilder.Entity<OperationUser>()
                 .HasOne(od => od.OperationDoctor)
                 .WithMany(d => d.OperationUsers)
                 .HasForeignKey(od => od.OperationDoctorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            // Sender ilişkisini yapılandırma
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Sender)
+                .WithMany(u => u.SentMessages)
+                .HasForeignKey(m => m.SenderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Receiver ilişkisini yapılandırma
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Receiver)
+                .WithMany(u => u.ReceivedMessages)
+                .HasForeignKey(m => m.ReceiverId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //modelBuilder.Entity<AppUser>()
+            //    .HasOne(a => a.User)
+            //    .WithMany(u => u.Users)
+            //    .HasForeignKey(a => a.UserId);
 
 
-            //modelBuilder.Entity<OperationDoctor>()
-            //		.HasOne(f => f.Doctor)
-            //		.WithMany(f => f.OperationDoctors)
-            //		.HasForeignKey(f => f.DoctorId)
-            //                 .IsRequired()
-            //                 .OnDelete(DeleteBehavior.Restrict); 
+            // DAHA SONRA CLİNİC VE FRANCHİSE İÇİN DE BÖYLE YAP -->> User.Id=AppUser.Id ve AppUser.UserId=AppUser.Id istediklerim oldu ama UserId1 silmen gerekiyor!!!!!!!!!!!!! AppUser.ClinicId=Clinic.Id oluyor şu an (clinic.ıd kendi kendine ve 1-2-3... gibi artıyor)
+            // 1:1 ilişki ayarı
+            modelBuilder.Entity<AppUser>() //1:1 ilişki
+                .HasOne(a => a.User) // AppUser'ın bir User'ı olacak
+                .WithOne() // User'ın bir AppUser'ı olacak
+                .HasForeignKey<User>(u => u.Id); // User tablosundaki Id, AppUser.Id ile eşleşecek                 
 
-            //modelBuilder.Entity<OperationDoctor>()
-            //    .HasOne(od => od.User)
-            //    .WithMany(p => p.OperationDoctors)
-            //    .HasForeignKey(od => od.UserId)
-            //    .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);
         }

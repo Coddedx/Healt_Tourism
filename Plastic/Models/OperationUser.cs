@@ -12,9 +12,9 @@ namespace Plastic.Models
         
 		
 		//[Required]
-		public int UserId { get; set; }
+		public string AppUserId { get; set; } //int (identity framwork dan önce)
 		//[ForeignKey("UserId")]
-		public virtual User? User { get; set; }
+		public virtual AppUser? AppUser { get; set; }
 		
 		
 		//[Required]

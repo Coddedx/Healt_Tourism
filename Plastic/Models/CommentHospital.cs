@@ -6,9 +6,9 @@ namespace Plastic.Models
     public class CommentHospital :BaseEntity
     {
         [Required]
-        public int UserId { get; set; }
-        [ForeignKey("UserId")]
-        public virtual User? User { get; set; }
+        public string AppUserId { get; set; } //string
+        [ForeignKey("AppUserId")]
+        public virtual AppUser? AppUser { get; set; }  //User 
 
 
         [Required]

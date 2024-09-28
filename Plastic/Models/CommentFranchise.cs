@@ -6,9 +6,9 @@ namespace Plastic.Models
     public class CommentFranchise :BaseEntity
     {
         [Required]
-        public int UserId { get; set; }
-        [ForeignKey("UserId")]
-        public virtual User? User { get; set; }
+        public string AppUserId { get; set; }
+        [ForeignKey("AppUserId")]
+        public virtual AppUser? AppUser { get; set; }  //User
 
 
         [Required]

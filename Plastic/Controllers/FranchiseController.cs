@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Plastic.IRepository;
 using Plastic.Models;
@@ -16,25 +18,31 @@ namespace Plastic.Controllers
     {
         private readonly PlasticDbContext _context;
         private readonly IFranchiseRepository _franchiseRepository;
-        public FranchiseController(IFranchiseRepository franchiseRepository, PlasticDbContext context)
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
+
+
+        public FranchiseController(IFranchiseRepository franchiseRepository, PlasticDbContext context, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
         {
             _franchiseRepository = franchiseRepository;
             _context = context;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index() //int id
         {
-            //tıklanan sayfanın hastaneye mi cliniğe mi bağlı olduğu ayrıştırılıp id si mi çekilmeli (şimdilik hepsinin clinic old bild için @Model.Clinic.Name ile yazdım) ????????????????????????????????
+            //tıklanan sayfanın hastaneye mi cliniğe mi bağlı olduğu ayrıştırılıp id si mi çekilmeli (şimdilik hepsinin clinic old bild için @Model.Franchise.Name ile yazdım) ????????????????????????????????
 
-            //HttpContext.Session.SetInt32("_ClinicId", id);  
+            //HttpContext.Session.SetInt32("_FranchiseId", id);  
 
-            //var clinic = await _franchiseRepository.GetByIdClinicAsync(id);
-            //if (clinic == null) { return RedirectToAction("Index", "Clinic"); }
+            //var clinic = await _franchiseRepository.GetByIdFranchiseAsync(id);
+            //if (clinic == null) { return RedirectToAction("Index", "Franchise"); }
 
             //var franchise = _context.Franchises
             //        //.AsNoTracking()
-            //        .Include(c => c.Clinic)
-            //        .Where(d => d.ClinicId == 1).ToList();
+            //        .Include(c => c.Franchise)
+            //        .Where(d => d.FranchiseId == 1).ToList();
 
             //if (franchise == null || !franchise.Any())
             //{
@@ -45,7 +53,7 @@ namespace Plastic.Controllers
 
             //var doctor = _context.Doctors.Where(a => a.FranchiseId == 2).ToList();
 
-            return View(); 
+            return View();
         }
 
         public async Task<IActionResult> Details(int id)
@@ -59,7 +67,7 @@ namespace Plastic.Controllers
                     franchiseVM.Franchise.District = new District();
                     franchiseVM.Franchise.District.City = new City();
                 }
-                var doctorVM = new DoctorViewModel(); 
+                var doctorVM = new DoctorViewModel();
 
                 //var franchiseModalViewModelJson = TempData["FranchiseModalViewModel"] as string;
                 //if (!string.IsNullOrEmpty(franchiseModalViewModelJson))
@@ -73,7 +81,7 @@ namespace Plastic.Controllers
                 HttpContext.Session.SetInt32("_FranchiseId", id);
 
                 var franchise = await _franchiseRepository.GetByIdFranchiseAsync(id);
-                if (franchise == null) { return RedirectToAction("Index", "Clinic"); }
+                if (franchise == null) { return RedirectToAction("Index", "Franchise"); }
 
                 if (franchise != null)
                 {
@@ -96,25 +104,6 @@ namespace Plastic.Controllers
             }
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index)); 
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         public ActionResult Edit(int id)
         {
             return View();
@@ -134,23 +123,131 @@ namespace Plastic.Controllers
             }
         }
 
-        public ActionResult Delete(int id)
+        public IActionResult Login()
         {
-            return View();
+            var result = new LoginViewModel();
+            return View(result);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Login(LoginViewModel loginVM)
         {
-            try
+            if (!ModelState.IsValid) { return View(loginVM); }
+
+            var user = await _userManager.FindByEmailAsync(loginVM.EmailAddress);
+            if (user != null)
             {
-                return RedirectToAction(nameof(Index));
+                await _signInManager.SignOutAsync();
+
+                var passwordCheck = await _userManager.CheckPasswordAsync(user, loginVM.Password);
+                if (passwordCheck)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Clinic");
+                    }
+                }
+                else
+                {
+                    TempData["Error"] = "Wrong credentials. Please try again.";  //uyarılar çalışmıyor!!!!!!!!!!!!!!!
+                    return View(loginVM);
+                }
             }
-            catch
+            else
             {
-                return View();
+                TempData["Error"] = "Wrong credentials. Please try again.";
             }
+            return View(loginVM);
+
         }
+
+        public IActionResult Register()
+        {
+            //Şehir arama butonu için
+            {
+                var cities = _context.Cities.Select(c => new { c.Id, c.Name }).ToList();
+                ViewBag.Cities = new SelectList(cities, "Id", "Name");
+            }
+            //BÖLGE arama butonu için
+            {
+                var districts = _context.Districts.Select(d => new { d.Id, d.Name }).ToList();
+                ViewBag.Districts = new SelectList(districts, "Id", "Name");
+            }
+            {
+                var clinics = _context.Clinics.Select(d => new { d.Id, d.Name }).ToList();
+                ViewBag.Clinics = new SelectList(clinics, "Id", "Name");
+            }
+
+            var result = new RegisterFranchiseViewModel();
+            return View(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterFranchiseViewModel registerFVM)
+        {
+
+            ModelState.Remove("Franchise.District");
+            ModelState.Remove("Franchise.Clinic");
+            ModelState.Remove("Franchise.Email");
+
+            if (!ModelState.IsValid)
+            {
+                var cities = _context.Cities.Select(c => new { c.Id, c.Name }).ToList();
+                ViewBag.Cities = new SelectList(cities, "Id", "Name");
+
+                var districts = _context.Districts.Select(d => new { d.Id, d.Name }).ToList();
+                ViewBag.Districts = new SelectList(districts, "Id", "Name");
+                return View(registerFVM);
+            }
+
+            var user = await _userManager.FindByEmailAsync(registerFVM.EmailAddress);
+            if (user != null)
+            {
+                TempData["Error"] = "This email address is already in use.";
+                return View(registerFVM);
+            }
+
+            var normalizedEmail = _userManager.NormalizeEmail(registerFVM.EmailAddress);
+            var newAppUser = new AppUser()
+            {
+                Email = registerFVM.EmailAddress,
+                UserName = registerFVM.EmailAddress,
+                NormalizedEmail = normalizedEmail,
+                PhoneNumber = registerFVM.Franchise.Phone ?? null,
+
+                Franchise = new Franchise()
+                {
+                    Title = registerFVM.Franchise.Title,
+                    CertificationNumber = registerFVM.Franchise.CertificationNumber,
+                    Adress = registerFVM.Franchise.Adress,
+                    Email = registerFVM.EmailAddress, // CLİNİC/FRANCHİSE ID DÜZELTİNCE BUNU DA DÜZELT!!!!!!!!!!!1
+                    Phone = registerFVM.Franchise.Phone,
+                    DistrictId = registerFVM.DistrictId,
+                    ClinicId = registerFVM.ClinicId,
+                    Description = registerFVM.Franchise.Description,
+
+
+                    Status = true,
+                    Deleted = false,
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = DateTime.Now,
+                    CreatedBy = 0,
+                    UpdatedBy = 0
+                },
+            };
+
+            var newUserResponse = await _userManager.CreateAsync(newAppUser, registerFVM.Password);
+            _context.SaveChanges();
+
+            if (newUserResponse.Succeeded)
+            {
+                newAppUser.FranchiseId = newAppUser.Id;
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index", "Clinic");
+        }
+
     }
 }

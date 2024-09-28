@@ -263,13 +263,6 @@ namespace Plastic.Controllers
                             doctor.ImageUrl = photoResult.Url.ToString();
                         }
 
-                        //var doctorEdit = new Doctor
-                        //{
-                        //    ClinicId = _idClinic,
-                        //    FranchiseId = _idFranchise,
-                        //    ImageUrl = photoResult.Url.ToString(), 
-                        //};
-
                         if (_idClinic == 0) { doctor.ClinicId = null; } else if (_idFranchise == 0) { doctor.FranchiseId = null; }
 
                         //  BaseEntity 

@@ -546,3 +546,9 @@ C:\Users\black\Documents\GitHub\Plastic\Plastic\obj\Debug\net8.0\Plastic.genrunt
 C:\Users\black\Documents\GitHub\Plastic\Plastic\obj\Debug\net8.0\ref\Plastic.dll
 C:\Users\black\Documents\GitHub\Plastic\Plastic\bin\Debug\net8.0\CloudinaryDotNet.dll
 C:\Users\black\Documents\GitHub\Plastic\Plastic\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\black\Documents\GitHub\Plastic\Plastic\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\black\Documents\GitHub\Plastic\Plastic\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\black\Documents\GitHub\Plastic\Plastic\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\black\Documents\GitHub\Plastic\Plastic\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\black\Documents\GitHub\Plastic\Plastic\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\black\Documents\GitHub\Plastic\Plastic\bin\Debug\net8.0\Microsoft.Extensions.Options.dll

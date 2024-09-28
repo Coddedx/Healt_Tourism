@@ -52,7 +52,8 @@ namespace Plastic.Models
 
         public string? InstagramUrl { get; set; }
 
-        public virtual ICollection<Doctor> Doctors { get; set; }
+        public virtual ICollection<Doctor> Doctors { get; set; } = new List<Doctor>();
+        public virtual ICollection<AppUser> Users { get; set; } = new List<AppUser>();
 
-	}
+    }
 }

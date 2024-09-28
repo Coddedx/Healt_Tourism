@@ -1,6 +1,5 @@
 ﻿@using Plastic.ViewModels
 <!-- -------- Klinik --------->
-@* @model IEnumerable<Clinic>*@
     @model ClinicViewModel
 
 
@@ -33,8 +32,7 @@
         </div>
         </div>*@
 
-@*         <div class="col-lg-1 mt-lg-n2 mt-2">
-            *@  <div class="col-lg-2">
+            <div class="col-lg-2">
                 <div class="input-group input-group-static">
                 <span class="input-group-text"></span>
                 <select id="cityS" name="cityS" class="form-control text-muted">
@@ -48,8 +46,7 @@
             </div>
         </div>
 
-@*         <div class="col-lg-1 mt-lg-n2 mt-2">
-            *@<div class="col-lg-2">
+            <div class="col-lg-2">
                 <div class="input-group input-group-static">
                 <span class="input-group-text"></span>
                 <select id="district" name="district" disabled class="form-control text-muted">
@@ -63,18 +60,15 @@
             </div>
         </div>
 
-@*         <div class="col-lg-1 mt-lg-n2 mt-2">
-            *@<div class="col-lg-2">
+            <div class="col-lg-2">
                 <div class="input-group input-group-static">
                 <span class="input-group-text"></span>
                 <input name="doctor" class="form-control" placeholder="Doktor" type="text">
             </div>
         </div>
 
-@*         <div class="col-lg-1 mt-lg-n2 mt-2">
-            *@<div class="col-lg-2">
+            <div class="col-lg-2">
                 <div class="input-group input-group-static">
-                @* <label class="ms-0">Kategori</label> *@
                 <span class="input-group-text"></span>
                 <select name="category" class="form-control text-muted" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Title", ViewBag.CategoryIds))">
                     <option value="">Kategori</option>
@@ -82,10 +76,8 @@
             </div>
         </div>
 
-@*         <div class="col-lg-1 mt-lg-n2 mt-2">
-            *@<div class="col-lg-2">
+            <div class="col-lg-2">
                 <div class="input-group input-group-static">
-                @* <label class="ms-0">İşlem</label> *@
                 <span class="input-group-text"></span>
                 <select name="operation" asp-items="@(new SelectList(ViewBag.Operations, "Id", "Title", ViewBag.OperationIds))" class="form-control text-muted">
                     <option value="">işlem</option>
@@ -102,10 +94,8 @@
         </div>
         </div>*@
 
-@*         <div class="col-lg-3 mt-lg-n2 mt-2 d-flex align-items-end">
-            <label>&nbsp;</label>
-            *@<div class="col-lg-2">
-                <button type="submit" name="action" value="search" class="btn bg-gradient-primary w-100 mb-0">Ara</button> @* type="button" id="searchButton"*@
+        <div class="col-lg-2">
+                <button type="submit" name="action" value="search" class="btn bg-gradient-primary w-100 mb-0">Ara</button> 
         </div>
 
         </form>
@@ -249,20 +239,6 @@
 
 
 <script>
-    // document.addEventListener("DOMContentLoaded", function () {
-    //     const citySelect = document.getElementById("cityS");
-    //     const districtSelect = document.getElementById("district");
-
-    //     citySelect.addEventListener("change", function () {
-    //         console.log("City selected value: ", citySelect.value);  // Seçilen değeri konsolda kontrol edin
-    //         if (citySelect.value === "") {
-    //             districtSelect.disabled = true;
-    //             districtSelect.value = ""; // Bölge seçimini sıfırla
-    //         } else {
-    //             districtSelect.disabled = false;
-    //         }
-    //     });
-    // });
     document.addEventListener("DOMContentLoaded", function () {
         const citySelect = document.getElementById("cityS");
         const districtSelect = document.getElementById("district");
@@ -281,150 +257,3 @@
         });
     });
     </script>
-
-
-
-
-@*  <script>
- document.addEventListener("DOMContentLoaded", function () {
-    const citySelect = document.getElementById("cityS");
-    const districtSelect = document.getElementById("district");
-
-    citySelect.addEventListener("change", function () {
-        console.log("City selected value: ", citySelect.value);  // Seçilen değeri konsolda kontrol edin
-        if (citySelect.value === "") {
-            districtSelect.disabled = true;
-            districtSelect.value = ""; // Bölge seçimini sıfırla
-        } else {
-            districtSelect.disabled = false;
-        }
-    });
-});
-
-document.getElementById('searchButton').addEventListener('click', function (event) {
-    event.preventDefault(); // Formun otomatik olarak gönderilmesini engelleyin
-
-    // Form verilerini al
-    var cityId = document.getElementById('cityS').value;
-    var districtId = document.getElementById('district').value;
-    var doctorName = document.querySelector('input[name="doctor"]').value;
-    var categoryId = document.querySelector('select[name="category"]').value;
-    var operationId = document.querySelector('select[name="operation"]').value;
-
-    // Form verilerini form öğesi olarak oluşturun
-    var form = document.createElement('form');
-    form.method = 'GET'; // GET yöntemi ile gönderim yapın
-    form.action = '/Clinic/Index'; // Burada URL'yi kontrol edin
-
-    // Form verilerini gizli inputlarla ekleyin
-    form.appendChild(createHiddenInput('cityS', cityId));
-    form.appendChild(createHiddenInput('district', districtId));
-    form.appendChild(createHiddenInput('doctor', doctorName));
-    form.appendChild(createHiddenInput('category', categoryId));
-    form.appendChild(createHiddenInput('operation', operationId));
-    form.appendChild(createHiddenInput('action', 'search'));
-
-    // Formu body'ye ekleyin ve gönderin
-    document.body.appendChild(form);
-    form.submit();
-
-    function createHiddenInput(name, value) {
-        var input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value;
-        return input;
-    }
-});
-
-
-// document.getElementById('searchButton').addEventListener('click', function () {
-//     // Form verilerini al
-//     var cityId = document.getElementById('cityS').value;
-//     var districtId = document.getElementById('district').value;
-//     var doctorName = document.querySelector('input[name="doctor"]').value;
-//     var categoryId = document.querySelector('select[name="category"]').value;
-//     var operationId = document.querySelector('select[name="operation"]').value;
-
-//     // URL ve parametreleri ayarla
-//     var url = '/Clinic/Index?' +
-//         'cityS=' + encodeURIComponent(cityId) +
-//         '&district=' + encodeURIComponent(districtId) +
-//         '&doctor=' + encodeURIComponent(doctorName) +
-//         '&category=' + encodeURIComponent(categoryId) +
-//         '&operation=' + encodeURIComponent(operationId) +
-//         '&action=search'; // action parametresini ekleyin
-
-//     // Sayfayı yeniden yönlendir
-//     window.location.href = url;
-//});
-
-</script>
- *@
-
-
-
-
-
-
-
-
-@*     <section class="pt-7 pb-0">
-        <div class="container">
-            <div class="row">
-                <!--  KLİNİK -->
-                @foreach (var item in Model.Clinics)
-                {
-                    <div class="col-lg-4 col-md-6">
-                        <br><br><br>
-                        <div class="card mt-5 mt-md-0">
-                            <div class="card-header p-0 mx-3 mt-n4 position-relative z-index-2">
-                                <a class="d-block blur-shadow-image">
-                                    <img src="~/assets/img/products/product-2-min.jpg" alt="img-blur-shadow" class="img-fluid border-radius-lg" loading="lazy">
-                                </a>
-                                <div class="colored-shadow" style="background-image: url(&quot;.assets/img/products/product-2-min.jpg&quot;);"></div>
-                            </div>
-                            <div class="card-body pt-3">
-                                <p class="text-dark mb-2 text-sm">@item.Phone</p>
-                                <a href="javascript:;">
-                                    <h5>
-                                        @item.Name (@item.District.Name)
-                                    </h5>
-                                </a>
-                                <p>@item.Adress</p>
-                                <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm mb-0" asp-area="" asp-controller="Clinic" asp-action="Details" asp-route-id="@item.Id">Sayfasına Git</a>
-                            </div>
-                        </div>
-                    </div>
-                }
-
-                <!--  FRANCHİSE -->
-                @foreach (var item in Model.Franchises)
-                {
-                    <div class="col-lg-4 col-md-6">
-                        <br><br><br>
-                        <div class="card mt-5 mt-md-0">
-                            <div class="card-header p-0 mx-3 mt-n4 position-relative z-index-2">
-                                <a class="d-block blur-shadow-image">
-                                    <img src="~/assets/img/products/product-2-min.jpg" alt="img-blur-shadow" class="img-fluid border-radius-lg" loading="lazy">
-                                </a>
-                                <div class="colored-shadow" style="background-image: url(&quot;.assets/img/products/product-2-min.jpg&quot;);"></div>
-                            </div>
-                            <div class="card-body pt-3">
-                                <p class="text-dark mb-2 text-sm">@item.Phone</p>
-                                <a href="javascript:;">
-                                    <h5>
-                                        @item.Title  (@item.District.Name)
-                                    </h5>
-                                </a>
-                                <p>@item.Adress</p>
-                                <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm mb-0" asp-area="" asp-controller="Franchise" asp-action="Details" asp-route-id="@item.Id">Sayfasına Git</a>
-                            </div>
-                        </div>
-                    </div>
-                }
-
-            </div>
-
-    </section>
- *@
