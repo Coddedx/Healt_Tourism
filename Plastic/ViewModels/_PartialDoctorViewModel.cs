@@ -8,6 +8,9 @@ namespace Plastic.ViewModels
 
         public Doctor EditDoctor { get; set; }
 
-        public IFormFile? Image { get; set; } //ıfromfile tipi veri gerektiği için  
+        public IFormFile? Image { get; set; } //ıfromfile tipi veri gerektiği için
+
+        public int ClinicId { get; set; }
+        public int FranchiseId { get; set; }
     }
 }

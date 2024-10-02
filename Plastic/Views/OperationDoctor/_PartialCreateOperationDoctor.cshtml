@@ -12,7 +12,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Yeni Doktor Ekle</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Yeni İşlem Ekle</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -23,8 +23,8 @@
 
                                             <form asp-area="" asp-controller="OperationDoctor" asp-action="Create" enctype="multipart/form-data" method="post" id="createOperationDoctorModalForm" role="form" autocomplete="off">
                                                 <input type="hidden" asp-for="OperationDoctor.Id" />
-                                                <input type="hidden" asp-for="OperationDoctor.Doctor.ClinicId" />
-                                                <input type="hidden" asp-for="OperationDoctor.Doctor.FranchiseId" />
+                                                <input type="hidden" name="ClinicId" asp-for="ClinicId" value="@Model.ClinicId" />
+                                                <input type="hidden" name="FranchiseId" asp-for="FranchiseId" value="@Model.FranchiseId" />
                                                 <div class="card-body">
                                                     <div class="row">
 

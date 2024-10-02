@@ -85,7 +85,7 @@ namespace Plastic.Models
         public string? ImageUrl { get; set; } //IFormFile doğrudan veritabanına kaydedilemez çünkü bu tip yalnızca HTTP istekleriyle gönderilen dosyaları temsil eder. (cloudinary için ıfromfile gerkliydi) 
 
 
-		public virtual ICollection<OperationDoctor?> OperationDoctors { get; set; }
+		public virtual ICollection<OperationDoctor?> OperationDoctors { get; set; } = new List<OperationDoctor?>();
 
 
 	}

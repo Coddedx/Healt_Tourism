@@ -5,7 +5,7 @@
 <header>
 
     <!-- Clinic Detay verileri-->
-    <div class="page-header min-vh-75" style="background-image: url(https://images.unsplash.com/photo-1501446529957-6226bd447c46?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2378&q=80)" loading="lazy">
+    <div id="clinic-details" data-clinic-id="@Model.Clinic.Id" class="page-header min-vh-75" style="background-image: url(https://images.unsplash.com/photo-1501446529957-6226bd447c46?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2378&q=80)" loading="lazy">
         <span class="mask bg-gradient-dark opacity-4"></span>
         <div class="container">
             <div class="row">
@@ -35,11 +35,13 @@
                      <li>
                         <a class="dropdown-item border-radius-md"
                            data-url="@Url.Action("Create", "OperationDoctor")"
+                           data-clinic-id="@Model.Clinic.Id"
                            id="createOperationDoctorLink">Operasyon</a>
                     </li>
                     <li>
                         <a class="dropdown-item border-radius-md"
                            data-url="@Url.Action("Create", "Doctor")"
+                           data-clinic-id="@Model.Clinic.Id"
                            id="CreateDoctorLink">Doktor</a>
                     </li>
 
@@ -95,12 +97,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
-            // nav tab da hangisine basıldıysa doğru partial view ın content-area bölgesine gelmesini sağlar - edit doctor/operationDoctor partialı getirir
             $(document).ready(function () {
-               
+           
+                // nav tab da hangisine basıldıysa doğru partial view ın content-area bölgesine gelmesini sağlar        
                 $(".nav-tab").click(function (e) {
                     e.preventDefault();
                     var url = $(this).data("url");
+                    var clinicId = $('#clinic-details').data('clinic-id'); //<div id="clinic-details" data-clinic-id="Model.Clinic.Id" den alıyor 
+
+                    url += '?clinicId=' + clinicId;
+
+                    console.log("Clinic ID:", clinicId);
+                    console.log("Final URL:", url);
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -114,6 +123,10 @@
                 $(document).on('click', '.btn-edit-doctor', function (e) {
                     e.preventDefault();
                     var url = $(this).attr('href');
+                    var clinicId = $('#clinic-details').data('clinic-id');
+
+                    url += '?clinicId=' + clinicId;
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -128,6 +141,10 @@
                 $(document).on('click', '.btn-edit-operationDoctor', function (e) {
                     e.preventDefault();
                     var url = $(this).attr('href');
+                    var clinicId = $('#clinic-details').data('clinic-id'); 
+
+                    url += '?clinicId=' + clinicId;
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -142,6 +159,11 @@
                 $(document).on('click', '#createOperationDoctorLink', function (e) {
                     e.preventDefault();
                     var url = $(this).data('url');
+                    var clinicId = $(this).data('clinic-id');
+                   
+                    // URL'e ClinicId'yi query string olarak ekliyoruz
+                    url += '?clinicId=' + clinicId;
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -152,10 +174,15 @@
                     });
                 });
 
-                //create Doctor modal pop up ı  aynı sayfada kalarak açılır
+                //create Doctor modal pop up ı  aynı sayfada kalarak açılır  attrhref
                 $(document).on('click', '#CreateDoctorLink', function (e) {
                     e.preventDefault();
-                    var url = $(this).attr('href');
+                    var url = $(this).data('url');
+                    var clinicId = $(this).data('clinic-id');
+
+                    // URL'e ClinicId'yi query string olarak ekliyoruz
+                    url += '?clinicId=' + clinicId;
+                    
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -170,6 +197,10 @@
                 $(document).on('click', '.btn-delete-operationDoctor', function (e) {
                     e.preventDefault();
                     var url = $(this).attr('href');
+                    var clinicId = $('#clinic-details').data('clinic-id'); //<div id="clinic-details" data-clinic-id="Model.Clinic.Id" den alıyor
+
+                    url += '?clinicId=' + clinicId;
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -184,6 +215,10 @@
                 $(document).on('click', '.btn-delete-Doctor', function (e) {
                     e.preventDefault();
                     var url = $(this).attr('href');
+                    var clinicId = $('#clinic-details').data('clinic-id');
+
+                    url += '?clinicId=' + clinicId;
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -194,9 +229,7 @@
                     });
                 });
 
-
             });
-
         </script>
     }
 

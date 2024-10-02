@@ -4,7 +4,7 @@
 <header>
 
     <!-- Franchise Detay verileri-->
-    <div class="page-header min-vh-75" style="background-image: url(https://images.unsplash.com/photo-1501446529957-6226bd447c46?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2378&q=80)" loading="lazy">
+    <div id="franchise-details" data-franchise-id="@Model.Franchise.Id" class="page-header min-vh-75" style="background-image: url(https://images.unsplash.com/photo-1501446529957-6226bd447c46?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2378&q=80)" loading="lazy">
         <span class="mask bg-gradient-dark opacity-4"></span>
         <div class="container">
             <div class="row">
@@ -37,11 +37,13 @@
                     <li>
                         <a class="dropdown-item border-radius-md"
                            data-url="@Url.Action("Create", "OperationDoctor")"
+                           data-franchise-id="@Model.Franchise.Id"
                            id="createOperationDoctorLink">Operasyon</a>
                     </li>
                     <li>
                         <a class="dropdown-item border-radius-md"
                            data-url="@Url.Action("Create", "Doctor")"
+                           data-franchise-id="@Model.Franchise.Id"
                            id="CreateDoctorLink">Doktor</a>
                     </li>
 
@@ -93,11 +95,19 @@
     @section Scripts {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript">
-            // nav tab da hangisine basıldıysa doğru partial view ın content-area bölgesine gelmesini sağlar
             $(document).ready(function () {
+                
+                // nav tab da hangisine basıldıysa doğru partial view ın content-area bölgesine gelmesini sağlar
                 $(".nav-tab").click(function (e) {
                     e.preventDefault();
                     var url = $(this).data("url");
+                    var franchiseId = $('#franchise-details').data('franchise-id');
+
+                    url += '?franchiseId=' + franchiseId;
+                    console.log("Franchise ID:", franchiseId);
+                    console.log("Final URL:", url);
+
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -111,6 +121,10 @@
                 $(document).on('click', '.btn-edit-doctor', function (e) {
                     e.preventDefault();
                     var url = $(this).attr('href');
+                    var franchiseId = $('#franchise-details').data('franchise-id');
+
+                    url += '?franchiseId=' + franchiseId;
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -125,6 +139,10 @@
                 $(document).on('click', '.btn-edit-operationDoctor', function (e) {
                     e.preventDefault();
                     var url = $(this).attr('href');
+                    var franchiseId = $('#franchise-details').data('franchise-id');
+                    
+                    url += '?franchiseId=' + franchiseId;
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -139,6 +157,10 @@
                 $(document).on('click', '#createOperationDoctorLink', function (e) {
                     e.preventDefault();
                     var url = $(this).data('url');
+                    var franchiseId = $(this).data('franchise-id');
+
+                    url += '?franchiseId=' + franchiseId;
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -153,6 +175,10 @@
                 $(document).on('click', '#CreateDoctorLink', function (e) {
                     e.preventDefault();
                     var url = $(this).data('url');
+                    var franchiseId = $(this).data('franchise-id');
+
+                    url += '?franchiseId=' + franchiseId;
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -167,6 +193,10 @@
                 $(document).on('click', '.btn-delete-operationDoctor', function (e) {
                     e.preventDefault();
                     var url = $(this).attr('href');
+                    var franchiseId = $('#franchise-details').data('franchise-id');
+
+                    url += '?franchiseId=' + franchiseId;
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -181,6 +211,10 @@
                 $(document).on('click', '.btn-delete-Doctor', function (e) {
                     e.preventDefault();
                     var url = $(this).attr('href');
+                    var franchiseId = $('#franchise-details').data('franchise-id');
+
+                    url += '?franchiseId=' + franchiseId;
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -191,9 +225,7 @@
                     });
                 });
 
-
             });
-
         </script>
     }
 

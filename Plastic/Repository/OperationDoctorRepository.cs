@@ -13,7 +13,7 @@ namespace Plastic.Repository
         }
         public List<OperationDoctor?> GetAllOperationDoctorByClinicId(int id)
         { 
-            var doctor = _context.Doctors.Include(a => a.Clinic).Where(b => b.ClinicId == id).ToList();
+            var doctor = _context.Doctors.Include(a => a.Clinic).Where(b => b.ClinicId == id && b.Status == true && b.Deleted == false).ToList();
             var doctorIds = doctor.Select(a => a.Id).ToList();
             var operationDoctor = _context.OperationDoctors
                 .Include(a => a.Operation)
@@ -23,7 +23,7 @@ namespace Plastic.Repository
         }
         public List<OperationDoctor?> GetAllOperationDoctorByFranchiseId(int id)
         {
-            var doctor = _context.Doctors.Include(a => a.Clinic).Where(b => b.FranchiseId == id).ToList();
+            var doctor = _context.Doctors.Include(a => a.Clinic).Where(b => b.FranchiseId == id && b.Status == true && b.Deleted == false).ToList();
             var doctorIds = doctor.Select(a => a.Id).ToList();
             var operationDoctor = _context.OperationDoctors
                 .Include(a => a.Operation)

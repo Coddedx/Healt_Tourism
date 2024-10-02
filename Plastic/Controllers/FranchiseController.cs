@@ -67,7 +67,6 @@ namespace Plastic.Controllers
                     franchiseVM.Franchise.District = new District();
                     franchiseVM.Franchise.District.City = new City();
                 }
-                var doctorVM = new DoctorViewModel();
 
                 //var franchiseModalViewModelJson = TempData["FranchiseModalViewModel"] as string;
                 //if (!string.IsNullOrEmpty(franchiseModalViewModelJson))
@@ -76,9 +75,8 @@ namespace Plastic.Controllers
                 //}
 
                 if (id == 0) { id = franchiseVM.Franchise.Id; }
-                if (id == 0) { id = doctorVM.FranchiseId; }
 
-                HttpContext.Session.SetInt32("_FranchiseId", id);
+                //HttpContext.Session.SetInt32("_FranchiseId", id);
 
                 var franchise = await _franchiseRepository.GetByIdFranchiseAsync(id);
                 if (franchise == null) { return RedirectToAction("Index", "Franchise"); }

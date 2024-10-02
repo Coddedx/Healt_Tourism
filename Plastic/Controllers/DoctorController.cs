@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -34,14 +35,20 @@ namespace Plastic.Controllers
         {
             return View();
         }
-        public PartialViewResult Doctor()
+        public PartialViewResult Doctor(int clinicId, int franchiseId)
         {
-            var _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-            var _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+            ////var _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
+            ////var _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+            var _idClinic = clinicId;
+            var _idFranchise = franchiseId;
 
             try
             {
-                var PartialDoctorVm = new _PartialDoctorViewModel();
+                var PartialDoctorVm = new _PartialDoctorViewModel()
+                {
+                    ClinicId = clinicId,
+                    FranchiseId = franchiseId,
+                };
 
                 if (_idFranchise == 0)
                 {
@@ -49,7 +56,7 @@ namespace Plastic.Controllers
                 }
                 else if (_idClinic == 0)
                 {
-                    PartialDoctorVm.Doctors = _doctorRepository.GetAllDoctorByFranchiseId(_idFranchise); 
+                    PartialDoctorVm.Doctors = _doctorRepository.GetAllDoctorByFranchiseId(_idFranchise);
                 }
                 //var doctor = _clinicRepository.GetDoctorByClinicId(_id);
                 return PartialView("~/Views/Doctor/_PartialDoctor.cshtml", PartialDoctorVm);  //doctor  _PartialView.cshtml Views/Operation/Index.cshtml  
@@ -65,11 +72,13 @@ namespace Plastic.Controllers
             return View();
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int clinicId, int franchiseId)
         {
             var doctorVM = new DoctorViewModel()
             {
-                Doctor = new Doctor()
+                Doctor = new Doctor(),
+                ClinicId = clinicId,
+                FranchiseId = franchiseId
             };
             return PartialView("~/Views/Doctor/_PartialCreateDoctor.cshtml", doctorVM); //, doctorVM
         }
@@ -78,15 +87,10 @@ namespace Plastic.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(DoctorViewModel doctorVM)
         {
-            var _idClinic = 0;
-            var _idFranchise = 0;
+            //var _idClinic = 0;
+            //var _idFranchise = 0;
             try
             {
-                //var doctorVM = new DoctorViewModel // bu olmadığında doctor dan obje üretemiyorum???
-                //{
-                //    Doctor = new Doctor()
-                //};
-
                 //clinicMVM ya da franchiseMVM içinde doctor,clinic,franchise tabloları da olduğu için sadece doctor için model state kontrolü yapmalıyız !!!!!!
                 var doctorModelState = ModelState
                             .Where(ms => ms.Key.StartsWith("Doctor."))
@@ -96,53 +100,35 @@ namespace Plastic.Controllers
                 //foreign key le bağlı tabloların formdan idlerinin null gelmesi sorunu çözümü  
                 {
                     //formdan FranchiseId ve ClinicId valid ama null geldiği için. Hangi kontrollerdan form geldiğini bu sayede anlarız (0 olanın contr. dan gelmiyo yani)
-                    _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-                    _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+                    //_idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
+                    //_idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
 
                     //doctorModelState["Doctor.Clinic"].ValidationState = ModelValidationState.Valid; //Valid yapıyor ama yine de giremedim ondan direk remove diyorum
                     ModelState.Remove("Doctor.Clinic");
                     ModelState.Remove("Doctor.Franchise");
-
-                    //if (clinicMVM.Doctor.FranchiseId.HasValue)
-                    //{
-                    //    ModelState.Remove("Doctor.Clinic");
-                    //}
-                    //else if (clinicMVM.Doctor.ClinicId.HasValue)
-                    //{
-                    //    ModelState.Remove("Doctor.Franchise");
-                    //}
                 }
 
                 if (doctorModelState.Values.All(v => v.Errors.Count == 0))
                 {
                     var doctor = new Doctor();
+                    doctor = doctorVM.Doctor;
 
-                    //verilerin clinic/franchise dan gelmesine göre gerekli işlemler 
-                    if (_idFranchise == 0) //form verileri clinicten geldiyse
+                    //null a falan eşitli kalmamsı lazım çünkü tabloları oluştururuken ya franchise ya clinic ıd null olmalı diye ayarladım
+                    if (doctorVM.ClinicId == 0)
                     {
-                        doctor = doctorVM.Doctor; //clinicMVM
-                        if (doctorVM.Image != null)  // clinicMVM.Image1
-                        {
-                            var result = await _photoService.AddPhotoAsync(doctorVM.Image); // clinicMVM.Image1
-                        }
-
-                        //0 a falan eşitli kalmamsı lazım çünkü tabloları oluştururuken ya franchise ya clinic ıd null olmalı diye ayarladım
-                        if (_idClinic == 0) { doctor.ClinicId = null; } else if (_idFranchise == 0) { doctor.FranchiseId = null; }
-
-                        doctorVM.ClinicId = _idClinic;//clinicMVM.Clinic.Id; //tekrardan clinic id yi gönderelim ki aynı sayfadaki clinicten işlem yapmaya devam edelim.clinic den gelen veriler doğruysa buraya yönlendirme yapılcak
-                    }
-                    else if (_idClinic == 0) //form verileri franchisedan geldiyse
-                    {
-                        doctor = doctorVM.Doctor;  //franchiseMVM.Doctor
-                        if (doctorVM.Image != null)  //franchiseMVM.Image
-                        {
-                            var result = await _photoService.AddPhotoAsync(doctorVM.Image);// franchiseMVM.Image
-                        }
-
                         doctor.ClinicId = null;
-                        doctor.FranchiseId = _idFranchise;
+                        doctor.FranchiseId = doctorVM.FranchiseId;
+                    }
+                    else if (doctorVM.FranchiseId == 0)
+                    {
+                        doctor.FranchiseId = null;
+                        doctor.ClinicId = doctorVM.ClinicId;
+                    }
 
-                        doctorVM.FranchiseId = _idFranchise;
+                    if (doctorVM.Image != null)  // clinicMVM.Image1
+                    {
+                        var result = await _photoService.AddPhotoAsync(doctorVM.Image); // clinicMVM.Image1
+                        doctor.ImageUrl = result.Url.ToString();
                     }
 
                     //  BaseEntity 
@@ -158,48 +144,40 @@ namespace Plastic.Controllers
                     _context.Doctors.Add(doctor);
                     _context.SaveChanges();
 
-                    if (_idFranchise == 0) //form verileri clinicten geldiyse
+                    if (doctorVM.FranchiseId == 0) //form verileri clinicten geldiyse
                     {
-                        return RedirectToAction("Details", "Clinic", new { id = _idClinic });
+                        return RedirectToAction("Details", "Clinic", new { id = doctorVM.FranchiseId });
                     }
-                    else if (_idClinic == 0) //form verileri franchisedan geldiyse
+                    else if (doctorVM.ClinicId == 0) //form verileri franchisedan geldiyse
                     {
-                        return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
+                        return RedirectToAction("Details", "Franchise", new { id = doctorVM.ClinicId });
                     }
                 }
 
-                //Doctor özelliğinin null gidiyor clinic controllera. modelin RedirectToAction yöntemiyle gönderilirken Doctor nesnesinin seri hale getirilip geri yüklenmemesi
-                //RedirectToAction yöntemi, genellikle URL parametreleri aracılığıyla veri gönderir ve karmaşık nesneleri(örneğin Doctor gibi) düzgün bir şekilde seri hale getiremez.
-                //Bu sorunu çözmek için TempData veya Session kullanarak karmaşık veri nesnelerini geçici olarak depolayabiliriz.
-                // DoctorViewModel'i TempData'ya serialize edip sakla                   
-                //TempData["ClinicModalViewModel"] = JsonSerializer.Serialize(clinicMVM);
-                //TempData["FranchiseModalViewModel"] = JsonSerializer.Serialize(franchiseMVM);
-
-
                 //clinic/franchise den gelen veriler yanlışsa buraya yönlendirme yapılcak
-                if (_idClinic == 0) //from verileri franchise dan gelmiştir
+                if (doctorVM.ClinicId == 0) //from verileri franchise dan gelmiştir
                 {
-                    return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
+                    return RedirectToAction("Details", "Franchise", new { id = doctorVM.FranchiseId });
                 }
                 else //from verileri clinic den gelmiştir
                 {
-                    return RedirectToAction("Details", "Clinic", new { id = _idClinic });
+                    return RedirectToAction("Details", "Clinic", new { id = doctorVM.ClinicId });
                 }
             }
             catch  //burası çalışmıyor klinikler sayfasına atıyor direk düzelt
             {
-                if (_idFranchise == 0)
+                if (doctorVM.FranchiseId == 0)
                 {
-                    return RedirectToAction("Details", "Clinic", new { id = _idClinic });
+                    return RedirectToAction("Details", "Clinic", new { id = doctorVM.ClinicId });
                 }
                 else
                 {
-                    return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
+                    return RedirectToAction("Details", "Franchise", new { id = doctorVM.FranchiseId });
                 }
             }
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int clinicId, int franchiseId, int id)
         {
             var doctor = await _doctorRepository.GetDoctorByIdAsync(id);
             if (doctor == null)
@@ -211,10 +189,11 @@ namespace Plastic.Controllers
             var doctorVM = new _PartialDoctorViewModel();
             {
                 doctorVM.EditDoctor = selectedDoctor;
+                doctorVM.ClinicId = clinicId;
+                doctorVM.FranchiseId = franchiseId;
             };
 
             return PartialView("~/Views/Doctor/_PartialEditDoctor.cshtml", doctorVM);
-
         }
 
         [HttpPost]
@@ -225,8 +204,8 @@ namespace Plastic.Controllers
             var _idFranchise = 0;
             try
             {
-                _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-                _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+                _idClinic = doctorVM.ClinicId;
+                _idFranchise = doctorVM.FranchiseId;
 
                 var doctorModelState = ModelState
                                             .Where(ms => ms.Key.StartsWith("EditDoctor."))
@@ -251,11 +230,19 @@ namespace Plastic.Controllers
                         catch (Exception ex)
                         {
                             ModelState.AddModelError("", "Fotoğaf silinemedi.");
-                            return PartialView("~/Views/Doctor/_PartialEditDoctor.cshtml", doctorVM);
+                            if (_idFranchise == 0) //form verileri clinicten geldiyse
+                            {
+                                return RedirectToAction("Details", "Clinic", new { id = _idClinic });
+                            }
+                            else if (_idClinic == 0) //form verileri franchisedan geldiyse
+                            {
+                                return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
+                            }
+
+                            //return PartialView("~/Views/Doctor/_PartialEditDoctor.cshtml", doctorVM);  //sadece partial view ı açıyor böyle
                         }
                         // RESİM YÜKLÜYOR
                         var photoResult = await _photoService.AddPhotoAsync(doctorVM.Image);
-
                         {
                             doctor = doctorVM.EditDoctor;
                             doctor.ClinicId = _idClinic;
@@ -319,10 +306,14 @@ namespace Plastic.Controllers
             }
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id, int clinicId, int franchiseId)
         {
             var DoctorVM = new DoctorViewModel()
-            { Doctor = new Doctor() };
+            {
+                Doctor = new Doctor(),
+                ClinicId = clinicId,
+                FranchiseId = franchiseId
+            };
 
             //OperationDoctor? operationDoctor = await _operationdoctorRepository.GetOperationDoctorByIdAsync(id);
             var Doctor = _context.Doctors.FirstOrDefault(o => o.Id == id);
@@ -333,14 +324,18 @@ namespace Plastic.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, IFormCollection collection, DoctorViewModel doctorVM)
         {
             var _idClinic = 0;
             var _idFranchise = 0;
             try
             {
-                _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-                _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+                _idClinic = doctorVM.ClinicId;
+                _idFranchise = doctorVM.FranchiseId;
+
+                //_idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
+                //_idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+
                 var Doctor = _context.Doctors.FirstOrDefault(o => o.Id == id);
                 if (Doctor != null)
                 {

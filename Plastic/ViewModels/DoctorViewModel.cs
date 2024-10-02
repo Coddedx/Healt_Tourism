@@ -18,6 +18,5 @@ namespace Plastic.ViewModels
 
         public int ClinicId { get; set; } //bunu aktarmam gerekiyor tekrardan clinic controllerına 
         public int FranchiseId { get; set; } //bunu aktarmam gerekiyor tekrardan franchise controllerına 
-
     }
 }

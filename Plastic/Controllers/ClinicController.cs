@@ -152,18 +152,8 @@ namespace Plastic.Controllers
                     clinicVM.Clinic.District = new District();
                     clinicVM.Clinic.District.City = new City();
                 };
-                //var doctorVM = new DoctorViewModel(); //// KONTROL ET???????????????????????????
-
-                //var PdoctorVM = new _PartialDoctorViewModel();//edit doctor da object set nul.. hatası için
-                ////{
-                ////    //Clinic = clinic,
-                ////    Doctors = _context.Doctors?.ToList() ?? new List<Doctor>() // Eğer null ise boş liste ata
-                ////};
-                //ViewBag._PartialDoctorClinicId = PdoctorVM.ClinicId;
 
                 if (id == 0) { id = clinicVM.Clinic.Id; }
-                //if (id == 0) { id = doctorVM.ClinicId; }  //// KONTROL ET???????????????????????????
-                // if (id == 0) { id = PdoctorVM.ClinicId; }  
 
                 //Form yanlış doldurulduktan sonra doldurulan yerlerin aynen gelmesi için verileri taşıyorum.
                 //var clinicModalViewModelJson = TempData["ClinicModalViewModel"] as string;
@@ -171,9 +161,8 @@ namespace Plastic.Controllers
                 //{
                 //    clinicVM = JsonSerializer.Deserialize<ClinicModalViewModel>(clinicModalViewModelJson);
                 //}
-
                 //formlarda işlem yaptıktan sonra id yi tutabilmek için ???????????????
-                HttpContext.Session.SetInt32("_ClinicId", id);
+                //HttpContext.Session.SetInt32("_ClinicId", id);
 
                 var clinic = await _clinicRepository.GetByIdClinicAsync(id);
                 if (clinic == null) { return RedirectToAction("Index", "Clinic"); }

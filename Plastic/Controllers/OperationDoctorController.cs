@@ -32,10 +32,13 @@ namespace Plastic.Controllers
         {
             return View();
         }
-        public PartialViewResult OperationDoctor()
+        public PartialViewResult OperationDoctor(int clinicId, int franchiseId)
         {
-            var _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-            var _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+            //var _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
+            //var _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+            var _idClinic = clinicId;
+            var _idFranchise = franchiseId;
+
             List<OperationDoctor> operations = new List<OperationDoctor>();
             try
             {
@@ -61,14 +64,18 @@ namespace Plastic.Controllers
             return View();
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int clinicId, int franchiseId)
         {
-            var _idClinic = 0;
-            var _idFranchise = 0;
-            _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-            _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+            var _idClinic = clinicId;
+            var _idFranchise = franchiseId;
+            //_idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
+            //_idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
 
-            var operationDoctorVM = new OperationDoctorViewModel();
+            var operationDoctorVM = new OperationDoctorViewModel()
+            {
+                ClinicId = clinicId,
+                FranchiseId = franchiseId,
+            };
 
             //Select doctor ve operations işlemleri
             {
@@ -78,13 +85,13 @@ namespace Plastic.Controllers
 
                 if (_idFranchise == 0)
                 {
-                    var doctors = _context.Doctors.Include(a => a.Clinic).Where(b => b.ClinicId == _idClinic).ToList();
+                    var doctors = _context.Doctors.Include(a => a.Clinic).Where(b => b.ClinicId == _idClinic && b.Status == true && b.Deleted == false).ToList();
                     operationDoctorVM.Doctors = doctors;
                     operationDoctorVM.DoctorIds = doctors.Select(a => a.Id).ToList();
                 }
                 else if (_idClinic == 0)
                 {
-                    var doctors = _context.Doctors.Include(a => a.Clinic).Where(b => b.FranchiseId == _idFranchise).ToList();
+                    var doctors = _context.Doctors.Include(a => a.Clinic).Where(b => b.FranchiseId == _idFranchise && b.Status == true && b.Deleted == false).ToList();
                     operationDoctorVM.Doctors = doctors;
                     operationDoctorVM.DoctorIds = doctors.Select(a => a.Id).ToList();
                 }
@@ -97,16 +104,13 @@ namespace Plastic.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(OperationDoctorViewModel operationDoctorVM)
         {
-            var _idClinic = 0;
-            var _idFranchise = 0;
+            var _idClinic = operationDoctorVM.ClinicId;
+            var _idFranchise = operationDoctorVM.FranchiseId;
             try
             {
                 var operationdoctorModelState = ModelState
                                     .Where(ms => ms.Key.StartsWith("OperationDoctor."))
                                     .ToDictionary(ms => ms.Key, ms => ms.Value);
-
-                _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-                _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
 
                 var operationDoctor = new OperationDoctor();
 
@@ -116,8 +120,8 @@ namespace Plastic.Controllers
                 //operationdoctor.DoctorId = SelectedDoctorId; //operationDoctorVM.DoctorIds;
                 //operationdoctor.OperationId = SelectedOperationId;
 
-                ModelState.Remove("OperationDoctor"); 
-                ModelState.Remove("OperationDoctor.Doctor"); 
+                ModelState.Remove("OperationDoctor");
+                ModelState.Remove("OperationDoctor.Doctor");
                 ModelState.Remove("OperationDoctor.Operation");
 
                 // MODEL SEÇİMİ YÖNETİMİ İLE BU SORUNU ÇÖZ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -125,9 +129,9 @@ namespace Plastic.Controllers
                 if (operationDoctorVM.DoctorIds.Any() && operationDoctorVM.OperationIds.Any())
                 {
                     //ModelState.AddModelError("", "Doktor ve işlem seçmek zorunludur.");
-                //}
-                //else if (ModelState.IsValid) // operationdoctorModelState.Values.All(v => v.Errors.Count == 0)
-                //{
+                    //}
+                    //else if (ModelState.IsValid) // operationdoctorModelState.Values.All(v => v.Errors.Count == 0)
+                    //{
                     operationDoctor = operationDoctorVM.OperationDoctor;
 
                     operationDoctor.Doctor = _context.Doctors.Find(selectedDoctorId);
@@ -213,20 +217,23 @@ namespace Plastic.Controllers
             }
         }
 
-        public ActionResult Edit(int id)
-        {
-            var _idClinic = 0;
-            var _idFranchise = 0;
+        public ActionResult Edit(int id, int clinicId, int franchiseId)
+        {           
+            var operationDoctorVM = new OperationDoctorViewModel();
 
-            _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-            _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+            var _idClinic = clinicId;
+             operationDoctorVM.ClinicId = clinicId;
+            var _idFranchise = franchiseId; 
+             operationDoctorVM.FranchiseId = franchiseId;
+
+            //_idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
+            //_idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
 
             //var operationDoctor = _operationdoctorRepository.GetOperationDoctorByIdAsync(id);
             //if (operationDoctor == null) { return RedirectToAction("~/Views/OperationDoctor/_PartialOperationDoctor.cshtml"); } //????????????????????????*
 
             var selectedOperationDoctor = _context.OperationDoctors.FirstOrDefault(a => a.Id == id);
 
-            var operationDoctorVM = new OperationDoctorViewModel();
             { operationDoctorVM.OperationDoctor = selectedOperationDoctor; }
 
             //Select doctor ve operations işlemleri
@@ -237,18 +244,17 @@ namespace Plastic.Controllers
 
                 if (_idFranchise == 0)
                 {
-                    var doctors = _context.Doctors.Include(a => a.Clinic).Where(b => b.ClinicId == _idClinic).ToList();
+                    var doctors = _context.Doctors.Include(a => a.Clinic).Where(b => b.ClinicId == _idClinic && b.Status == true && b.Deleted == false).ToList();
                     operationDoctorVM.Doctors = doctors;
                     operationDoctorVM.DoctorIds = doctors.Select(a => a.Id).ToList();
                 }
                 else if (_idClinic == 0)
                 {
-                    var doctors = _context.Doctors.Include(a => a.Clinic).Where(b => b.FranchiseId == _idFranchise).ToList();
+                    var doctors = _context.Doctors.Include(a => a.Clinic).Where(b => b.FranchiseId == _idFranchise && b.Status == true && b.Deleted == false).ToList();
                     operationDoctorVM.Doctors = doctors;
                     operationDoctorVM.DoctorIds = doctors.Select(a => a.Id).ToList();
                 }
             }
-
             return PartialView("~/Views/OperationDoctor/_PartialEditOperationDoctor.cshtml", operationDoctorVM);
         }
 
@@ -256,13 +262,10 @@ namespace Plastic.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, OperationDoctorViewModel operationDoctorVM)
         {
-            var _idClinic = 0;
-            var _idFranchise = 0;
+            var _idClinic = operationDoctorVM.ClinicId;
+            var _idFranchise = operationDoctorVM.FranchiseId;
             try
             {
-                _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-                _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
-
                 OperationDoctor? operationDoctor = await _operationdoctorRepository.GetOperationDoctorByIdAsync(id);
 
                 if (operationDoctor != null)
@@ -329,10 +332,14 @@ namespace Plastic.Controllers
             }
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, int clinicId, int franchiseId)
         {
             var operationDoctorVM = new OperationDoctorViewModel()
-            { OperationDoctor = new OperationDoctor() };
+            { 
+                OperationDoctor = new OperationDoctor(),
+                ClinicId = clinicId,
+                FranchiseId = franchiseId
+            };
 
             //OperationDoctor? operationDoctor = await _operationdoctorRepository.GetOperationDoctorByIdAsync(id);
             var operationDoctor = _context.OperationDoctors.Include(a => a.Doctor).Include(a => a.Operation).FirstOrDefault(o => o.Id == id);
@@ -343,14 +350,16 @@ namespace Plastic.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, IFormCollection collection, OperationDoctorViewModel operationDoctorVM)
         {
             var _idClinic = 0;
             var _idFranchise = 0;
             try
             {
-                _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-                _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
+                _idClinic = operationDoctorVM.ClinicId;
+                _idFranchise = operationDoctorVM.FranchiseId;
+                //_idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
+                //_idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
 
                 var operationDoctor = _context.OperationDoctors.FirstOrDefault(a => a.Id == id);
                 if (operationDoctor != null)
