@@ -32,21 +32,19 @@ namespace Plastic.Controllers
         {
             return View();
         }
-        public PartialViewResult OperationDoctor(int clinicId, int franchiseId)
+        public PartialViewResult OperationDoctor(string clinicId, string franchiseId)
         {
-            //var _idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
-            //var _idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
             var _idClinic = clinicId;
             var _idFranchise = franchiseId;
 
             List<OperationDoctor> operations = new List<OperationDoctor>();
             try
             {
-                if (_idFranchise == 0)
+                if (_idFranchise == null)
                 {
                     operations = _operationdoctorRepository.GetAllOperationDoctorByClinicId(_idClinic).ToList();
                 }
-                else if (_idClinic == 0)
+                else if (_idClinic == null)
                 {
                     operations = _operationdoctorRepository.GetAllOperationDoctorByFranchiseId(_idFranchise).ToList();
                 }
@@ -64,7 +62,7 @@ namespace Plastic.Controllers
             return View();
         }
 
-        public ActionResult Create(int clinicId, int franchiseId)
+        public ActionResult Create(string clinicId, string franchiseId)
         {
             var _idClinic = clinicId;
             var _idFranchise = franchiseId;
@@ -83,13 +81,13 @@ namespace Plastic.Controllers
                 operationDoctorVM.Operations = operations;
                 operationDoctorVM.OperationIds = operations.Select(a => a.Id).ToList();
 
-                if (_idFranchise == 0)
+                if (_idFranchise == null)
                 {
                     var doctors = _context.Doctors.Include(a => a.Clinic).Where(b => b.ClinicId == _idClinic && b.Status == true && b.Deleted == false).ToList();
                     operationDoctorVM.Doctors = doctors;
                     operationDoctorVM.DoctorIds = doctors.Select(a => a.Id).ToList();
                 }
-                else if (_idClinic == 0)
+                else if (_idClinic == null)
                 {
                     var doctors = _context.Doctors.Include(a => a.Clinic).Where(b => b.FranchiseId == _idFranchise && b.Status == true && b.Deleted == false).ToList();
                     operationDoctorVM.Doctors = doctors;
@@ -177,11 +175,11 @@ namespace Plastic.Controllers
                     _context.Add(operationDoctor);
                     _context.SaveChanges();
 
-                    if (_idFranchise == 0) //form verileri clinicten geldiyse
+                    if (_idFranchise == null) //form verileri clinicten geldiyse
                     {
                         return RedirectToAction("Details", "Clinic", new { id = _idClinic });
                     }
-                    else if (_idClinic == 0) //form verileri franchisedan geldiyse
+                    else if (_idClinic == null) //form verileri franchisedan geldiyse
                     {
                         return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
                     }
@@ -191,7 +189,7 @@ namespace Plastic.Controllers
                 //TempData["ClinicModalViewModel"] = JsonSerializer.Serialize(clinicMVM);
                 //TempData["FranchiseModalViewModel"] = JsonSerializer.Serialize(franchiseMVM);
 
-                if (_idClinic == 0) //from verileri franchise dan gelmiştir
+                if (_idClinic == null) //from verileri franchise dan gelmiştir
                 {
                     return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
                 }
@@ -202,7 +200,7 @@ namespace Plastic.Controllers
             }
             catch  //burası çalışmıyor klinikler sayfasına atıyor direk düzelt
             {
-                if (_idFranchise == 0)
+                if (_idFranchise == null)
                 {
                     return RedirectToAction("Details", "Clinic", new { id = _idClinic });
                     // return View(clinicMVM);
@@ -217,14 +215,14 @@ namespace Plastic.Controllers
             }
         }
 
-        public ActionResult Edit(int id, int clinicId, int franchiseId)
-        {           
+        public ActionResult Edit(int id, string clinicId, string franchiseId)
+        {
             var operationDoctorVM = new OperationDoctorViewModel();
 
             var _idClinic = clinicId;
-             operationDoctorVM.ClinicId = clinicId;
-            var _idFranchise = franchiseId; 
-             operationDoctorVM.FranchiseId = franchiseId;
+            operationDoctorVM.ClinicId = clinicId;
+            var _idFranchise = franchiseId;
+            operationDoctorVM.FranchiseId = franchiseId;
 
             //_idClinic = Convert.ToInt32(HttpContext.Session.GetInt32("_ClinicId"));
             //_idFranchise = Convert.ToInt32(HttpContext.Session.GetInt32("_FranchiseId"));
@@ -242,13 +240,13 @@ namespace Plastic.Controllers
                 operationDoctorVM.Operations = operations;
                 operationDoctorVM.OperationIds = operations.Select(a => a.Id).ToList();
 
-                if (_idFranchise == 0)
+                if (_idFranchise == null)
                 {
                     var doctors = _context.Doctors.Include(a => a.Clinic).Where(b => b.ClinicId == _idClinic && b.Status == true && b.Deleted == false).ToList();
                     operationDoctorVM.Doctors = doctors;
                     operationDoctorVM.DoctorIds = doctors.Select(a => a.Id).ToList();
                 }
-                else if (_idClinic == 0)
+                else if (_idClinic == null)
                 {
                     var doctors = _context.Doctors.Include(a => a.Clinic).Where(b => b.FranchiseId == _idFranchise && b.Status == true && b.Deleted == false).ToList();
                     operationDoctorVM.Doctors = doctors;
@@ -272,22 +270,40 @@ namespace Plastic.Controllers
                 {
                     try
                     {
-                        await _photoService.DeletePhotoAsync(Convert.ToString(operationDoctorVM.Image1));
-                        await _photoService.DeletePhotoAsync(Convert.ToString(operationDoctorVM.Image2));
-                        await _photoService.DeletePhotoAsync(Convert.ToString(operationDoctorVM.Image3));
+                        if (operationDoctorVM.Image1 != null)
+                        {
+                            await _photoService.DeletePhotoAsync(Convert.ToString(operationDoctorVM.Image1));
+                        }
+                        else if (operationDoctorVM.Image2 != null)
+                        {
+                            await _photoService.DeletePhotoAsync(Convert.ToString(operationDoctorVM.Image2));
+                        }
+                        else if (operationDoctorVM.Image3 != null)
+                        {
+                            await _photoService.DeletePhotoAsync(Convert.ToString(operationDoctorVM.Image3));
+                        }
                     }
                     catch (Exception ex)
                     {
                         ModelState.AddModelError("", "Fotoğaf silinemedi.");
-                        return PartialView("~/Views/Doctor/_PartialEditOperationDoctor.cshtml", operationDoctorVM);
+                        return PartialView("~/Views/OperationDoctor/_PartialEditOperationDoctor.cshtml", operationDoctorVM);
                     }
-                    var photoResult1 = await _photoService.AddPhotoAsync(operationDoctorVM.Image1);
-                    var photoResult2 = await _photoService.AddPhotoAsync(operationDoctorVM.Image2);
-                    var photoResult3 = await _photoService.AddPhotoAsync(operationDoctorVM.Image3);
+
+                    operationDoctor = operationDoctorVM.OperationDoctor;      
+
+                    if (operationDoctorVM.Image1 != null)
                     {
-                        operationDoctor = operationDoctorVM.OperationDoctor;
+                        var photoResult1 = await _photoService.AddPhotoAsync(operationDoctorVM.Image1);
                         operationDoctor.ImageUrl1 = photoResult1.Url.ToString();
+                    }
+                    if (operationDoctorVM.Image2 != null)
+                    {
+                        var photoResult2 = await _photoService.AddPhotoAsync(operationDoctorVM.Image2);
                         operationDoctor.ImageUrl2 = photoResult2.Url.ToString();
+                    }
+                    if (operationDoctorVM.Image3 != null)
+                    {
+                    var photoResult3 = await _photoService.AddPhotoAsync(operationDoctorVM.Image3);
                         operationDoctor.ImageUrl3 = photoResult3.Url.ToString();
                     }
 
@@ -304,7 +320,7 @@ namespace Plastic.Controllers
                     _context.OperationDoctors.Update(operationDoctor);
                     _context.SaveChanges();
 
-                    if (_idClinic == 0) //from verileri franchise dan gelmiştir
+                    if (_idClinic == null) //from verileri franchise dan gelmiştir
                     {
                         return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
                     }
@@ -321,7 +337,7 @@ namespace Plastic.Controllers
             }
             catch
             {
-                if (_idClinic == 0) //from verileri franchise dan gelmiştir
+                if (_idClinic == null) //from verileri franchise dan gelmiştir
                 {
                     return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
                 }
@@ -332,10 +348,10 @@ namespace Plastic.Controllers
             }
         }
 
-        public async Task<IActionResult> Delete(int id, int clinicId, int franchiseId)
+        public async Task<IActionResult> Delete(int id, string clinicId, string franchiseId)
         {
             var operationDoctorVM = new OperationDoctorViewModel()
-            { 
+            {
                 OperationDoctor = new OperationDoctor(),
                 ClinicId = clinicId,
                 FranchiseId = franchiseId
@@ -352,8 +368,8 @@ namespace Plastic.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection, OperationDoctorViewModel operationDoctorVM)
         {
-            var _idClinic = 0;
-            var _idFranchise = 0;
+            var _idClinic = "";
+            var _idFranchise = "";
             try
             {
                 _idClinic = operationDoctorVM.ClinicId;
@@ -368,31 +384,21 @@ namespace Plastic.Controllers
                     operationDoctor.Deleted = true;
                     _context.OperationDoctors.Update(operationDoctor);
                     _context.SaveChanges();
+                }
 
-                    if (_idFranchise == 0)
-                    {
-                        return RedirectToAction("Details", "Clinic", new { id = _idClinic });
-                    }
-                    else
-                    {
-                        return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
-                    }
+                if (_idFranchise == null)
+                {
+                    return RedirectToAction("Details", "Clinic", new { id = _idClinic });
                 }
                 else
                 {
-                    if (_idFranchise == 0)
-                    {
-                        return RedirectToAction("Details", "Clinic", new { id = _idClinic });
-                    }
-                    else
-                    {
-                        return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
-                    }
+                    return RedirectToAction("Details", "Franchise", new { id = _idFranchise });
                 }
+
             }
             catch
             {
-                if (_idFranchise == 0)
+                if (_idFranchise == null)
                 {
                     return RedirectToAction("Details", "Clinic", new { id = _idClinic });
                 }

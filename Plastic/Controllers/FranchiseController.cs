@@ -56,7 +56,7 @@ namespace Plastic.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(string id)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace Plastic.Controllers
                 //    franchiseMVM = JsonSerializer.Deserialize<FranchiseModalViewModel>(franchiseModalViewModelJson);
                 //}
 
-                if (id == 0) { id = franchiseVM.Franchise.Id; }
+                if (id == "") { id = franchiseVM.Franchise.Id; }
 
                 //HttpContext.Session.SetInt32("_FranchiseId", id);
 
@@ -187,7 +187,9 @@ namespace Plastic.Controllers
 
             ModelState.Remove("Franchise.District");
             ModelState.Remove("Franchise.Clinic");
+            ModelState.Remove("Franchise.ClinicId");
             ModelState.Remove("Franchise.Email");
+            ModelState.Remove("Franchise.Id");
 
             if (!ModelState.IsValid)
             {

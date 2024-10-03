@@ -80,7 +80,7 @@ namespace Plastic.Repository
             //return franchise;
         }
 
-        public async Task<Franchise?> GetByIdFranchiseAsync(int id) //FranchiseViewModel
+        public async Task<Franchise?> GetByIdFranchiseAsync(string id) //FranchiseViewModel
         {
            // return await _context.Franchises.FirstOrDefaultAsync(e => e.Id == id);
             //return await _context.Franchises.Where(c => c.Id == id).AsNoTracking().FirstOrDefaultAsync();
@@ -96,7 +96,7 @@ namespace Plastic.Repository
 
         public IEnumerable<OperationDoctor?> GetOperationDoctor(int id)  
         {
-            var doctor = _context.Doctors.Include(a => a.Clinic).Where(b => b.FranchiseId == id).ToList();
+            var doctor = _context.Doctors.Include(a => a.Clinic).Where(b => Convert.ToInt16(b.FranchiseId) == id).ToList();
             var doctorIds = doctor.Select(a => a.Id).ToList();
             var operationDoctor = _context.OperationDoctors
                 .Include(a => a.Operation)
@@ -104,7 +104,7 @@ namespace Plastic.Repository
                     .Where(d => doctorIds.Contains(d.DoctorId)).ToList();
             return operationDoctor;
         }
-        public IEnumerable<Doctor?> GetDoctorByFranchiseId(int id) 
+        public IEnumerable<Doctor?> GetDoctorByFranchiseId(string id) 
         {
             try
             {

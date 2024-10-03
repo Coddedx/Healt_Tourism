@@ -12,7 +12,7 @@ namespace Plastic.Models
 
 
         [Required]
-        public int ClinicId { get; set; }
+        public string ClinicId { get; set; }
         [ForeignKey("ClinicId")]
         public virtual Clinic? Clinic { get; set; }
 

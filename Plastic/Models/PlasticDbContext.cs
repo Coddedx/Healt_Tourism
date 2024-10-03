@@ -136,12 +136,34 @@ namespace Plastic.Models
             //    .HasForeignKey(a => a.UserId);
 
 
-            // DAHA SONRA CLİNİC VE FRANCHİSE İÇİN DE BÖYLE YAP -->> User.Id=AppUser.Id ve AppUser.UserId=AppUser.Id istediklerim oldu ama UserId1 silmen gerekiyor!!!!!!!!!!!!! AppUser.ClinicId=Clinic.Id oluyor şu an (clinic.ıd kendi kendine ve 1-2-3... gibi artıyor)
+
+
             // 1:1 ilişki ayarı
             modelBuilder.Entity<AppUser>() //1:1 ilişki
                 .HasOne(a => a.User) // AppUser'ın bir User'ı olacak
                 .WithOne() // User'ın bir AppUser'ı olacak
                 .HasForeignKey<User>(u => u.Id); // User tablosundaki Id, AppUser.Id ile eşleşecek                 
+
+            modelBuilder.Entity<AppUser>() //1:1 ilişki
+                .HasOne(a => a.Clinic)
+                .WithOne()
+                .HasForeignKey<Clinic>(u => u.Id)
+                .OnDelete(DeleteBehavior.NoAction);         //Özellikle, CommentClinic tablosunda hem AppUserId hem de ClinicId ile ilişkili yabancı anahtarlar var. Bu iki yabancı anahtar aynı tabloda başka kısıtlamalarla çakışabilir ve SQL Server bu durumda döngüsel ya da çakışan cascade delete yollarına izin vermez.
+                                                            //Yabancı anahtarların silme işlemlerinde ON DELETE NO ACTION veya ON DELETE SET NULL gibi bir işlem belirtilmesi gerekir. Bu, silme işlemi sırasında döngü veya çakışmayı önler.
+
+            modelBuilder.Entity<AppUser>() //1:1 ilişki
+                .HasOne(a => a.Franchise)
+                .WithOne()
+                .HasForeignKey<Franchise>(u => u.Id)
+                .OnDelete(DeleteBehavior.NoAction);
+
+
+            //modelBuilder.Entity<AppUser>() // 1:1 ilişki
+            //     .HasOne(a => a.Franchise) // AppUser'ın bir Franchise'ı olacak
+            //     .WithOne() // Franchise'ın bir AppUser'ı olacak
+            //     .HasForeignKey<AppUser>(u => u.FranchiseId) // AppUser tablosundaki FranchiseId, Franchise.Id ile eşleşecek
+            //     .OnDelete(DeleteBehavior.NoAction);
+
 
 
             base.OnModelCreating(modelBuilder);

@@ -16,7 +16,7 @@ namespace Plastic.ViewModels
 
         public IFormFile? Image { get; set; }
 
-        public int ClinicId { get; set; } //bunu aktarmam gerekiyor tekrardan clinic controllerına 
-        public int FranchiseId { get; set; } //bunu aktarmam gerekiyor tekrardan franchise controllerına 
+        public string ClinicId { get; set; } //bunu aktarmam gerekiyor tekrardan clinic controllerına 
+        public string FranchiseId { get; set; } //bunu aktarmam gerekiyor tekrardan franchise controllerına 
     }
 }

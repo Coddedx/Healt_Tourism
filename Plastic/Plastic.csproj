@@ -10,6 +10,7 @@
     <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
     <PackageReference Include="jQuery" Version="3.7.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
       <PrivateAssets>all</PrivateAssets>
@@ -21,6 +22,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MvcSiteMapProvider.Web" Version="4.6.26" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
   </ItemGroup>
 
 </Project>

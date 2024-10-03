@@ -12,7 +12,7 @@ using Plastic.Models;
 namespace Plastic.Migrations
 {
     [DbContext(typeof(PlasticDbContext))]
-    [Migration("20240927192949_Initial")]
+    [Migration("20241003161725_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -167,10 +167,7 @@ namespace Plastic.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ClinicId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ClinicId1")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -186,8 +183,8 @@ namespace Plastic.Migrations
                     b.Property<string>("FranchiseId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FranchiseId1")
-                        .HasColumnType("int");
+                    b.Property<string>("FranchiseId1")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -227,7 +224,7 @@ namespace Plastic.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClinicId1");
+                    b.HasIndex("ClinicId");
 
                     b.HasIndex("FranchiseId1");
 
@@ -311,11 +308,8 @@ namespace Plastic.Migrations
 
             modelBuilder.Entity("Plastic.Models.Clinic", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Adress")
                         .IsRequired()
@@ -373,8 +367,8 @@ namespace Plastic.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ClinicId")
-                        .HasColumnType("int");
+                    b.Property<string>("ClinicId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Comment")
                         .HasMaxLength(500)
@@ -453,8 +447,8 @@ namespace Plastic.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("FranchiseId")
-                        .HasColumnType("int");
+                    b.Property<string>("FranchiseId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Comment")
                         .HasMaxLength(500)
@@ -546,8 +540,8 @@ namespace Plastic.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ClinicId")
-                        .HasColumnType("int");
+                    b.Property<string>("ClinicId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Country")
                         .IsRequired()
@@ -571,8 +565,8 @@ namespace Plastic.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-                    b.Property<int?>("FranchiseId")
-                        .HasColumnType("int");
+                    b.Property<string>("FranchiseId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -619,11 +613,8 @@ namespace Plastic.Migrations
 
             modelBuilder.Entity("Plastic.Models.Franchise", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Adress")
                         .IsRequired()
@@ -634,8 +625,9 @@ namespace Plastic.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ClinicId")
-                        .HasColumnType("int");
+                    b.Property<string>("ClinicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
@@ -893,7 +885,6 @@ namespace Plastic.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CreatedBy")
@@ -995,23 +986,17 @@ namespace Plastic.Migrations
 
             modelBuilder.Entity("Plastic.Models.AppUser", b =>
                 {
-                    b.HasOne("Plastic.Models.Clinic", "Clinic")
+                    b.HasOne("Plastic.Models.Clinic", null)
                         .WithMany("Users")
-                        .HasForeignKey("ClinicId1");
+                        .HasForeignKey("ClinicId");
 
-                    b.HasOne("Plastic.Models.Franchise", "Franchise")
+                    b.HasOne("Plastic.Models.Franchise", null)
                         .WithMany("Users")
                         .HasForeignKey("FranchiseId1");
 
-                    b.HasOne("Plastic.Models.User", "User")
+                    b.HasOne("Plastic.Models.User", null)
                         .WithMany("Users")
                         .HasForeignKey("UserId");
-
-                    b.Navigation("Clinic");
-
-                    b.Navigation("Franchise");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Plastic.Models.City", b =>
@@ -1031,6 +1016,12 @@ namespace Plastic.Migrations
                         .WithMany("Clinics")
                         .HasForeignKey("DistrictId")
                         .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Plastic.Models.AppUser", null)
+                        .WithOne("Clinic")
+                        .HasForeignKey("Plastic.Models.Clinic", "Id")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("District");
@@ -1133,6 +1124,12 @@ namespace Plastic.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Plastic.Models.AppUser", null)
+                        .WithOne("Franchise")
+                        .HasForeignKey("Plastic.Models.Franchise", "Id")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Clinic");
 
                     b.Navigation("District");
@@ -1210,13 +1207,28 @@ namespace Plastic.Migrations
                     b.Navigation("OperationDoctor");
                 });
 
+            modelBuilder.Entity("Plastic.Models.User", b =>
+                {
+                    b.HasOne("Plastic.Models.AppUser", null)
+                        .WithOne("User")
+                        .HasForeignKey("Plastic.Models.User", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Plastic.Models.AppUser", b =>
                 {
+                    b.Navigation("Clinic");
+
+                    b.Navigation("Franchise");
+
                     b.Navigation("OperationUsers");
 
                     b.Navigation("ReceivedMessages");
 
                     b.Navigation("SentMessages");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Plastic.Models.Category", b =>

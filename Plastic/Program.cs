@@ -15,6 +15,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));  //CLOUDÝNARY!!!!!!
+builder.Services.AddSingleton<RabbitMqService>();
+builder.Services.AddSignalR();
+builder.Services.AddHostedService<RabbitMqListener>();
 
 
 //timeout aldýðým için sürekli 

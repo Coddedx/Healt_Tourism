@@ -23,13 +23,13 @@ namespace Plastic.Models
 
 
         // Nullable foreign key for Franchise   BİR DOKTOR YA FRANCHİSE A YA CLİNİC E BAĞLI OLABİLİR 
-        public int? FranchiseId { get; set; }
+        public string? FranchiseId { get; set; }
         public virtual Franchise Franchise { get; set; }
 
 
 
         // Nullable foreign key for Clinic
-        public int? ClinicId { get; set; }
+        public string? ClinicId { get; set; }
         public virtual Clinic Clinic { get; set; }
 
 

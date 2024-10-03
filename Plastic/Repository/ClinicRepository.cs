@@ -22,20 +22,20 @@ namespace Plastic.Repository
         {
             return await _context.Clinics.Include(a => a.District).Where(a => a.Status == true && a.Deleted == false).ToListAsync();
         }
-        public async Task<Clinic?> GetByIdClinicAsync(int id) //Clinic
+        public async Task<Clinic?> GetByIdClinicAsync(string id) //Clinic
         {
             return await _context.Clinics.
                 Include(a => a.District).
                 ThenInclude(i => i.City).
-                FirstOrDefaultAsync(c => c.Id == id);
+                FirstOrDefaultAsync(c => c.Id == id); 
         }
 
-        public Task<Franchise?> GetFranchiseByClinicId(int id)
+        public Task<Franchise?> GetFranchiseByClinicId(string id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<OperationDoctor?> GetOperationDoctor(int id)  //IQueryable olduğunda tolist yapamayız çünkü sorgu döndürür
+        public IEnumerable<OperationDoctor?> GetOperationDoctor(string id)  //IQueryable olduğunda tolist yapamayız çünkü sorgu döndürür
         {
             //var franchise = _context.Franchises
             //    .Include(a => a.Doctors)
@@ -64,7 +64,7 @@ namespace Plastic.Repository
             //.Where(c => c.DoctorId == doctor.Id && doctor.FranchiseId == franchise.Id && franchise.ClinicId == id);      // _context => _context.DoctorId == id 
 
         }
-        public List<Doctor?> GetDoctorByClinicId(int id)
+        public List<Doctor?> GetDoctorByClinicId(string id)
         {
             //var clinic = _context.Clinics
             //    .Where(c => c.Id == _id).ToList();
@@ -177,14 +177,22 @@ namespace Plastic.Repository
             {
                 var doctors = _doctorRepository.GetDoctorsByNameAsync(doctorName);
                 
+                //var clinicIds = doctors
+                //    .Where(d => Convert.ToInt16(d.ClinicId).HasValue)
+                //    .Select(d => d.ClinicId.Value).Distinct().ToList();
+
                 var clinicIds = doctors
-                    .Where(d => d.ClinicId.HasValue)
-                    .Select(d => d.ClinicId.Value).Distinct().ToList();
+                    .Where(doctors => !string.IsNullOrEmpty(doctors.ClinicId))
+                    .Select(d => d.ClinicId).Distinct().ToList();
                 
+                //var franchiseIds = doctors
+                //    .Where(d => d.FranchiseId.HasValue)
+                //    .Select(d => d.FranchiseId.Value).Distinct().ToList();
+
                 var franchiseIds = doctors
-                    .Where(d => d.FranchiseId.HasValue)
-                    .Select(d => d.FranchiseId.Value).Distinct().ToList();
-                
+                    .Where(d => !string.IsNullOrEmpty(d.FranchiseId))
+                    .Select(d => d.FranchiseId).Distinct().ToList();
+
                 ClinicFranchiseVM.Clinics = _context.Clinics
                     .Where(c => clinicIds.Contains(c.Id)).ToList();
                 ClinicFranchiseVM.Franchises = _context.Franchises

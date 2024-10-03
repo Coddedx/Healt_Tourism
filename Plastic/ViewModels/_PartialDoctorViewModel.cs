@@ -10,7 +10,7 @@ namespace Plastic.ViewModels
 
         public IFormFile? Image { get; set; } //ıfromfile tipi veri gerektiği için
 
-        public int ClinicId { get; set; }
-        public int FranchiseId { get; set; }
+        public string ClinicId { get; set; }
+        public string FranchiseId { get; set; }
     }
 }

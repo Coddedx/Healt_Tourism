@@ -7,7 +7,7 @@ namespace Plastic.ViewModels
     public class FranchiseViewModel
     {
         //[Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         //public List<Franchise> Franchises { get; set; }
         public Franchise Franchise { get; set; }

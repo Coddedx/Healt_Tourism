@@ -5,7 +5,7 @@ namespace Plastic.Models
 	public class Clinic : BaseEntity
 	{
 		[Key]
-		public int Id { get; set; }
+		public string Id { get; set; }
 
         public District District { get; set; } //virtual
         public int DistrictId { get; set; }  

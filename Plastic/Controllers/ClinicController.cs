@@ -142,7 +142,7 @@ namespace Plastic.Controllers
             return View(ClinicFranchiseVM);
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(string id)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace Plastic.Controllers
                     clinicVM.Clinic.District.City = new City();
                 };
 
-                if (id == 0) { id = clinicVM.Clinic.Id; }
+                if (id == "") { id = clinicVM.Clinic.Id; }
 
                 //Form yanlış doldurulduktan sonra doldurulan yerlerin aynen gelmesi için verileri taşıyorum.
                 //var clinicModalViewModelJson = TempData["ClinicModalViewModel"] as string;
@@ -267,6 +267,7 @@ namespace Plastic.Controllers
 
             ModelState.Remove("Clinic.District");
             ModelState.Remove("Clinic.Email");
+            ModelState.Remove("Clinic.Id");
 
             if (!ModelState.IsValid)
             {

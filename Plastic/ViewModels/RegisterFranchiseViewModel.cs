@@ -25,7 +25,7 @@ namespace Plastic.ViewModels
 
         [Required(ErrorMessage = "District is required")]
         public int DistrictId { get; set; }  // DistrictId ekleniyor
-        public int ClinicId { get; set; }  // DistrictId ekleniyor
+        public string ClinicId { get; set; }  // DistrictId ekleniyor
 
 
     }

@@ -13,8 +13,8 @@ namespace Plastic.ViewModels
         public IFormFile? Image2 { get; set; }
         public IFormFile? Image3 { get; set; }
 
-        public int ClinicId { get; set; } 
-        public int FranchiseId { get; set; } 
+        public string ClinicId { get; set; } 
+        public string FranchiseId { get; set; } 
 
     }
 }

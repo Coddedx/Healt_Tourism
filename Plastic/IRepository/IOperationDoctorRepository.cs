@@ -4,8 +4,8 @@ namespace Plastic.IRepository
 {
     public interface IOperationDoctorRepository
     {
-        List<OperationDoctor?> GetAllOperationDoctorByClinicId(int id); 
-        List<OperationDoctor?> GetAllOperationDoctorByFranchiseId(int id);
+        List<OperationDoctor?> GetAllOperationDoctorByClinicId(string id); 
+        List<OperationDoctor?> GetAllOperationDoctorByFranchiseId(string id);
         Task<OperationDoctor?> GetOperationDoctorByIdAsync(int id);
 
     }

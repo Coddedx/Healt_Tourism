@@ -12,7 +12,7 @@ namespace Plastic.Models
 
 
         [Required]
-        public int FranchiseId { get; set; }
+        public string FranchiseId { get; set; }
         [ForeignKey("FranchiseId")]
         public virtual Franchise? Franchise { get; set; }
 

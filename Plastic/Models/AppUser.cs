@@ -11,9 +11,10 @@ namespace Plastic.Models
         public virtual User? User { get; set; }
 
         public string? ClinicId { get; set; }
-        public Clinic? Clinic { get; set; }
+        public Clinic? Clinic { get; set; } //virtual
+       
         public string? FranchiseId { get; set; }
-        public Franchise? Franchise { get; set; }
+        public Franchise? Franchise { get; set; } //virtual
 
 
         public ICollection<Message> SentMessages { get; set; } = new List<Message>();

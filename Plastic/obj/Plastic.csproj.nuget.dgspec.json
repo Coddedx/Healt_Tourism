@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[8.0.7, )"
             },
+            "Microsoft.AspNetCore.SignalR.Common": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.7, )"
@@ -81,6 +85,10 @@
             "MvcSiteMapProvider.Web": {
               "target": "Package",
               "version": "[4.6.26, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.8.1, )"
             },
             "jQuery": {
               "target": "Package",

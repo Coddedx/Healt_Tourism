@@ -16,7 +16,7 @@ namespace Plastic.Repository
             _context = context;
         }
 
-        public IEnumerable<Doctor?> GetAllDoctorByClinicId(int id)
+        public IEnumerable<Doctor?> GetAllDoctorByClinicId(string id)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace Plastic.Repository
             }
         }
 
-        public IEnumerable<Doctor?> GetAllDoctorByFranchiseId(int id)
+        public IEnumerable<Doctor?> GetAllDoctorByFranchiseId(string id)
         {
             try
             {

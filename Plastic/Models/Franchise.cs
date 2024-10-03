@@ -7,7 +7,7 @@ namespace Plastic.Models
 	{
 
 		[Key]
-		public int Id { get; set; }
+		public string Id { get; set; }
 
 		//[Required]
 		//[ForeignKey("HospitalId")]
@@ -19,7 +19,7 @@ namespace Plastic.Models
         //[Required]
         //[ForeignKey("ClinicId")]
         public Clinic Clinic { get; set; }  //virtual
-        public int ClinicId { get; set; }
+        public string ClinicId { get; set; }
 
 
 
