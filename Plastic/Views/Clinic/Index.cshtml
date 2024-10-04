@@ -142,6 +142,10 @@
                                     </a>
                                     <p>@clinic.Adress</p>
                                     <a class="btn btn-outline-primary btn-sm mb-0" asp-controller="Clinic" asp-action="Details" asp-route-id="@clinic.Id">Sayfasına Git</a>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <a class="btn btn-outline-primary btn-sm mb-0" asp-controller="Message" asp-action="Index" asp-route-id="@clinic.Id">Mesaj at</a>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -237,7 +241,7 @@
             }
 </style>
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const citySelect = document.getElementById("cityS");

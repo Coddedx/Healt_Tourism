@@ -14,5 +14,8 @@
         public string Content { get; set; }
         public DateTime SenAt { get; set; }
 
+        public bool Read {  get; set; } = false;
+
+
     }
 }

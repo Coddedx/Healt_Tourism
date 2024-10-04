@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Plastic.Data;
 using Plastic.IRepository;
 using Plastic.Models;
 using Plastic.Repository;
@@ -243,6 +244,7 @@ namespace Plastic.Controllers
             if (newUserResponse.Succeeded)
             {
                 newAppUser.FranchiseId = newAppUser.Id;
+                await _userManager.AddToRoleAsync(newAppUser, UserRoles.Franchise);
                 await _context.SaveChangesAsync();
             }
 

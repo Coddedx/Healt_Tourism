@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
+using Plastic.Data;
 using Plastic.IRepository;
 using Plastic.Models;
 using Plastic.Repository;
@@ -320,6 +321,7 @@ namespace Plastic.Controllers
             if (newUserResponse.Succeeded)
             {
                 newAppUser.ClinicId = newAppUser.Id;
+                await _userManager.AddToRoleAsync(newAppUser, UserRoles.Clinic);
                 await _context.SaveChangesAsync();
             }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Plastic.Data;
 using Plastic.Models;
 using Plastic.ViewModels;
 using System.Numerics;
@@ -114,6 +115,7 @@ namespace Plastic.Controllers
             if (newUserResponse.Succeeded)
             {
                 newAppUser.UserId = newAppUser.Id;
+                await _userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction("Index", "Clinic");

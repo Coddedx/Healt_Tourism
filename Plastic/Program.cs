@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Plastic.Data;
 using Plastic.Helper;
+using Plastic.Hubs;
 using Plastic.IRepository;
 using Plastic.Models;
 using Plastic.Repository;
@@ -87,7 +89,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseAuthorization();
+
+
+app.UseAuthentication();  //UseRouting ve end points aasýnda olmalý!!
+app.UseAuthorization();  //UseRouting ve end points aasýnda olmalý!!
 
 //app.UseEndpoints(endpoints =>
 //{
@@ -97,8 +102,28 @@ app.UseAuthorization();
 //});
 
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Clinic}/{action=Index}/{id?}");
+//app
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Clinic}/{action=Index}/{id?}");
+
+    endpoints.MapHub<ChatHub>("/chathub");
+});
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        await Seed.SeedUsersAndRolesAsync(app); // Rolleri ve kullanýcýlarý seed et
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred during seeding users and roles.");
+    }
+}
 
 app.Run();
