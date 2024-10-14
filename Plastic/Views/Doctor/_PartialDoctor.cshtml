@@ -31,10 +31,12 @@
                                 </a>
                                 <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm " asp-area="" asp-controller="Doctor" asp-action="Details" asp-route-id="@item.Id">Sayfasına Git</a>
                                 @* <a  data-id="@item.Id" class="dropdown-item border-radius-md" data-bs-toggle="modal" data-bs-target="#editDoctorModal">Düzenle</a> *@  @* modalı tetiklemeye çalışıyorsanız, bu durumda href veya asp-action kullanılarak sayfa yönlendirilmesi gerçekleşmeyecektir. Çünkü modal, sayfa yenilemeden açılacağı için, yönlendirme işlemi gerçekleştirilmez.  AJAX veya JavaScript kullanarak ID'yi modal'a aktarılmalı o yüzden data-id eklenmeli !!!!!!!!!!!!!!!!!!!!!!! *@
-
+                                @if (User.IsInRole("clinic") || User.IsInRole("franchise"))
+                                {
                                 <a asp-controller="Doctor" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary btn-edit-doctor">Düzenle</a>
-
                                 <a asp-controller="Doctor" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger btn-delete-Doctor">Sil</a>
+                                    
+                                }
 
                             </div>
                         </div>

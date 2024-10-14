@@ -21,37 +21,40 @@
         </div>
     </div>
 
-
     <!--  Doktor-Operasyon Create Dropdowns  -->
-    <div class="container py-7">
-        @*             <div class="row">*@
-        <div class="col-lg-4 ms-lg-auto col-md-6 col-sm-3 d-flex justify-content-center">
-            <div class="dropdown">
-                <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    Ekle
-                </button>
-                <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
-                    
-@*                     <li><a class="dropdown-item border-radius-md" data-bs-toggle="modal" data-bs-target="#createDoctorModal">Doktor</a></li>
- *@                    
-                    <li>
-                        <a class="dropdown-item border-radius-md"
-                           data-url="@Url.Action("Create", "OperationDoctor")"
-                           data-franchise-id="@Model.Franchise.Id"
-                           id="createOperationDoctorLink">Operasyon</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item border-radius-md"
-                           data-url="@Url.Action("Create", "Doctor")"
-                           data-franchise-id="@Model.Franchise.Id"
-                           id="CreateDoctorLink">Doktor</a>
-                    </li>
+    @if (User.IsInRole("franchise"))
+    {
 
-                </ul>
+        <div class="container py-7">
+            @*             <div class="row">*@
+            <div class="col-lg-4 ms-lg-auto col-md-6 col-sm-3 d-flex justify-content-center">
+                <div class="dropdown">
+                    <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ekle
+                    </button>
+                    <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
+
+                        @*                     <li><a class="dropdown-item border-radius-md" data-bs-toggle="modal" data-bs-target="#createDoctorModal">Doktor</a></li>
+                    *@
+                        <li>
+                            <a class="dropdown-item border-radius-md"
+                               data-url="@Url.Action("Create", "OperationDoctor")"
+                               data-franchise-id="@Model.Franchise.Id"
+                               id="createOperationDoctorLink">Operasyon</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item border-radius-md"
+                               data-url="@Url.Action("Create", "Doctor")"
+                               data-franchise-id="@Model.Franchise.Id"
+                               id="CreateDoctorLink">Doktor</a>
+                        </li>
+
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    @* </div> *@
+        @* </div> *@
+    }
 
 
     <!--Navigation Tabs-->
@@ -77,12 +80,12 @@
                                 Yorumlarımız
                                 </a>
                             </li>
-                            
+
                         </ul>
                     </div>
 
                     <div id="content-area">
-                       @*  @Html.Partial("~/Views/Doctor/_PartialEditDoctor.cshtml", new _PartialDoctorViewModel { }) *@
+                        @*  @Html.Partial("~/Views/Doctor/_PartialEditDoctor.cshtml", new _PartialDoctorViewModel { }) *@
                         @* @Html.Partial("~/Views/OperationDoctor/_PartialEditOperationDoctor.cshtml", new OperationDoctorViewModel { }) *@
                     </div>
 
@@ -96,7 +99,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                
+
                 // nav tab da hangisine basıldıysa doğru partial view ın content-area bölgesine gelmesini sağlar
                 $(".nav-tab").click(function (e) {
                     e.preventDefault();
@@ -140,7 +143,7 @@
                     e.preventDefault();
                     var url = $(this).attr('href');
                     var franchiseId = $('#franchise-details').data('franchise-id');
-                    
+
                     url += '?franchiseId=' + franchiseId;
 
                     $.ajax({

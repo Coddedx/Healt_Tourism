@@ -9,6 +9,7 @@ using Plastic.Models;
 using Plastic.Repository;
 using Plastic.ViewModels;
 using System.Diagnostics;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text.Json;
 
@@ -61,6 +62,15 @@ namespace Plastic.Controllers
         {
             try
             {
+                if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("franchise"))
+                    {
+                        var franchiseId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                        id = franchiseId;
+                    }
+                }
+
                 var franchiseVM = new FranchiseViewModel();
                 {
                     franchiseVM.Franchise = new Franchise();

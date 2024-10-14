@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Plastic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e326c6a02c0b8dd4af3de453d00203964cfd5e08")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+96863242c5d44b0a710ec242643469d9f008da8b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Plastic")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Plastic")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

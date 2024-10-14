@@ -13,6 +13,7 @@ using Plastic.ViewModels;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Text.Json;
 using System.Xml.Linq;
@@ -147,6 +148,15 @@ namespace Plastic.Controllers
         {
             try
             {
+                if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("clinic"))
+                    {
+                        var clinicId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                        id = clinicId;
+                    }
+                }
+
                 var clinicVM = new ClinicViewModel();
                 {
                     clinicVM.Clinic = new Clinic();
@@ -327,7 +337,6 @@ namespace Plastic.Controllers
 
             return RedirectToAction("Index", "Clinic");
         }
-
 
     }
 }

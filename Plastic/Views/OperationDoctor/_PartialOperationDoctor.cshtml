@@ -27,10 +27,11 @@
                             </a>
                             <a type="button" name="action" value="detail" class="btn btn-outline-primary btn-sm " asp-area="" asp-controller="OperationDoctor" asp-action="Index" asp-route-id="@item.Id">Sayfasına Git</a>@* mb-0 *@
 
-                            <a asp-controller="OperationDoctor" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary btn-edit-operationDoctor">Düzenle</a>
-                            
+                            @if (User.IsInRole("clinic") || User.IsInRole("franchise"))
+                            {
+                            <a asp-controller="OperationDoctor" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary btn-edit-operationDoctor">Düzenle</a>                           
                             <a asp-controller="OperationDoctor" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger btn-delete-operationDoctor" >Sil</a>
-                        
+                            }
                         </div>
                     </div>
                 </div>

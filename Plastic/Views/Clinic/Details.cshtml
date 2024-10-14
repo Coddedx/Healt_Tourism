@@ -23,33 +23,36 @@
     </div>
 
     <!-- Doktor-Operasyon Create Dropdowns  -->
-    <div class="container py-3">
-        @*             <div class="row">*@
-        <div class="col-lg-4 ms-lg-auto col-md-6 col-sm-3 d-flex justify-content-center">
-            <div class="dropdown">
-                <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    Ekle
-                </button>
-                <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
-@*                     <li><a class="dropdown-item border-radius-md" data-url="@Url.Action("Create", "Doctor")" id="doctorCreateLink">Doktor</a></li> @* data-bs-toggle="modal" data-bs-target="#createDoctorModal" *@
-                     <li>
-                        <a class="dropdown-item border-radius-md"
-                           data-url="@Url.Action("Create", "OperationDoctor")"
-                           data-clinic-id="@Model.Clinic.Id"
-                           id="createOperationDoctorLink">Operasyon</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item border-radius-md"
-                           data-url="@Url.Action("Create", "Doctor")"
-                           data-clinic-id="@Model.Clinic.Id"
-                           id="CreateDoctorLink">Doktor</a>
-                    </li>
+    @if (User.IsInRole("clinic"))
+    {
+        <div class="container py-3">
+            @*             <div class="row">*@
+            <div class="col-lg-4 ms-lg-auto col-md-6 col-sm-3 d-flex justify-content-center">
+                <div class="dropdown">
+                    <button class="btn bg-gradient-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ekle
+                    </button>
+                    <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownMenuButton">
+                        @*                     <li><a class="dropdown-item border-radius-md" data-url="@Url.Action("Create", "Doctor")" id="doctorCreateLink">Doktor</a></li> @* data-bs-toggle="modal" data-bs-target="#createDoctorModal" *@
+                        <li>
+                            <a class="dropdown-item border-radius-md"
+                               data-url="@Url.Action("Create", "OperationDoctor")"
+                               data-clinic-id="@Model.Clinic.Id"
+                               id="createOperationDoctorLink">Operasyon</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item border-radius-md"
+                               data-url="@Url.Action("Create", "Doctor")"
+                               data-clinic-id="@Model.Clinic.Id"
+                               id="CreateDoctorLink">Doktor</a>
+                        </li>
 
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    @* </div> *@
+        @* </div> *@
+    }
 
     <!--Navigation Tabs-->
     <section class="py-7" style="margin-top:-85px ">
@@ -83,9 +86,9 @@
                     </div>
 
                     <div id="content-area">
-                       @*  <div id="form-area" ></div> *@
+                        @*  <div id="form-area" ></div> *@
                         @* @Html.Partial("~/Views/Doctor/_PartialEditDoctor.cshtml", new _PartialDoctorViewModel { }) *@
-                       @*  @Html.Partial("~/Views/OperationDoctor/_PartialEditOperationDoctor.cshtml", new OperationDoctorViewModel { }) *@
+                        @*  @Html.Partial("~/Views/OperationDoctor/_PartialEditOperationDoctor.cshtml", new OperationDoctorViewModel { }) *@
                     </div>
 
                 </div>
@@ -98,12 +101,12 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-           
-                // nav tab da hangisine basıldıysa doğru partial view ın content-area bölgesine gelmesini sağlar        
+
+                // nav tab da hangisine basıldıysa doğru partial view ın content-area bölgesine gelmesini sağlar
                 $(".nav-tab").click(function (e) {
                     e.preventDefault();
                     var url = $(this).data("url");
-                    var clinicId = $('#clinic-details').data('clinic-id'); //<div id="clinic-details" data-clinic-id="Model.Clinic.Id" den alıyor 
+                    var clinicId = $('#clinic-details').data('clinic-id'); //<div id="clinic-details" data-clinic-id="Model.Clinic.Id" den alıyor
 
                     url += '?clinicId=' + clinicId;
 
@@ -141,7 +144,7 @@
                 $(document).on('click', '.btn-edit-operationDoctor', function (e) {
                     e.preventDefault();
                     var url = $(this).attr('href');
-                    var clinicId = $('#clinic-details').data('clinic-id'); 
+                    var clinicId = $('#clinic-details').data('clinic-id');
 
                     url += '?clinicId=' + clinicId;
 
@@ -160,7 +163,7 @@
                     e.preventDefault();
                     var url = $(this).data('url');
                     var clinicId = $(this).data('clinic-id');
-                   
+
                     // URL'e ClinicId'yi query string olarak ekliyoruz
                     url += '?clinicId=' + clinicId;
 
@@ -182,7 +185,7 @@
 
                     // URL'e ClinicId'yi query string olarak ekliyoruz
                     url += '?clinicId=' + clinicId;
-                    
+
                     $.ajax({
                         url: url,
                         type: 'GET',

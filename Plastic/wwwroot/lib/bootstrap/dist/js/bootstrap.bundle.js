@@ -1312,7 +1312,9 @@
           // would stop cycling until user tapped out of it;
           // here, we listen for touchend, explicitly pause the carousel
           // (as if it's the second time we tap on it, mouseenter compat event
-          // is NOT fired) and after a timeout (to allow for mouse compatibility
+            // is NOT fired) and after a 
+
+            (to allow for mouse compatibility
           // events to fire) we explicitly restart cycling
           this.pause();
 

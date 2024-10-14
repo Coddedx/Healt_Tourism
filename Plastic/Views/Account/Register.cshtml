@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <p class="mt-4 text-sm text-center">
                             Klinik için burdan <a href="@Url.Action("Register", "Clinic")" class="text-blue-500 hover:underline">kaydol</a>
                         </p>
@@ -74,18 +74,19 @@
                                     <input asp-for="Phone" type="number" class="form-control">
                                     <span asp-validation-for="Phone" class="text-danger"></span>
                                 </div>
-                                
-                                <div class="col-md-6 ps-2">                                  
-                                    <label asp-for="Gender" class="form-label">Cinsiyet</label>
-                                    <div class="input-group input-group-dynamic">
-                                        <label for="gender_female" style="margin-right:5px; margin-bottom:4px">Kadın</label>
-                                        <input type="radio" id="gender_female" asp-for="Gender" style="margin-right:5px;" value="Female" />
 
-                                        <label for="gender_male" style="margin-right:5px; margin-bottom:4px">Erkek</label>
-                                        <input type="radio" id="gender_male" asp-for="Gender" value="Male" />
-
+                                <div class="d-flex align-items-center">
+                                    <label asp-for="Gender" class="form-label" style="margin-right: 15px;">Cinsiyet</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="gender_female" asp-for="Gender" value="Female">
+                                        <label class="form-check-label" for="gender_female">Kadın</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="gender_male" asp-for="Gender" value="Male">
+                                        <label class="form-check-label" for="gender_male">Erkek</label>
                                     </div>
                                 </div>
+
                                 <div class="input-group input-group-outline my-3">
                                     <label class="form-label">Email</label>
                                     <input asp-for="EmailAddress" type="email" class="form-control">

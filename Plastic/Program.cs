@@ -28,6 +28,9 @@ builder.WebHost.ConfigureKestrel(t =>
     t.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(15);
 });
 
+//builder.Services.AddDbContext<PlasticDbContext>(options =>
+//    options.UseSqlServer(connectionString, sqlOptions =>
+//        sqlOptions.CommandTimeout(60)));
 
 builder.Services.AddTransient<IPhotoService, PhotoService>(); //Transient kullanmadým???????????????    CLOUDÝNARY!!!!!! AddScoped
 builder.Services.AddTransient<IFranchiseRepository, FranchiseRepository>();
@@ -42,7 +45,7 @@ builder.Services.AddMemoryCache(); //Caching makes a copy of data that can be re
 //??????????????????????????????????  doctor repository de tempdata kullanaya çalýþmak için denedim 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -55,7 +58,7 @@ builder.Services.AddSession(options =>
 //setting our app  -----------sonradan ekledim ve json dakinini de!!!!!!!!!!!!
 builder.Services.AddDbContext<PlasticDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") + ";Connection Timeout=60;");
 });
 
 

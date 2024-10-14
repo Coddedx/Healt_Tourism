@@ -22,6 +22,7 @@
                                             <form asp-area="" asp-controller="Doctor" asp-action="Edit" method="post" enctype="multipart/form-data" id="editDoctorModalForm" role="form" autocomplete="off">
                                                 <input type="hidden" name="ClinicId" asp-for="ClinicId" value="@Model.ClinicId" />
                                                 <input type="hidden" name="FranchiseId" asp-for="FranchiseId" value="@Model.FranchiseId" />
+                                                <input type="hidden" name="Id" asp-for="EditDoctor.Id" value="@Model.EditDoctor.Id" />
                                                 <div class="card-body">
                                                     <div class="row">
 

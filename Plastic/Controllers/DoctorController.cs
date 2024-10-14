@@ -179,6 +179,7 @@ namespace Plastic.Controllers
             var doctorVM = new _PartialDoctorViewModel();
             {
                 doctorVM.EditDoctor = selectedDoctor;
+                doctorVM.EditDoctor.Id = id;
                 doctorVM.ClinicId = clinicId;
                 doctorVM.FranchiseId = franchiseId;
             };
@@ -237,6 +238,7 @@ namespace Plastic.Controllers
 
                         {
                             doctor = doctorVM.EditDoctor;
+                            doctor.Id = id;
                             doctor.ClinicId = _idClinic;
                             doctor.FranchiseId = _idFranchise;
                         }
@@ -260,7 +262,7 @@ namespace Plastic.Controllers
 
                         _context.ChangeTracker.Clear(); // birden fazla aynı anahtar değeri (ID) ile ilişkilendirilmiş Doctor nesnesinin aynı DbContext içinde birden fazla kez izlenmeye çalışıldığında ortaya çıkar
                         _context.Doctors.Update(doctor);
-                        _context.SaveChanges();
+                       await _context.SaveChangesAsync();
 
                         //return PartialView("~/Views/Doctor/_PartialEditDoctor.cshtml", doctorVM);
                         if (_idFranchise == null) //form verileri clinicten geldiyse

@@ -14,8 +14,9 @@
         {
             _logger.LogInformation("RabbitMQ Listener is starting.");
 
+            //SONRADAN (stoppingToken) sadece parantez içi sonradan-------------------------
             // RabbitMqService'ten mesaj alımını başlat asenkron çağırmalıyız ki ana thread bloke olmasın
-            await Task.Run(() => _rabbitMqService.ReceiveMessages(), stoppingToken); //stoppingToken->Arka plan görevinin iptal edilmesi gerektiğinde, bu token kullanılarak işlem iptal edilir.
+            await Task.Run(() => _rabbitMqService.ReceiveMessages(stoppingToken), stoppingToken); //stoppingToken->Arka plan görevinin iptal edilmesi gerektiğinde, bu token kullanılarak işlem iptal edilir.
 
             //Eğer uygulama kapanırsa veya arka plan hizmeti durdurulursa CancellationToken(stoppingToken tetiklenir) kullanarak bu işlemi güvenli bir şekilde sonlandırmış olursun.log kaydı oluşturulur
             stoppingToken.Register(() => _logger.LogInformation("RabbitMQ Listener is stopping."));

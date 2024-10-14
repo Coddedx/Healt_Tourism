@@ -289,7 +289,17 @@ namespace Plastic.Controllers
                         return PartialView("~/Views/OperationDoctor/_PartialEditOperationDoctor.cshtml", operationDoctorVM);
                     }
 
-                    operationDoctor = operationDoctorVM.OperationDoctor;      
+                    operationDoctor = operationDoctorVM.OperationDoctor;
+                    operationDoctor.Id = id;
+                    foreach (var doctorId in operationDoctorVM.DoctorIds)
+                    {
+                        foreach (var operationId in operationDoctorVM.OperationIds)
+                        {
+                            operationDoctor.DoctorId = doctorId;
+                            operationDoctor.OperationId = operationId;
+
+                        }
+                    }
 
                     if (operationDoctorVM.Image1 != null)
                     {
@@ -303,7 +313,7 @@ namespace Plastic.Controllers
                     }
                     if (operationDoctorVM.Image3 != null)
                     {
-                    var photoResult3 = await _photoService.AddPhotoAsync(operationDoctorVM.Image3);
+                        var photoResult3 = await _photoService.AddPhotoAsync(operationDoctorVM.Image3);
                         operationDoctor.ImageUrl3 = photoResult3.Url.ToString();
                     }
 
@@ -316,7 +326,8 @@ namespace Plastic.Controllers
                         operationDoctor.CreatedBy = 0;
                         operationDoctor.UpdatedBy = 0;
                     }
-
+                    
+                    _context.ChangeTracker.Clear();
                     _context.OperationDoctors.Update(operationDoctor);
                     _context.SaveChanges();
 
@@ -380,6 +391,7 @@ namespace Plastic.Controllers
                 var operationDoctor = _context.OperationDoctors.FirstOrDefault(a => a.Id == id);
                 if (operationDoctor != null)
                 {
+                    operationDoctor.Id = id;
                     operationDoctor.Status = false;
                     operationDoctor.Deleted = true;
                     _context.OperationDoctors.Update(operationDoctor);
