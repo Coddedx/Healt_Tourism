@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-12">
             <nav class="navbar navbar-expand-lg  blur border-radius-xl top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
-               <div class="container-fluid px-0">
+                <div class="container-fluid px-0">
                     <a class="navbar-brand font-weight-bolder ms-sm-3" asp-controller="Home" asp-action="Index" rel="tooltip" data-placement="bottom">
 
                     </a>
@@ -33,7 +33,7 @@
                                 <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3" aria-labelledby="dropdownMenuPages">
                                     <div class="d-none d-lg-block">
                                         <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
-                                            Landing 
+                                            Landing
                                         </h6>
                                         <a href="./pages/about-us.html" class="dropdown-item border-radius-md">
                                             <span>About Us</span>
@@ -91,13 +91,14 @@
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <li class="nav-item dropdown dropdown-hover mx-2">
-                                    @if (User.IsInRole("clinic")) //UserRoles.Clinic
+                                    @if (User.IsInRole("clinic"))
                                     {
                                         <form asp-area="" asp-controller="Clinic" asp-action="Details">
                                             <a asp-controller="Clinic" asp-action="Details" class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuBlocks">
                                                 <i class="material-icons opacity-6 me-2 text-md"></i>
                                                 Hesabım
                                             </a>
+                                            <input type="hidden" name="id" value="" />
                                         </form>
                                     }
                                     else if (User.IsInRole("frachise"))
@@ -124,10 +125,10 @@
                                     <div class="position-relative">
                                         <a href="@Url.Action("Index", "Message")" class="text-decoration-none">
                                             <!-- Link yönlendirme -->
-                                        <i class="fa fa-envelope" aria-hidden="true"></i> <!-- Mesaj ikonu -->
-                                        @* <span class="badge badge-danger unread-badge">2</span> *@   @* @Model.UnreadMessageCount *@
-                                       
-                                        @*  <span id="unreadMessagesBadge" class="badge bg-primary">0</span> *@
+                                            <i class="fa fa-envelope" aria-hidden="true"></i> <!-- Mesaj ikonu -->
+                                            @* <span class="badge badge-danger unread-badge">2</span> *@   @* @Model.UnreadMessageCount *@
+
+                                            @*  <span id="unreadMessagesBadge" class="badge bg-primary">0</span> *@
                                         </a>
                                         @*@if (Model.UnreadMessageCount > 0)
                                     {
@@ -178,102 +179,102 @@
                                     </a>
 
 
-                           </div>
-                            </li>
-                        </ul>
-                   </div>
-               </div>
+                    </div>
+                    </li>
+                    </ul>
+                </div>
+        </div>
 
-                <div class="row d-lg-none">
-                    <div class="col-md-12">
-                        <div class="d-flex mb-2">
-                            <div class="icon h-10 me-3 d-flex mt-1">
-                                <i class="ni ni-single-copy-04 text-gradient text-primary"></i>
-                            </div>
-                            <div class="w-100 d-flex align-items-center justify-content-between">
-                                <div>
-                                    <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Page Sections</h6>
-                                </div>
-                            </div>
+        <div class="row d-lg-none">
+            <div class="col-md-12">
+                <div class="d-flex mb-2">
+                    <div class="icon h-10 me-3 d-flex mt-1">
+                        <i class="ni ni-single-copy-04 text-gradient text-primary"></i>
+                    </div>
+                    <div class="w-100 d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Page Sections</h6>
                         </div>
-                        <a class="dropdown-item ps-3 border-radius-md mb-1" href="./sections/page-sections/hero-sections.html">
-                            Page Headers
-                        </a>
-
-                        <div class="d-flex mb-2 mt-3">
-                            <div class="icon h-10 me-3 d-flex mt-1">
-                                <i class="ni ni-laptop text-gradient text-primary"></i>
-                            </div>
-                            <div class="w-100 d-flex align-items-center justify-content-between">
-                                <div>
-                                    <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Navigation</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <a class="dropdown-item ps-3 border-radius-md mb-1" href="./sections/navigation/navbars.html">
-                            Navbars
-                        </a>
-
-                        <div class="d-flex mb-2 mt-3">
-                            <div class="icon h-10 me-3 d-flex mt-1">
-                                <i class="ni ni-badge text-gradient text-primary"></i>
-                            </div>
-                            <div class="w-100 d-flex align-items-center justify-content-between">
-                                <div>
-                                    <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Input Areas</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <a class="dropdown-item ps-3 border-radius-md mb-1" href="./sections/input-areas/inputs.html">
-                            Inputs
-                        </a>
-                        <a class="dropdown-item ps-3 border-radius-md mb-1" href="./sections/input-areas/forms.html">
-                            Forms
-                        </a>
-
-
-                        <div class="d-flex mb-2 mt-3">
-                            <div class="icon h-10 me-3 d-flex mt-1">
-                                <i class="ni ni-notification-70 text-gradient text-primary"></i>
-                            </div>
-                            <div class="w-100 d-flex align-items-center justify-content-between">
-                                <div>
-                                    <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Attention Catchers</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <a class="dropdown-item ps-3 border-radius-md mb-1" href="./sections/attention-catchers/alerts.html">
-                            Alerts
-                        </a>
-
-                        <div class="d-flex mb-2 mt-3">
-                            <div class="icon h-10 me-3 d-flex mt-1">
-                                <i class="ni ni-app text-gradient text-primary"></i>
-                            </div>
-                            <div class="w-100 d-flex align-items-center justify-content-between">
-                                <div>
-                                    <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Elements</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <a class="dropdown-item ps-3 border-radius-md mb-1" href="./sections/elements/avatars.html">
-                            Avatars
-                        </a>
                     </div>
                 </div>
+                <a class="dropdown-item ps-3 border-radius-md mb-1" href="./sections/page-sections/hero-sections.html">
+                    Page Headers
+                </a>
 
-                </ul>
-                </li>
+                <div class="d-flex mb-2 mt-3">
+                    <div class="icon h-10 me-3 d-flex mt-1">
+                        <i class="ni ni-laptop text-gradient text-primary"></i>
+                    </div>
+                    <div class="w-100 d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Navigation</h6>
+                        </div>
+                    </div>
+                </div>
+                <a class="dropdown-item ps-3 border-radius-md mb-1" href="./sections/navigation/navbars.html">
+                    Navbars
+                </a>
 
-                </ul>
+                <div class="d-flex mb-2 mt-3">
+                    <div class="icon h-10 me-3 d-flex mt-1">
+                        <i class="ni ni-badge text-gradient text-primary"></i>
+                    </div>
+                    <div class="w-100 d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Input Areas</h6>
+                        </div>
+                    </div>
+                </div>
+                <a class="dropdown-item ps-3 border-radius-md mb-1" href="./sections/input-areas/inputs.html">
+                    Inputs
+                </a>
+                <a class="dropdown-item ps-3 border-radius-md mb-1" href="./sections/input-areas/forms.html">
+                    Forms
+                </a>
+
+
+                <div class="d-flex mb-2 mt-3">
+                    <div class="icon h-10 me-3 d-flex mt-1">
+                        <i class="ni ni-notification-70 text-gradient text-primary"></i>
+                    </div>
+                    <div class="w-100 d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Attention Catchers</h6>
+                        </div>
+                    </div>
+                </div>
+                <a class="dropdown-item ps-3 border-radius-md mb-1" href="./sections/attention-catchers/alerts.html">
+                    Alerts
+                </a>
+
+                <div class="d-flex mb-2 mt-3">
+                    <div class="icon h-10 me-3 d-flex mt-1">
+                        <i class="ni ni-app text-gradient text-primary"></i>
+                    </div>
+                    <div class="w-100 d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0">Elements</h6>
+                        </div>
+                    </div>
+                </div>
+                <a class="dropdown-item ps-3 border-radius-md mb-1" href="./sections/elements/avatars.html">
+                    Avatars
+                </a>
+            </div>
         </div>
+
+        </ul>
+        </li>
+
+        </ul>
     </div>
+</div>
     </nav>
-    <!-- End Navbar -->
+<!-- End Navbar -->
 </div>
 </div></div>
 
-
+@*
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.0/signalr.min.js"></script>
 <script>
     // SignalR Hub'a bağlan
@@ -286,14 +287,31 @@
         .then(() => console.log('SignalR bağlantısı kuruldu'))
         .catch(err => console.error('SignalR bağlantı hatası: ', err));
 
-    // 'ReceiveUnreadMessageCount' olayını dinle 
+    // 'ReceiveUnreadMessageCount' olayını dinle
     connection.on("ReceiveUnreadMessageCount", function (unreadMessageCount) {
         // Badge içinde gelen okunmamış mesaj sayısını göster
         document.getElementById("unreadMessagesBadge").innerText = unreadMessageCount;
         console.log('başladı');
     });
 </script>
+ *@
 
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.0/signalr.min.js"></script>
+<script type="text/javascript">
+
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/chathub")
+        .build();
+
+    //SignalR bağlantısı başlatılıyor
+    connection.start().catch(function (err) {
+        return console.error(err.tostring());
+    });
+
+
+</script>
 
 <style>
     .position-relative {

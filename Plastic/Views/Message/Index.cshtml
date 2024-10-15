@@ -496,13 +496,6 @@
             .withUrl("/chathub")
             .build();
 
-        // // Hub bağlantısını başlat
-        // connection.start()
-        //     .then(() => {
-        //         console.log("SignalR Connected.");
-        //     })
-        //     .catch(err => console.error("Connection Error: " + err.toString()));
-
         //SignalR bağlantısı başlatılıyor
         connection.start().catch(function (err) {
             return console.error(err.tostring());
@@ -536,7 +529,7 @@
             messageList.scrollTop = messageList.scrollHeight;
         });
 
-        //mesaj formu gönderirken
+        // //mesaj formu gönderirken
         // document.getElementById("messageForm").addEventListener("submit", function (event) {
         //     event.preventDefault(); //formun normal gönderimini engelle
 
@@ -553,6 +546,7 @@
         //     document.getElementById("messageInput").value = "";
         // });
 
+        
 
 
     </script>

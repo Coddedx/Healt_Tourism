@@ -23,7 +23,7 @@
     </div>
 
     <!-- Doktor-Operasyon Create Dropdowns  -->
-    @if (User.IsInRole("clinic"))
+    @if (User.IsInRole("clinic")) //  && ViewBag.UserId == Model.Clinic.Id
     {
         <div class="container py-3">
             @*             <div class="row">*@

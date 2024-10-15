@@ -60,7 +60,7 @@ namespace Plastic.Services
         }
 
         //RabbitMq den mesajları alıp signalR ile ilet
-        public async Task ReceiveMessages(CancellationToken cancellationToken) //Sonradan CancellationToken cancellationToken void ---------------------
+        public void  ReceiveMessages() //CancellationToken cancellationToken Sonradan CancellationToken cancellationToken async Task ---------------------
         {
             //performansı artırmak için Her seferinde sadece bir mesaj alınır ve işlenir
             _channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
@@ -73,12 +73,12 @@ namespace Plastic.Services
             // Received olayına dinleyici ekleme
             consumer.Received += async (model, ea) =>
             {
-                //sonradan if hepsi
-                if (cancellationToken.IsCancellationRequested)
-                {
-                    _channel.BasicCancel(ea.ConsumerTag);  // İşlem iptal edildiyse consumer'ı durdur (channel ile gönderilen tag kullanarak)
-                    return;
-                }
+                ////sonradan if hepsi
+                //if (cancellationToken.IsCancellationRequested)
+                //{
+                //    _channel.BasicCancel(ea.ConsumerTag);  // İşlem iptal edildiyse consumer'ı durdur (channel ile gönderilen tag kullanarak)
+                //    return;
+                //}
 
 
                 var body = ea.Body.ToArray();
@@ -98,20 +98,20 @@ namespace Plastic.Services
                         //Mesajı SignalR ile göndeer
                         await _hubContext.Clients.User(receiverId).SendAsync("ReceiveMessage", senderId, content);
 
-                        // Kullanıcının okunmamış mesaj sayısını güncelle
-                        await _hubContext.Clients.User(receiverId).SendAsync("GetUnreadMessageCount", receiverId);
+                        //// Kullanıcının okunmamış mesaj sayısını güncelle
+                        //await _hubContext.Clients.User(receiverId).SendAsync("GetUnreadMessageCount", receiverId);
 
 
-                        //SONRADAN --------------------
-                        // Mesaj başarıyla işlendiyse manuel onaylama
-                        _channel.BasicAck(ea.DeliveryTag, false);
+                        ////SONRADAN --------------------
+                        //// Mesaj başarıyla işlendiyse manuel onaylama
+                        //_channel.BasicAck(ea.DeliveryTag, false);
 
                         Console.WriteLine($"Received message: {message}");
                     }
                     catch (Exception ex)
                     {
-                        // Eğer bir hata oluşursa mesajı işleme alınmadı olarak işaretleyin ve tekrar işlenmesini sağlayın
-                        _channel.BasicNack(ea.DeliveryTag, false, true);
+                        //// Eğer bir hata oluşursa mesajı işleme alınmadı olarak işaretleyin ve tekrar işlenmesini sağlayın
+                        //_channel.BasicNack(ea.DeliveryTag, false, true);
                         Console.WriteLine($"Error processing message: {ex.Message}");
 
                     }
@@ -121,24 +121,24 @@ namespace Plastic.Services
                     Console.WriteLine("Received message is not in the expected format.");
 
                     //sonradan--------------
-                    _channel.BasicNack(ea.DeliveryTag, false, false); // Yanlış formatta mesajı işleme
+                    //_channel.BasicNack(ea.DeliveryTag, false, false); // Yanlış formatta mesajı işleme
 
                 }
             };
 
-            //SONRADAN VAR CONSUMERtAG = kısmı eklendi sadece gerisi vardı --------------------------
+            //SONRADAN VAR CONSUMERtAG = kısmı eklendi sadece gerisi vardı -------------------------- var consumerTag = 
             // Kuyruktan mesajları tüketmeye başla. autoAck: true olarak ayarlanmış durumda. Bu, mesajın otomatik olarak işlenmiş sayılacağı anlamına gelir,
-            var consumerTag = _channel.BasicConsume(queue: "chatQueue", autoAck: false, consumer: consumer);
+            _channel.BasicConsume(queue: "chatQueue", autoAck: false, consumer: consumer);
 
-            //sonradan ----------------
-            // CancellationToken kullanarak işlem iptali sağlanır
-            await Task.Delay(Timeout.Infinite, cancellationToken);
-            //SONRADAN--------------------------------- if hepsi
-            if (cancellationToken.IsCancellationRequested)
-            {
-                // İşlem iptal edildiyse, consumer'ı durdurmak için consumerTag kullan
-                _channel.BasicCancel(consumerTag);
-            }
+            ////sonradan ----------------
+            //// CancellationToken kullanarak işlem iptali sağlanır
+            //await Task.Delay(Timeout.Infinite, cancellationToken);
+            ////SONRADAN--------------------------------- if hepsi
+            //if (cancellationToken.IsCancellationRequested)
+            //{
+            //    // İşlem iptal edildiyse, consumer'ı durdurmak için consumerTag kullan
+            //    _channel.BasicCancel(consumerTag);
+            //}
 
         }
 

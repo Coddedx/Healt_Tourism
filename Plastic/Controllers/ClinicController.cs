@@ -153,7 +153,8 @@ namespace Plastic.Controllers
                     if (User.IsInRole("clinic"))
                     {
                         var clinicId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                        id = clinicId;
+                        //ViewBag.UserId = UserId;
+                        id = clinicId;  //navbar da hesabım a tıkladıpında ı yi alabilmek içindi
                     }
                 }
 

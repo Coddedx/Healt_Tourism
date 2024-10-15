@@ -34,10 +34,8 @@ namespace Plastic.Controllers
             string senderFranchiseId = "";
             string senderName = "Bilinmeyen???";
 
-            using (var _context = new PlasticDbContext()) //connection
-                                                          //almamk için sql bağlantılarını kont altında tutup using dışına çıkıldığında sql bağlantısını dispose eder
+            using (var _context = new PlasticDbContext()) //connection hatası almamAk için sql bağlantılarını kont altında tutup using dışına çıkıldığında sql bağlantısını dispose eder
             {
-
                 if (User.Identity.IsAuthenticated)
                 {
                     if (User.IsInRole("user"))
@@ -72,18 +70,6 @@ namespace Plastic.Controllers
                     .Where(m => (m.SenderId == senderId && m.ReceiverId == receiverId) || (m.SenderId == receiverId && m.ReceiverId == senderId)) //id
                     .OrderBy(m => m.SenAt)
                     .ToList();
-
-                //var messagesToUpdate = _context.Messages   //id
-                //    .Where(m => ((m.SenderId == senderId && m.ReceiverId == receiverId) ||
-                //    (m.SenderId == receiverId && m.ReceiverId == senderId)) &&
-                //    m.Read == false) // Sadece okunmamış mesajlar
-                //    .ToList();
-                //foreach (var message in messagesToUpdate)
-                //{
-                //    message.Read = true;
-                //}
-                //await _context.SaveChangesAsync();
-
 
                 var receiverUser = await _context.Users.FindAsync(receiverId);  //id
                 var receiverClinic = await _context.Clinics.Include(a => a.District).ThenInclude(a => a.City).FirstOrDefaultAsync(a => a.Id == receiverId);//;FindAsync(id)    //id
@@ -120,6 +106,19 @@ namespace Plastic.Controllers
                         SentAt = m.SenAt
                     }).ToList();
                 }
+
+
+                var messagesToUpdate = _context.Messages   //id
+                    .Where(m => 
+                    (m.SenderId == receiverId && m.ReceiverId == senderId) &&
+                    m.Read == false) // Sadece okunmamış mesajlar  ((m.SenderId == senderId && m.ReceiverId == receiverId) ||
+                    .ToList();
+                foreach (var message in messagesToUpdate)
+                {
+                    message.Read = true;
+                }
+                await _context.SaveChangesAsync();
+
 
                 // MESAJ İKONUNA TIKLAYAN USER
                 //senderıd ile uyuşan KONUŞMA GEÇMİŞİ OLAN KİŞİLERİ bul (receiverId lerini buluyoruz)(messages != null olmazsa döngü içine girmez receiverId boş string kalır ÇÖZ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
@@ -187,7 +186,8 @@ namespace Plastic.Controllers
                 SenderId = senderId,
                 ReceiverId = messageVM.ReceiverId,
                 Content = messageVM.MessageContent,
-                SenAt = DateTime.UtcNow
+                SenAt = DateTime.UtcNow,
+                Read = false
             };
 
             // Mesajı veritabanına ekle
@@ -198,7 +198,7 @@ namespace Plastic.Controllers
             _rabbitMqService.SendMessage(senderId, messageVM.ReceiverId, newMessage.Content);
 
             // SignalR kullanarak mesajı alıcıya anında ilet
-            //await _hubContext.Clients.User(messageVM.ReceiverId).SendAsync("ReceiveMessage", senderId, newMessage.Content); //bu olduğunda mesaj 2 defa receiver kişisinde gözüküyor
+            await _hubContext.Clients.User(messageVM.ReceiverId).SendAsync("ReceiveMessage", senderId, newMessage.Content); //bu olduğunda mesaj 2 defa receiver kişisinde gözüküyor
 
             // Göndericiye de mesajın iletilmesini sağla
             await _hubContext.Clients.User(senderId).SendAsync("ReceiveMessage", senderId, newMessage.Content);

@@ -14,22 +14,22 @@ namespace Plastic.Hubs
     {
         private readonly PlasticDbContext _context;
         private readonly RabbitMqService _rabbitMqService;
-        public ChatHub(PlasticDbContext context, RabbitMqService rabbitMqService) //
+        public ChatHub(PlasticDbContext context, RabbitMqService rabbitMqService) //SONRADAN----------------------- CancellationToken cancellationToken 
         {
             _context = context;
             _rabbitMqService = rabbitMqService;
 
             // RabbitMQ dan mesajları dinlemeye başla
-            //_rabbitMqService.ReceiveMessages();
+           // _rabbitMqService.ReceiveMessages(cancellationToken); //SONRADAN ----------------------- cancellationToken
 
             //SONRADAN --------------------------------
             //GetUnreadMessageCount(receiverId);
         }
 
         //Kullanıcı mesaj gönderdiğinde tetiklenir
-        public async Task SendMessage(string receiverId, string messageContent, string data) //string message
+        public async Task SendMessage(string receiverId, string messageContent,string data) //string message
         {
-            Console.WriteLine("signalr chathub : " + data);
+            Console.WriteLine("ChatHub a girdi: " + data);
             var senderId = Context.UserIdentifier; //UserIdentifier,ASP.NET Core Identity ile ilişkili bir kavramdır ve HttpContext.User nesnesinden veya SignalR'daki Hub sınıfı içindeki Context.UserIdentifier özelliğinden elde edilir o yüzden _context değil Context olmalı
             var newMessage = new Message
             {
