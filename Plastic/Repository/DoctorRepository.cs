@@ -20,7 +20,7 @@ namespace Plastic.Repository
         {
             try
             {
-                var doctor = _context.Doctors
+                var doctor = _context.Doctors//.AsNoTracking()
                              .Where(d => d.ClinicId == id && d.Status == true && d.Deleted == false).ToList();
                 return doctor;
 
@@ -35,7 +35,7 @@ namespace Plastic.Repository
         {
             try
             {
-                return _context.Doctors
+                return _context.Doctors//.AsNoTracking()
                              .Where(d => d.FranchiseId == id && d.Status == true && d.Deleted == false).ToList();
                 //return doctor;
             }

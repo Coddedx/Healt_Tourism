@@ -128,7 +128,7 @@
                                             <i class="fa fa-envelope" aria-hidden="true"></i> <!-- Mesaj ikonu -->
                                             @* <span class="badge badge-danger unread-badge">2</span> *@   @* @Model.UnreadMessageCount *@
 
-                                            @*  <span id="unreadMessagesBadge" class="badge bg-primary">0</span> *@
+                                            <span id="unreadMessagesBadge" class="badge bg-primary">0</span>
                                         </a>
                                         @*@if (Model.UnreadMessageCount > 0)
                                     {
@@ -271,8 +271,53 @@
 </div>
     </nav>
 <!-- End Navbar -->
-</div>
-</div></div>
+</div></div></div>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.0/signalr.min.js"></script>
+    <script type="text/javascript">
+
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chathub")
+            .build();
+
+        //SignalR bağlantısı başlatılıyor
+        connection.start().catch(function (err) {
+            return console.error(err.tostring());
+        });
+
+        // Okunmamış mesaj sayısını almak için methodu dinle
+        connection.on("ReceiveUnreadMessageCount", function (unreadMessageCount) {
+            // Okunmamış mesaj sayısını güncelle
+            document.getElementById("unreadMessagesBadge").innerText = unreadMessageCount;
+        });
+
+    </script>
+}
+
+
+<style>
+    .position-relative {
+        position: relative;
+    }
+
+    .unread-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        padding: 5px 10px;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+        font-size: 8px;
+        font-weight: bold;
+        min-width: 20px;
+        text-align: center;
+    }
+
+</style>
 
 @*
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.0/signalr.min.js"></script>
@@ -295,41 +340,3 @@
     });
 </script>
  *@
-
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.0/signalr.min.js"></script>
-<script type="text/javascript">
-
-    const connection = new signalR.HubConnectionBuilder()
-        .withUrl("/chathub")
-        .build();
-
-    //SignalR bağlantısı başlatılıyor
-    connection.start().catch(function (err) {
-        return console.error(err.tostring());
-    });
-
-
-</script>
-
-<style>
-    .position-relative {
-        position: relative;
-    }
-
-    .unread-badge {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        padding: 5px 10px;
-        border-radius: 50%;
-        background-color: red;
-        color: white;
-        font-size: 8px;
-        font-weight: bold;
-        min-width: 20px;
-        text-align: center;
-    }
-
-</style>

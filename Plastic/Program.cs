@@ -14,9 +14,8 @@ using Plastic.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));  //CLOUDÝNARY!!!!!!
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddSingleton<RabbitMqService>();
 builder.Services.AddSignalR();
 builder.Services.AddHostedService<RabbitMqListener>();
@@ -32,14 +31,13 @@ builder.WebHost.ConfigureKestrel(t =>
 //    options.UseSqlServer(connectionString, sqlOptions =>
 //        sqlOptions.CommandTimeout(60)));
 
-builder.Services.AddTransient<IPhotoService, PhotoService>(); //Transient kullanmadým???????????????    CLOUDÝNARY!!!!!! AddScoped
+builder.Services.AddTransient<IPhotoService, PhotoService>(); 
 builder.Services.AddTransient<IFranchiseRepository, FranchiseRepository>();
 builder.Services.AddTransient<IClinicRepository, ClinicRepository>();
 builder.Services.AddTransient<IDoctorRepository, DoctorRepository>();
 builder.Services.AddTransient<IOperationDoctorRepository, OperationDoctorRepository>();
 //cache eklemeyince repository i kullanamýyorum
 builder.Services.AddMemoryCache(); //Caching makes a copy of data that can be returned much faster than from the source. The in-memory cache can store any object. The distributed cache interface is limited to byte
-//AddSingleton , AddScoped, AddTransient
 
 
 //??????????????????????????????????  doctor repository de tempdata kullanaya çalýþmak için denedim 
@@ -55,7 +53,6 @@ builder.Services.AddSession(options =>
 //builder.Services.AddDbContext<PlasticDbContext>(options =>
 //    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//setting our app  -----------sonradan ekledim ve json dakinini de!!!!!!!!!!!!
 builder.Services.AddDbContext<PlasticDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") + ";Connection Timeout=60;");
@@ -66,7 +63,9 @@ builder.Services.AddDbContext<PlasticDbContext>(options =>
 //appdbcontext in altýnda olmalý identity ayarlarý !!!!!!!!!
 builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<PlasticDbContext>();
-builder.Services.AddMemoryCache(); //bunu eklemezsek deðiþik bir hata alabiliriz
+
+//builder.Services.AddMemoryCache(); //bunu eklemezsek deðiþik bir hata alabiliriz BÝR TANE CACHE OLMASI YETERLÝ - AddDbContext VE IDENTÝTY ROLE EKLEMDEN ÖNCE KULLANILIR GENELDE 
+
 builder.Services.AddSession(); //cookie autentication (use it if possible rather than jwt Authorization)
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();                   //cookie autentication(simplier than jwt Authorization)
@@ -93,9 +92,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-
-app.UseAuthentication();  //UseRouting ve end points aasýnda olmalý!!
-app.UseAuthorization();  //UseRouting ve end points aasýnda olmalý!!
+app.UseAuthentication();  //UseRouting ve end points aþþaðýsýnda olmalý!!
+app.UseAuthorization();  
 
 //app.UseEndpoints(endpoints =>
 //{

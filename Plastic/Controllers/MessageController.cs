@@ -177,7 +177,7 @@ namespace Plastic.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendMessage(MessageViewModel messageVM)
+        public async Task<IActionResult> SendMessage(MessageViewModel messageVM)  //ındex te document.getElementById("messageForm").addEventListener("submit", function (event) açık olduğunda chathub sendmessage ye gidiyor 
         {
             var senderId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -203,7 +203,7 @@ namespace Plastic.Controllers
             // Göndericiye de mesajın iletilmesini sağla
             await _hubContext.Clients.User(senderId).SendAsync("ReceiveMessage", senderId, newMessage.Content);
 
-            return RedirectToAction("Index", new { receiverId = messageVM.ReceiverId });  //id
+            return RedirectToAction("Index", new { receiverId = messageVM.ReceiverId });
         }
 
     }
